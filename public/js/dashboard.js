@@ -64,3 +64,46 @@ adminButton.addEventListener('click', function() {
         luasSidebar();
     }
 });
+
+// Test Modal
+const openModal = document.getElementById('openModal');
+const closeModal = document.getElementById('closeModal');
+const modal = document.getElementById('myModal');
+
+openModal.addEventListener('click', function() {
+  modal.classList.remove('hidden');
+});
+
+closeModal.addEventListener('click', function() {
+  modal.classList.add('hidden');
+});
+
+// Event listener untuk menutup modal saat wilayah di luar modal content diklik
+document.addEventListener('click', function(event) {
+    if (event.target === modal) {
+      modal.classList.add('hidden');
+    }
+});
+
+// Test Tombol Bulan
+const changeMonthButton = document.getElementById('changeMonthButton');
+const monthYearPicker = document.getElementById('monthYearPicker');
+const monthSelect = document.getElementById('monthSelect');
+const yearSelect = document.getElementById('yearSelect');
+const applyMonthYearButton = document.getElementById('applyMonthYearButton');
+
+changeMonthButton.addEventListener('click', () => {
+    monthYearPicker.classList.toggle('hidden');
+});
+
+applyMonthYearButton.addEventListener('click', () => {
+    const selectedMonth = monthSelect.value;
+    const selectedYear = yearSelect.value;
+    changeMonthButton.textContent = `${getMonthName(selectedMonth)} ${selectedYear}`;
+    monthYearPicker.classList.add('hidden');
+});
+
+function getMonthName(month) {
+    const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+    return monthNames[parseInt(month, 10) - 1];
+}
