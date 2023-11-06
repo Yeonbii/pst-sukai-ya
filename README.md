@@ -17,8 +17,8 @@ php artisan migrate --seed
 # Running
 - keep this running
 ```sh
-php artisan serve
 npm run dev
+php artisan serve
 ```
 # If the Project is completed and you want to host it
 - Run this command before hosting
