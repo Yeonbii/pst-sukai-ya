@@ -1,6 +1,6 @@
 # PST! Sukai ya
 
-**Deskripsi Singkat**: Media untuk melakukan penilaian dan umpan balik pelayanan yang didapatkan dari PST BPS Kab. Hulu Sungai Utara
+**An information survey website built with Laravel framework and Tailwind CSS.**
 
 # Initialize
 - First, Run this command
