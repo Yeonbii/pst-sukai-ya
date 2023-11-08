@@ -10,6 +10,7 @@ cp .env.example .env
 - Edit .env
 - Run this command
 ```sh
+php artisan key:generate
 composer install
 npm install
 php artisan migrate --seed

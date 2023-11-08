@@ -1,4 +1,4 @@
-<header class="sticky z-10 bg-dark shadow-md top-0 left-0 w-full flex items-center justify-center">
+<header class="sticky z-10 bg-dark shadow-md top-0 right-0 w-full flex items-center justify-center">
     <div class="w-full">
         <div class="flex items-center justify-between text-white">
             <div class="flex items-center px-4">

@@ -215,7 +215,7 @@
                 <div class="w-full px-4 mb-10 lg:w-1/2">
                     <h4 class="font-bold uppercase text-primary text-lg mb-3">Kanal Media dan Informasi</h4>
                     <h2 class="rss-feeds font-bold text-white text-3xl mb-3 max-w-md lg:text-4xl" data-aos="fade-right">RSS Feeds</h2>
-                    <p class="desc-subsection max-w-xl" data-aos="fade-right" data-aos-delay="300">Menyediakan pembaruan data statistik terkini Kabupaten Hulu Sungai Utara, memudahkan akses informasi bagi masyarakat dan pihak yang tertarik.</p>
+                    <p class="font-medium text-base text-light mb-6 lg:text-lg max-w-xl" data-aos="fade-right" data-aos-delay="300">Menyediakan pembaruan data statistik terkini Kabupaten Hulu Sungai Utara, memudahkan akses informasi bagi masyarakat dan pihak yang tertarik.</p>
                     
                     <!-- Icon Start -->
                     <div class="flex flex-wrap items-center text-light text-opacity-30">

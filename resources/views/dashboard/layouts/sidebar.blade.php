@@ -28,13 +28,13 @@
                 </li>
                 <li>
                     <a href="#" class="py-2 mx-4 my-4 flex items-center h-[40px] rounded-md hover:bg-light hover:bg-opacity-30 transition duration-300 ease-in-out">
-                        <i class="fa-solid fa-users text-base mx-5"></i>
+                        <i class="fa-solid fa-box-archive text-base mx-5"></i>
                         <span class="hidden">Data Responden</span>
                     </a>
                 </li>
             </ul>
         </div>
-        <a href="login.html" class="text-sm font-bold text-dark py-2 mx-4 mb-12 flex items-center h-[40px] bg-light rounded-md hover:opacity-80 transition duration-300 ease-in-out">
+        <a href="/login" class="text-sm font-bold text-dark py-2 mx-4 mb-12 flex items-center h-[40px] bg-light rounded-md hover:opacity-80 transition duration-300 ease-in-out">
             <i class="fa-solid fa-right-from-bracket text-base mx-5"></i>
             <span class="hidden">Logout</span>
         </a>

@@ -26,7 +26,7 @@
                 <!-- Header End -->
 
                 <!-- Test -->
-                <div id="main-content" class="py-7 px-4 md:px-9">
+                <div id="main-content" class="px-4 py-9 md:px-9 md:py-10">
                     @yield('container')
                 </div>
             </main>
