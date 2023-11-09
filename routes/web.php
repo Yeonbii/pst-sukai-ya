@@ -24,3 +24,7 @@ Route::get('/login', function () {
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 });
+
+Route::get('/dashboard/manage-form', function () {
+    return view('dashboard.manage-forms.index');
+});

@@ -15,19 +15,19 @@
             </div>
             <ul class="text-sm pt-3 font-bold text-light">
                 <li>
-                    <a href="#" class="py-2 my-4 mx-4 flex items-center h-[40px] bg-primary rounded-md hover:bg-opacity-80 transition duration-300 ease-in-out">
+                    <a href="/dashboard" class="py-2 my-4 mx-4 flex items-center h-[40px] rounded-md transition duration-300 ease-in-out {{ Request::is('dashboard') ? 'selected-menu' : 'unselected-menu' }}">
                         <i class="fa-solid fa-house text-base mx-5"></i>
                         <span class="hidden">Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="py-2 mx-4 my-4 flex items-center h-[40px] rounded-md hover:bg-light hover:bg-opacity-30 transition duration-300 ease-in-out">
+                    <a href="/dashboard/manage-form" class="py-2 mx-4 my-4 flex items-center h-[40px] rounded-md transition duration-300 ease-in-out {{ Request::is('dashboard/manage-form*') ? 'selected-menu' : 'unselected-menu' }}">
                         <i class="fa-solid fa-file-pen text-base mx-5"></i>
                         <span class="hidden">Manage Form</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="py-2 mx-4 my-4 flex items-center h-[40px] rounded-md hover:bg-light hover:bg-opacity-30 transition duration-300 ease-in-out">
+                    <a href="#" class="py-2 mx-4 my-4 flex items-center h-[40px] rounded-md transition duration-300 ease-in-out {{ Request::is('dashboard/data-responden*') ? 'selected-menu' : 'unselected-menu' }}">
                         <i class="fa-solid fa-box-archive text-base mx-5"></i>
                         <span class="hidden">Data Responden</span>
                     </a>

@@ -66,3 +66,12 @@
 .rotate-triangle {
     @apply rotate-180;
 }
+
+/* Perubahan di Sidebar */
+.selected-menu {
+    @apply bg-primary hover:bg-opacity-80;
+}
+
+.unselected-menu {
+    @apply hover:bg-light hover:bg-opacity-30;
+}

@@ -39,6 +39,6 @@
         <script src="https://kit.fontawesome.com/fffa6787c5.js" crossorigin="anonymous"></script>
     
         <!-- Dashboard JS -->
-        <script src="js/dashboard.js"></script>
+        <script src="/js/dashboard.js"></script>
 </body>
 </html>
