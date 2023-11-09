@@ -23,7 +23,7 @@
                     </div>
                         
                     <div class="w-full md:w-1/2 flex">
-                        <input id="" name="" type="search" class="w-full max-w-sm text-sm mt-2 mb-3 ms-auto py-1 px-4 border border-2 rounded-md hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30" placeholder="Search">
+                        <input id="" name="" type="search" class="w-full max-w-sm text-sm mt-2 mb-3 ms-auto py-1 px-4 border-2 rounded-md hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30" placeholder="Search">
                     </div>
 
                 </div>
