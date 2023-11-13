@@ -28,3 +28,7 @@ Route::get('/dashboard', function () {
 Route::get('/dashboard/manage-form', function () {
     return view('dashboard.manage-forms.index');
 });
+
+Route::get('/dashboard/manage-form/create', function () {
+    return view('dashboard.manage-forms.create');
+});

@@ -7,7 +7,7 @@
         <h3 class="font-semibold text-xl">Dashboard</h3>
 
         {{-- Month Picker --}}
-        <button class="font-semibold text-sm bg-primary text-white rounded-md mt-2 py-1 px-8 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Bulan Ini</button>
+        <button class="font-semibold text-sm bg-primary text-white rounded-md mt-2 py-2 px-8 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Bulan Ini</button>
 
     </div>
 
