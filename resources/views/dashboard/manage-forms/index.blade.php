@@ -109,7 +109,7 @@
                             <p class="mb-3 font-semibold">Nilai Pelayanan Langsung - 1</p>
                             <p class="mb-3">Bagaimana pendapat Saudara tentang kesesuaian produk pelayanan antara yang tercantum dalam standar pelayanan dengan hasil yang diberikan</p>
 
-                            <div class="action-item hidden flex mb-4">
+                            <div class="action-item hidden mb-4">
                                 <a href="#" class="w-9 h-9 mr-3 rounded-md flex justify-center items-center text-yellow-500 border border-yellow-500 hover:border-yellow-500 hover:bg-yellow-500 hover:text-white">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
@@ -123,7 +123,7 @@
                             <p class="mb-3 font-semibold">Nilai Pelayanan Langsung - 2</p>
                             <p class="mb-3">Bagaimana pendapat Saudara tentang penanganan pengaduan pengguna layanan</p>
 
-                            <div class="action-item hidden flex mb-4">
+                            <div class="action-item hidden mb-4">
                                 <a href="#" class="w-9 h-9 mr-3 rounded-md flex justify-center items-center text-yellow-500 border border-yellow-500 hover:border-yellow-500 hover:bg-yellow-500 hover:text-white">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
@@ -156,11 +156,13 @@
                 listItem.forEach(function (e) {
                 var ai = e.querySelector('.action-item');
                 ai.classList.add('hidden');
+                ai.classList.remove('flex');
                 e.classList.remove('selected');
                 });
         
                 if (!isSelected) {
                 actionItem.classList.remove('hidden');
+                actionItem.classList.add('flex');
                 element.classList.add('selected');
                 }
             });
