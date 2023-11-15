@@ -8,6 +8,7 @@ const hamburger2 = document.querySelector('#hamburger-2');
 const sidebar = document.querySelector('#sidebar');
 const teksMenu = document.querySelectorAll('#sidebar span');
 const main = document.querySelector('main');
+const mainContent = document.querySelector('#main-content');
 
 // Tombol Admin
 const adminButton = document.querySelector('#admin-button');
@@ -31,6 +32,8 @@ function luasSidebar() {
         sidebar.classList.toggle('w-full');
         main.classList.toggle('expand-main');
         main.classList.toggle('contract-main');
+        mainContent.classList.toggle('expand-content');
+        mainContent.classList.toggle('contract-content');
 
         setTimeout(() => {
             teksMenu.forEach(function(element) {
@@ -51,6 +54,8 @@ function luasSidebar() {
         sidebar.classList.toggle('w-full');
         main.classList.toggle('expand-main');
         main.classList.toggle('contract-main');
+        mainContent.classList.toggle('expand-content');
+        mainContent.classList.toggle('contract-content');
 
         isMenuSideClicked = false;
     }

@@ -35,12 +35,12 @@
             <div class="px-4 pt-9">
                 <form action="">
                     <div class="mb-3">
-                        <h6 class="text-sm font-semibold mb-2">Username</h6>
-                        <input type="text" name="" id="" class="text-sm font-semibold border-2 border-dark rounded-md w-full px-2 py-1 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30" autofocus>
+                        <label for="username" class="text-sm font-semibold mb-3">Username</label>
+                        <input type="text" name="username" id="username" class="text-sm font-semibold border-2 border-dark rounded-md w-full px-2 py-1 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30" autofocus>
                     </div>
                     <div class="mb-3">
-                        <h6 class="text-sm font-semibold mb-2">Password</h6>
-                        <input type="password" name="" id="" class="text-sm font-semibold border-2 border-dark rounded-md w-full px-2 py-1 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30">
+                        <label for="password" class="text-sm font-semibold mb-3">Password</label>
+                        <input type="password" name="password" id="password" class="text-sm font-semibold border-2 border-dark rounded-md w-full px-2 py-1 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30">
                     </div>
                     <!-- <button type="submit" class="w-full text-base bg-primary text-white font-semibold rounded-md my-5 py-1 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30">Login</button> -->
                     <a href="/dashboard" type="button" class="w-full text-base bg-primary text-white font-semibold rounded-md mt-2 py-1 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Login</a>

@@ -62,6 +62,15 @@
     @apply md:w-[calc(100%-20rem)];
 }
 
+/* Perubahan Main Content */
+.expand-content {
+    @apply md:px-24;
+}
+
+.contract-content {
+    @apply md:px-9;
+}
+
 /* Perubahan di Admin Option */
 .rotate-triangle {
     @apply rotate-180;
