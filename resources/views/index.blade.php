@@ -87,7 +87,7 @@
                 <div class="w-full text-white text-center self-center px-4 lg:w-1/2 lg:text-left">
                     <h1 class="font-bold text-4xl mb-5 md:text-5xl">Pst! Sukai ya</h1>
                     <p class="text-base mb-10 leading-relaxed">Media untuk melakukan penilaian dan umpan balik pelayanan yang didapatkan dari PST BPS Kab. Hulu Sungai Utara</p>
-                    <a href="/login" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-primary py-3 px-8 rounded-md hover:shadow-lg">Yuk Isi Survey</a>
+                    <a href="/form" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-primary py-3 px-8 rounded-md hover:shadow-lg">Yuk Isi Survey</a>
                 </div>
                 <!-- Kalimat Pembuka End -->
 

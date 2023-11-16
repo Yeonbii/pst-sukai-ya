@@ -9,7 +9,7 @@
     {{-- Tailwind CSS --}}
     @vite('resources/css/app.css')
 </head>
-<body class="flex flex-col h-screen bg-secondary">
+<body class="flex flex-col h-screen bg-dark">
     
     <div class="w-11/12 max-w-[450px] m-auto">
         
@@ -32,15 +32,15 @@
                 <h4 class="font-bold text-xl mb-2">Pst! Sukai ya</h4>
                 <h2 class="font-bold text-2xl md:text-3xl"><span class="text-primary italic">Admin</span>Dashboard</h2>
             </div>
-            <div class="px-4 pt-9">
+            <div class="px-4 pt-9 text-black">
                 <form action="">
                     <div class="mb-3">
-                        <label for="username" class="text-sm font-semibold mb-3">Username</label>
-                        <input type="text" name="username" id="username" class="text-sm font-semibold border-2 border-dark rounded-md w-full px-2 py-1 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30" autofocus>
+                        <label for="username" class="text-sm font-semibold mb-1 block">Username</label>
+                        <input type="text" name="username" id="username" class="text-sm font-medium border-2 border-slate-300 rounded-md w-full p-2 focus:border-secondary focus:outline-none" autofocus>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="text-sm font-semibold mb-3">Password</label>
-                        <input type="password" name="password" id="password" class="text-sm font-semibold border-2 border-dark rounded-md w-full px-2 py-1 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30">
+                        <label for="password" class="text-sm font-semibold mb-1 block">Password</label>
+                        <input type="password" name="password" id="password" class="text-sm font-medium border-2 border-slate-300 rounded-md w-full p-2 focus:border-secondary focus:outline-none">
                     </div>
                     <!-- <button type="submit" class="w-full text-base bg-primary text-white font-semibold rounded-md my-5 py-1 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30">Login</button> -->
                     <a href="/dashboard" type="button" class="w-full text-base bg-primary text-white font-semibold rounded-md mt-2 py-1 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Login</a>
