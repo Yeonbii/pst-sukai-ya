@@ -39,11 +39,11 @@
                 <div class="w-full px-2 mb-3">
                     <label for="part" class="text-sm font-medium mb-1 block">Part</label>
                     <select id="part" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
-                        <option selected class="p-2.5">Pilih</option>
-                        <option class="p-2.5" value="US">United States</option>
-                        <option class="p-2.5" value="CA">Canada</option>
-                        <option class="p-2.5" value="FR">France</option>
-                        <option class="p-2.5" value="DE">Germany</option>
+                        <option selected>Pilih</option>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="FR">France</option>
+                        <option value="DE">Germany</option>
                     </select>
                 </div>
 

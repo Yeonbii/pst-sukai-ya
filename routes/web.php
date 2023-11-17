@@ -36,3 +36,7 @@ Route::get('/dashboard/manage-form/create', function () {
 Route::get('/form', function () {
     return view('forms.index');
 });
+
+Route::get('/form/start', function () {
+    return view('forms.questions.identity');
+});

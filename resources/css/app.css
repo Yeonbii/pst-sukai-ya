@@ -88,3 +88,8 @@
 .list-item.selected {
     @apply bg-slate-300 bg-opacity-30;
 }
+
+/* Input Readonly */
+.readonly {
+    @apply bg-[#afcbeb];
+}
