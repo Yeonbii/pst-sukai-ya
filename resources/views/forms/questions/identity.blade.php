@@ -4,9 +4,9 @@
 
     <form action="">
         
-        <h3 class="font-semibold text-lg text-primary mb-3 md:text-2xl md:mb-5">Bagian Identitas</h3>
+        <h3 class="font-semibold text-lg text-primary mb-5 md:text-2xl">Bagian Identitas</h3>
 
-        <div class="w-full bg-white rounded-md mb-9 p-4">
+        <div class="w-full bg-white rounded-md mb-5 p-4">
 
             <div class="w-full px-2 mb-3">
                 <label for="name" class="text-sm font-medium mb-1 block">
@@ -35,7 +35,7 @@
                         Pendidikan yang ditamatkan
                         <span class="text-red-500">(wajib)</span>
                     </label>
-                    <select name="completed_education" id="completed-education" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
+                    <select name="completed-education" id="completed-education" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
                         <option selected>Pilih</option>
                         <option value="<= SMP/sederajat"><= SMP/sederajat</option>
                         <option value="SMA/sederajat">SMA/sederajat</option>
@@ -69,7 +69,7 @@
                         Nomor HP Aktif
                         <span class="text-red-500">(wajib)</span>
                     </label>
-                    <input type="text" name="no_hp" id="no-hp" maxlength="13" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
+                    <input type="text" name="no-hp" id="no-hp" maxlength="13" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
                 </div>
         
                 <div class="w-full px-2 mb-3 md:w-1/2">
@@ -87,22 +87,18 @@
         </div>
 
         <div class="flex flex-wrap items-center justify-between md:flex-row-reverse">
-            
-            <div class="w-full flex flex-wrap items-center justify-start md:w-2/3 md:flex-row-reverse">
-                
-                <button class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-blue-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 md:ms-3 hover:shadow-lg">
-                    Lanjut
-                </button>
+           
+            <a href="/form/service" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-blue-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg">
+                Lanjut
+            </a>
 
-                <a href="" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-yellow-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg">
-                    Kembali
-                </a>
+            <a href="/form" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-yellow-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg">
+                Kembali
+            </a>
 
-            </div>
-
-            <button class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-red-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg">
-                Reset
-            </button>
+            <a href="/form" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-red-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg">
+                Ulang
+            </a>
 
         </div>
 

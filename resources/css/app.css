@@ -93,3 +93,12 @@
 .readonly {
     @apply bg-[#afcbeb];
 }
+
+/* Form Service-Rate */
+.unselected-selection {
+    @apply text-dark;
+}
+
+.selected-selection {
+    @apply bg-dark text-white;
+}

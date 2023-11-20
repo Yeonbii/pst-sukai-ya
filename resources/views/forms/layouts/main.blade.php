@@ -22,7 +22,7 @@
     <main class="pt-9 pb-12">
         <div class="container">
             
-            <div class="px-4">
+            <div class="px-4 mx-auto md:max-w-2xl">
 
                 @yield('container')
 

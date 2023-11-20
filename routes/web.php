@@ -37,6 +37,18 @@ Route::get('/form', function () {
     return view('forms.index');
 });
 
-Route::get('/form/start', function () {
+Route::get('/form/identity', function () {
     return view('forms.questions.identity');
+});
+
+Route::get('/form/service', function () {
+    return view('forms.questions.service');
+});
+
+Route::get('/form/service-value', function () {
+    return view('forms.questions.service-value');
+});
+
+Route::get('/form/service-rate', function () {
+    return view('forms.questions.service-rate');
 });
