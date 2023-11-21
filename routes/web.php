@@ -52,3 +52,11 @@ Route::get('/form/service-value', function () {
 Route::get('/form/service-rate', function () {
     return view('forms.questions.service-rate');
 });
+
+Route::get('form/feedback', function() {
+    return view('forms.questions.feedback');
+});
+
+Route::get('form/others', function() {
+    return view('forms.questions.others');
+});
