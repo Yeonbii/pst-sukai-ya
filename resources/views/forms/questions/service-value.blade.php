@@ -3,17 +3,17 @@
 @section('container')
 
     <form action="">
-        
-        <h3 class="font-semibold text-lg text-primary mb-5 md:text-2xl">Bagian Nilai Pelayanan</h3>
 
         <div class="w-full bg-white rounded-md mb-5 p-4">
 
-            <div class="w-full px-2 mb-4">
-                <label for="service-3" class="text-sm font-medium mb-1 block">
+            <h3 class="font-semibold text-lg px-2 pb-2 mb-5 border-b md:text-3xl">Bagian Nilai Pelayanan</h3>
+
+            <div class="w-full px-2 mb-3">
+                <label for="service-rate-1" class="text-sm font-medium mb-1 block">
                     Bagaimana pendapat Saudara tentang kesesuaian persyaratan pelayanan dengan jenis pelayanannya?
                     <span class="text-red-500">(wajib)</span>
                 </label>
-                <select name="service-3" id="service-3" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
+                <select name="service-rate-1" id="service-rate-1" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
                     <option selected>Pilih</option>
                     <option value="1">(1) Tidak Sesuai</option>
                     <option value="2">(2) Kurang Sesuai</option>

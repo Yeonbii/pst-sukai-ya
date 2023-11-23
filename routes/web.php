@@ -60,3 +60,7 @@ Route::get('form/feedback', function() {
 Route::get('form/others', function() {
     return view('forms.questions.others');
 });
+
+Route::get('form/confirm', function() {
+    return view('forms.questions.confirm');
+});

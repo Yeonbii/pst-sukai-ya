@@ -2,7 +2,7 @@
 
 @section('container')
 
-    <h1 class="font-bold text-5xl text-center text-white mb-12 mt-4">Pst! Sukai ya</h1>
+    <h1 class="font-bold text-4xl text-center text-white mb-9 mt-4 md:text-5xl md:mb-12">Pst! Sukai ya</h1>
 
     <div class="flex justify-center">
         <div class="w-full bg-white rounded-md mb-5">

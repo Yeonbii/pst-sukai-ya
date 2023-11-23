@@ -4,11 +4,11 @@
 
     <form action="">
         
-        <h3 class="font-semibold text-lg text-primary mb-5 md:text-2xl">Bagian Rating Pelayanan</h3>
-
         <div class="w-full bg-white rounded-md mb-5 p-4">
 
-            <div class="w-full px-2 mb-4">
+            <h3 class="font-semibold text-lg px-2 pb-2 mb-5 border-b md:text-3xl">Bagian Rating Pelayanan</h3>
+
+            <div class="w-full px-2 mb-3">
                 <p class="text-sm font-medium mb-1 block">
                     Berikan penilaian pelayanan secara umum yang dilakukan petugas/aplikasi (1= sangat buruk, 10=sangat baik) 
                     <span class="text-red-500">(wajib)</span>
