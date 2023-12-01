@@ -94,6 +94,12 @@
     @apply bg-[#afcbeb];
 }
 
+
+
+/* FORM PAGE */
+
+
+
 /* Form Service-Rate */
 .unselected-selection {
     @apply text-dark;

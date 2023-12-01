@@ -15,7 +15,7 @@
             </div>
             <ul class="text-sm pt-3 font-bold text-light">
                 <li>
-                    <a href="/dashboard" class="py-2 my-4 mx-4 flex items-center h-[40px] rounded-md transition duration-300 ease-in-out {{ Request::is('dashboard') ? 'selected-menu' : 'unselected-menu' }}">
+                    <a href="/dashboard" class="py-2 my-4 mx-4 flex items-center h-[40px] rounded-md transition duration-300 ease-in-out {{ Request::is('dashboard', 'dashboard/manage-chart*') ? 'selected-menu' : 'unselected-menu' }}">
                         <i class="fa-solid fa-house text-base mx-5"></i>
                         <span class="hidden">Dashboard</span>
                     </a>

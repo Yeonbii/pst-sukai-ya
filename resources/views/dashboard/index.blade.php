@@ -2,16 +2,16 @@
 
 @section('container')
 
-    <div class="flex justify-between items-end">
+    <div class="flex justify-between items-end h-[44px]">
 
         <h3 class="font-semibold text-xl">Dashboard</h3>
 
         {{-- Month Picker --}}
-        <button class="font-semibold text-sm bg-primary text-white rounded-md mt-2 py-2 px-8 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Bulan Ini</button>
+        <button type="button" class="font-semibold text-sm bg-primary text-white rounded-md mt-2 py-2 px-8 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Bulan Ini</button>
 
     </div>
 
-    <div class="index pt-12">
+    <div class="index pt-12 pb-9">
         <h3 class="font-semibold text-base md:text-xl mb-5">Hasil Hitung Cepat BPS Kabupaten Hulu Sungai Utara</h3>
         <div class="flex flex-wrap">
 
@@ -52,16 +52,32 @@
         </div>
     </div>
 
-    <div class="chart pt-12 pb-12">
+    <div class="chart pb-12">
+
+        <a href="/dashboard/manage-chart" class="font-semibold text-base bg-white text-dark flex justify-center items-center w-full rounded-md mb-5 py-2 hover:bg-dark hover:text-white focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 duration-300 shadow-sm">
+            Kelola Chart yang akan Ditampilkan
+        </a>
+
         <div class="flex flex-wrap">
 
             {{-- Chart Start --}}
             <div class="w-full md:w-1/2">
                 <div class="bg-white rounded-md shadow-md p-2 mb-5">
                     <h6 class="m-2 border-b-2 font-semibold">Grafik 1</h6>
-                    <div class="flex items-center justify-center">
-                        <div class="h-[300px] mb-9">
+                    <div class="flex flex-col items-center justify-center">
+                        <div class="w-full max-w-[300px] mb-9">
                             <canvas id="myChart"></canvas>
+                        </div>
+                        <div class="w-full max-w-[300px]">
+                            <div class="flex items-center text-sm">
+                                <div class="h-2 min-w-[28px] bg-[#ef4444] me-2"></div>
+                                <p class="truncate">
+                                    Red
+                                </p>
+                                <p class="ms-auto">
+                                    300
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -77,6 +93,8 @@
 
     {{-- JS untuk Chart --}}
     <script>
+        let color = ['#ef4444', '#3b82f6', '#eab308']
+
         const data = {
             labels: [
                 'Red',
@@ -87,41 +105,17 @@
                 label: 'My First Dataset',
                 data: [300, 50, 100],
                 backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
+                color[0],
+                color[1],
+                color[2]
                 ],
                 hoverOffset: 4
             }]
         };
 
         const config = {
-            type: 'pie',
-            data: data,
-            options: {
-                plugins: {
-                    tooltip: {
-                        enabled: false
-                    },
-                    datalabels: {
-                        formatter: function(value, context) {
-                            const datapoints = context.chart.data.datasets[0].data;
-                            function totalSum(total, datapoint) {
-                                return total + datapoint;
-                            }
-                            const totalValue = datapoints.reduce(totalSum, 0);
-                            const percentageValue = ((value / totalValue) * 100).toFixed(2);
-
-                            return percentageValue + '%';
-                        },
-                        color: 'white',
-                        font: {
-                            weight: 'bold'
-                        }
-                    }
-                }
-            },
-            plugins: [ChartDataLabels]
+        type: 'pie',
+        data: data,
         };
 
         var myChart = new Chart(

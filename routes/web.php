@@ -25,12 +25,24 @@ Route::get('/dashboard', function () {
     return view('dashboard.index');
 });
 
+Route::get('/dashboard/manage-chart', function () {
+    return view('dashboard.manage-chart');
+});
+
 Route::get('/dashboard/manage-form', function () {
     return view('dashboard.manage-forms.index');
 });
 
+Route::get('/dashboard/manage-form/show', function () {
+    return view('dashboard.manage-forms.show');
+});
+
 Route::get('/dashboard/manage-form/create', function () {
     return view('dashboard.manage-forms.create');
+});
+
+Route::get('/dashboard/manage-form/selection', function() {
+    return view('dashboard.manage-forms.selection');
 });
 
 Route::get('/form', function () {
@@ -53,14 +65,14 @@ Route::get('/form/service-rate', function () {
     return view('forms.questions.service-rate');
 });
 
-Route::get('form/feedback', function() {
+Route::get('/form/feedback', function() {
     return view('forms.questions.feedback');
 });
 
-Route::get('form/others', function() {
+Route::get('/form/others', function() {
     return view('forms.questions.others');
 });
 
-Route::get('form/confirm', function() {
+Route::get('/form/confirm', function() {
     return view('forms.questions.confirm');
 });

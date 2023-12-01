@@ -8,34 +8,28 @@
 
             <h3 class="font-semibold text-lg px-2 pb-2 mb-5 border-b md:text-3xl">Bagian Layanan</h3>
 
-            <div class="flex flex-wrap">
-
-                <div class="w-full px-2 mb-3 md:w-1/2">
-                    <label for="date" class="text-sm font-medium mb-1 block">
-                        Tanggal pelayanan diterima
-                        <span class="text-red-500">(wajib)</span>
-                    </label>
-                    <input type="date" name="date" id="date" class="text-sm border-2 border-slate-300 rounded-md w-full px-2.5 py-2 focus:border-secondary focus:outline-none">
-                </div>
-
-                <div class="w-full px-2 mb-3 md:w-1/2">
-                    <label for="service_1" class="text-sm font-medium mb-1 block">
-                        Jenis layanan
-                        <span class="text-red-500">(wajib)</span>
-                    </label>
-                    <select name="service_1" id="service_1" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
-                        <option selected>Pilih</option>
-                        <option value="Perpustakaan">Perpustakaan</option>
-                        <option value="Konsultasi">Konsultasi</option>
-                        <option value="Rekomendasi">Rekomendasi</option>
-                        <option value="Penjualan">Penjualan</option>
-                    </select>
-                </div>
-
+            <div class="w-full px-2 mb-3">
+                <label for="date" class="text-sm font-medium mb-1 block">
+                    Tanggal pelayanan diterima
+                    <span class="text-red-500">(wajib)</span>
+                </label>
+                <input type="date" name="date" id="date" class="text-sm border-2 border-slate-300 rounded-md w-full px-2.5 py-2 focus:border-secondary focus:outline-none">
             </div>
 
-            
-
+            <div class="w-full px-2 mb-3">
+                <label for="service_1" class="text-sm font-medium mb-1 block">
+                    Jenis layanan
+                    <span class="text-red-500">(wajib)</span>
+                </label>
+                <select name="service_1" id="service_1" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
+                    <option selected>Pilih</option>
+                    <option value="Perpustakaan">Perpustakaan</option>
+                    <option value="Konsultasi">Konsultasi</option>
+                    <option value="Rekomendasi">Rekomendasi</option>
+                    <option value="Penjualan">Penjualan</option>
+                </select>
+            </div>
+          
             <div class="w-full px-2 mb-3">
                 <label for="service_2" class="text-sm font-medium mb-1 block">
                     Media yang digunakan

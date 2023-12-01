@@ -18,35 +18,31 @@
                 <input type="text" name="name" id="name" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" autofocus>
             </div>
 
-            <div class="flex flex-wrap">
+            <div class="w-full px-2 mb-3">
+                <label for="gender" class="text-sm font-medium mb-1 block">
+                    Jenis Kelamin
+                    <span class="text-red-500">(wajib)</span>
+                </label>
+                <select name="gender" id="gender" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
+                    <option selected>Pilih</option>
+                    <option value="L">Laki-laki</option>
+                    <option value="P">Perempuan</option>
+                </select>
+            </div>
 
-                <div class="w-full px-2 mb-3 md:w-1/2">
-                    <label for="gender" class="text-sm font-medium mb-1 block">
-                        Jenis Kelamin
-                        <span class="text-red-500">(wajib)</span>
-                    </label>
-                    <select name="gender" id="gender" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
-                        <option selected>Pilih</option>
-                        <option value="L">Laki-laki</option>
-                        <option value="P">Perempuan</option>
-                    </select>
-                </div>
-
-                <div class="w-full px-2 mb-3 md:w-1/2">
-                    <label for="completed-education" class="text-sm font-medium mb-1 block">
-                        Pendidikan yang ditamatkan
-                        <span class="text-red-500">(wajib)</span>
-                    </label>
-                    <select name="completed-education" id="completed-education" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
-                        <option selected>Pilih</option>
-                        <option value="<= SMP/sederajat"><= SMP/sederajat</option>
-                        <option value="SMA/sederajat">SMA/sederajat</option>
-                        <option value="DI/DII/DIII">DI/DII/DIII</option>
-                        <option value="DIV/S1">DIV/S1</option>
-                        <option value="S2/S3">S2/S3</option>
-                    </select>
-                </div>
-
+            <div class="w-full px-2 mb-3">
+                <label for="completed-education" class="text-sm font-medium mb-1 block">
+                    Pendidikan yang ditamatkan
+                    <span class="text-red-500">(wajib)</span>
+                </label>
+                <select name="completed-education" id="completed-education" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
+                    <option selected>Pilih</option>
+                    <option value="<= SMP/sederajat"><= SMP/sederajat</option>
+                    <option value="SMA/sederajat">SMA/sederajat</option>
+                    <option value="DI/DII/DIII">DI/DII/DIII</option>
+                    <option value="DIV/S1">DIV/S1</option>
+                    <option value="S2/S3">S2/S3</option>
+                </select>
             </div>
 
             <div class="w-full px-2 mb-3">
@@ -63,27 +59,20 @@
                 </label>
                 <input type="email" name="email" id="email" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
             </div>
-            
-            <div class="flex flex-wrap">
 
-                <div class="w-full px-2 mb-3 md:w-1/2">
-                    <label for="no-hp" class="text-sm font-medium mb-1 block">
-                        Nomor HP Aktif
-                        <span class="text-red-500">(wajib)</span>
-                    </label>
-                    <input type="text" name="no-hp" id="no-hp" maxlength="13" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
-                </div>
-        
-                <div class="w-full px-2 mb-3 md:w-1/2">
-                    <div class="flex items-center mb-2 md:mb-1">
-                        <input id="is-same" type="checkbox" value="" class="w-4 h-4 me-2">
-                        <label for="is-same" class="text-sm font-medium block">
-                            Nomor WA adalah Nomor HP?
-                        </label>
-                    </div>
-                    <input type="text" name="no_wa" id="no-wa" maxlength="13" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
-                </div>
-
+            <div class="w-full px-2 mb-3">
+                <label for="no-hp" class="text-sm font-medium mb-1 block">
+                    Nomor HP Aktif
+                    <span class="text-red-500">(wajib)</span>
+                </label>
+                <input type="text" name="no-hp" id="no-hp" maxlength="13" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
+            </div>
+    
+            <div class="w-full px-2 mb-3">
+                <label for="no-wa" class="text-sm font-medium mb-1 block">
+                    Nomor WA
+                </label>
+                <input type="text" name="no-wa" id="no-wa" maxlength="13" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
             </div>
 
         </div>
@@ -112,33 +101,7 @@
 
     {{-- JS Start --}}
     <script>
-        var checkbox = document.querySelector('#is-same');
-        var inputNoHp = document.querySelector('#no-hp');
-        var inputNoWa = document.querySelector('#no-wa');
-
-        checkbox.addEventListener('change', function() {
-            if (checkbox.checked) {
-                // Checkbox dicentang, isi input no-wa dengan nilai input no-hp
-                inputNoWa.value = inputNoHp.value;
-
-                // Set atribut readonly pada input no-wa
-                inputNoWa.setAttribute('readonly','readonly');
-
-                inputNoWa.classList.add('readonly');
-            } else {
-                // Checkbox tidak dicentang, hapus atribut readonly pada input no-wa
-                inputNoWa.removeAttribute('readonly');
-                inputNoWa.classList.remove('readonly');
-                inputNoWa.value = ''; // Reset nilai input no-wa
-            }
-        });
-
-        inputNoHp.addEventListener('input', function() {
-            // Perbarui nilai input no-wa saat nilai input no-hp berubah
-            if (checkbox.checked) {
-                inputNoWa.value = inputNoHp.value;
-            }
-        });
+        
     </script>
     {{-- JS End --}}
 
