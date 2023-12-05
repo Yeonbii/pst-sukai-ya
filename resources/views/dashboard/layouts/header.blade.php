@@ -1,4 +1,4 @@
-<header class="sticky z-10 bg-dark shadow-md top-0 right-0 w-full flex items-center justify-center">
+<header class="sticky z-20 bg-dark shadow-md top-0 right-0 w-full flex items-center justify-center">
     <div class="w-full">
         <div class="flex items-center justify-between text-white">
             <div class="flex items-center px-4">
@@ -25,7 +25,10 @@
                             <a href="#" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Admin Setting</a>
                         </li>
                         <li class="group">
-                            <a href="/login" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Logout</a>
+                            <form action="/logout" method="post">
+                                @csrf
+                                <button type="submit" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Logout</button>
+                            </form>
                         </li>
                     </ul>
                 </div>

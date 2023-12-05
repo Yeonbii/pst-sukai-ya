@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ManageFormController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,33 +20,18 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-});
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard/manage-chart', [DashboardController::class, 'chart'])->middleware('auth');
 
-Route::get('/dashboard/manage-chart', function () {
-    return view('dashboard.manage-chart');
-});
+Route::get('/dashboard/manage-form', [ManageFormController::class, 'index'])->middleware('auth');
+Route::get('/dashboard/manage-form/show', [ManageFormController::class, 'show'])->middleware('auth');
+Route::get('/dashboard/manage-form/create/{part:slug}', [ManageFormController::class, 'create'])->middleware('auth');
+Route::get('/dashboard/manage-form/selection', [ManageFormController::class, 'selection'])->middleware('auth');
 
-Route::get('/dashboard/manage-form', function () {
-    return view('dashboard.manage-forms.index');
-});
-
-Route::get('/dashboard/manage-form/show', function () {
-    return view('dashboard.manage-forms.show');
-});
-
-Route::get('/dashboard/manage-form/create', function () {
-    return view('dashboard.manage-forms.create');
-});
-
-Route::get('/dashboard/manage-form/selection', function() {
-    return view('dashboard.manage-forms.selection');
-});
 
 Route::get('/form', function () {
     return view('forms.index');

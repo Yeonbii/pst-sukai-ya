@@ -7,8 +7,26 @@
             <h3 class="font-semibold text-xl">Manage Form</h3>
         </div>
 
-        <div class="w-full md:w-1/2 flex">
-            <a href="/dashboard/manage-form/create" class="font-semibold text-sm bg-blue-700 text-white w-full md:max-w-xs rounded-md mt-2 ms-auto py-2 px-8 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center"><i class="fa-solid fa-plus me-2"></i> Tambah Pertanyaan</a>
+        <div class="w-full md:w-1/2">
+        
+            <div class="relative w-full z-10">
+                <div id="tambah-pertanyaan" class="font-semibold text-sm bg-blue-700 text-white w-full md:max-w-xs rounded-md mt-2 ms-auto py-2 px-8 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer"><i class="fa-solid fa-plus me-2"></i> Tambah Pertanyaan</div>
+                
+                <div id="pilihan-tambah" class="hidden absolute w-full">
+                    <div class="bg-white rounded-md shadow-lg mt-2 ms-auto p-2 md:max-w-xs">
+                        <ul>
+                            @foreach ($parts as $part)
+                            <li class="group">
+                                <a href="/dashboard/manage-form/create/{{ $part->slug }}" class="text-base text-dark p-2 mb-2 flex group-hover:bg-slate-100 group-hover:bg-opacity-70 group-hover:rounded-md group-hover:text-primary">{{ $part->name }}</a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    
+                </div>
+
+            </div>
+
         </div>
         
     </div>
@@ -118,6 +136,15 @@
                     }
                 });
             });
+
+            var tambahPertanyaan = document.querySelector('#tambah-pertanyaan');
+
+            tambahPertanyaan.addEventListener('click', function() {
+                var pilihanTambah = document.querySelector('#pilihan-tambah');
+
+                pilihanTambah.classList.toggle('hidden');
+            });
+
         });
     </script>      
 
