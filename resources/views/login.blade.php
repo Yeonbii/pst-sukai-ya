@@ -34,7 +34,7 @@
                 <h4 class="font-bold text-xl mb-2">Pst! Sukai ya</h4>
                 <h2 class="font-bold text-2xl md:text-3xl"><span class="text-primary italic">Admin</span>Dashboard</h2>
             </div>
-            <div class="px-4 pt-9 text-black">
+            <div class="px-4 pt-9 md:px-9 text-black">
                 <form action="/login" method="POST">
                     @csrf
                     <div class="mb-3">

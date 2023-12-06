@@ -14,58 +14,84 @@
             <div class="w-full">
 
                 {{-- No Start --}}
-                <div id="card-no" class="bg-white rounded-md shadow-md mb-9 px-3 py-5">
+                <div id="card-no" class="bg-white rounded-md shadow-md mb-9 p-7">
 
-                    <div class="flex flex-wrap items-center">
-                        
-                        <div class="w-full px-2 mb-3">
-                            <label for="no" class="text-sm font-medium mb-1 block">
-                                No
-                                <span class="text-red-500">(wajib)</span>
-                            </label>
-                            <select id="no" name="no" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" autofocus required>
-                                @for ($i = 1; $i <= $count; $i++)
-                                    <option value="{{ $i }}" {{ $i == $count ? 'selected' : '' }}>{{ $i }}</option>
-                                @endfor
-                            </select>
-                        </div>
-                        
+                    <div class="w-full mb-7">
+                        <label for="no" class="text-sm font-medium mb-2 block">
+                            No
+                            <span class="text-red-500">(wajib)</span>
+                        </label>
+                        <select id="no" name="no" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" autofocus required>
+                            @for ($i = 1; $i <= $count; $i++)
+                                <option value="{{ $i }}" {{ $i == $count ? 'selected' : '' }}>{{ $i }}</option>
+                            @endfor
+                        </select>
                     </div>
 
                 </div>
                 {{-- No End --}}
 
                 {{-- Body Question Start --}}
-                <div id="card-body" class="bg-white rounded-md shadow-md mb-9 px-3 py-5">
+                <div id="card-body" class="bg-white rounded-md shadow-md mb-9 p-7">
 
-                    <div class="w-full px-2 mb-3">
-                        <label for="text" class="text-sm font-medium mb-1 block">
+                    <div class="w-full mb-7">
+                        <label for="text" class="text-sm font-medium mb-2 block">
                             Isi Pertanyaan
                             <span class="text-red-500">(wajib)</span>
                         </label>
                         <input type="text" name="text" id="text" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" required>
                     </div>
 
-                    <div class="w-full px-2 mb-3">
-                        <label for="is_required" class="text-sm font-medium mb-1 block">
+                    <div class="w-full mb-7">
+                        <p class="text-sm font-medium mb-2">
                             Apakah wajib dijawab?
                             <span class="text-red-500">(wajib)</span>
-                        </label>
-                        <input type="number" name="is_required" id="is_required" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" required>
-                        <p class="text-sm text-slate-500 my-1 italic opacity-50">1 : Yes <br>0 : No</p>
+                        </p>
+
+                        <div id="is_required" class="mt-3">
+                            
+                            {{-- Yes --}}
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="is_required" id="is_required_1" value="1" class="w-4 h-4 flex-shrink-0" required>
+                                <label for="is_required_1" class="ms-2 text-sm font-medium">Yes</label>
+                            </div>
+
+                            {{-- No --}}
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="is_required" id="is_required_0" value="0" class="w-4 h-4 flex-shrink-0" required>
+                                <label for="is_required_0" class="ms-2 text-sm font-medium">No</label>
+                            </div>
+
+                        </div>
+
                     </div>
 
-                    <div class="w-full px-2 mb-3">
-                        <label for="need_note" class="text-sm font-medium mb-1 block">
+                    <div class="w-full mb-7">
+                        <p class="text-sm font-medium mb-2">
                             Apakah perlu Keterangan?
                             <span class="text-red-500">(wajib)</span>
-                        </label>
-                        <input type="number" name="need_note" id="need_note" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" required>
-                        <p class="text-sm text-slate-500 my-1 italic opacity-50">1 : Yes <br>0 : No</p>
+                        </p>
+                        
+                        <div id="need_note" class="mt-3">
+                            
+                            {{-- Yes --}}
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="need_note" id="need_note_1" value="1" class="w-4 h-4 flex-shrink-0" required>
+                                <label for="need_note_1" class="ms-2 text-sm font-medium">Yes</label>
+                            </div>
+
+                            {{-- No --}}
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="need_note" id="need_note_0" value="0" class="w-4 h-4 flex-shrink-0" required>
+                                <label for="need_note_0" class="ms-2 text-sm font-medium">No</label>
+                            </div>
+
+                        </div>
+
                     </div>
 
-                    <div class=" w-full px-2 mb-3" id="col-note">
-                        <label for="note" class="text-sm font-medium mb-1 block">
+                    <div class="w-full mb-7">
+                        <label for="note" class="text-sm font-medium mb-2 block">
                             Keterangan
                             <span class="text-red-500">(wajib)</span>
                         </label>
@@ -76,41 +102,104 @@
                 {{-- Body Question End --}}
 
                 {{-- Triggered Start --}}
-                <div id="card-triggered" class="bg-white rounded-md shadow-md mb-9 px-3 py-5">
+                <div id="card-triggered" class="bg-white rounded-md shadow-md mb-9 p-7">
     
-                    <div class="w-full px-2 mb-3">
-                        <label for="is_triggered" class="text-sm font-medium mb-1 block">
+                    <div class="w-full mb-7">
+                        <p class="text-sm font-medium mb-2">
                             Apakah Pertanyaan hanya akan muncul ketika Responden menjawab Pertanyaan lain dengan jawaban tertentu?
                             <span class="text-red-500">(wajib)</span>
-                        </label>
-                        <input type="number" name="is_triggered" id="is_triggered" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" required>
-                        <p class="text-sm text-slate-500 my-1 italic opacity-50">1 : Yes <br>0 : No</p>
-                        <p class="text-sm text-slate-500 my-1 italic opacity-50">Mohon maaf, untuk saat ini hanya untuk 1 Bagian saja 🙏</p>
+                        </p>
+
+                        <p class="text-sm text-slate-500 mb-2 italic opacity-50">Mohon maaf, untuk saat ini hanya untuk 1 Bagian saja 🙏</p>
+                        
+                        <div id="is_triggered" class="mt-3">
+                            
+                            {{-- Yes --}}
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="is_triggered" id="is_triggered_1" value="1" class="w-4 h-4 flex-shrink-0" required>
+                                <label for="is_triggered_1" class="ms-2 text-sm font-medium">Yes</label>
+                            </div>
+
+                            {{-- No --}}
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="is_triggered" id="is_triggered_0" value="0" class="w-4 h-4 flex-shrink-0" required>
+                                <label for="is_triggered_0" class="ms-2 text-sm font-medium">No</label>
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>
                 {{-- Triggered End --}}
 
                 {{-- Input Type Start --}}
-                <div id="card-input-type" class="bg-white rounded-md shadow-md mb-9 px-3 py-5">
+                <div id="card-input-type" class="bg-white rounded-md shadow-md mb-9 p-7">
 
-                    <div class="w-full px-2 mb-3">
-                        <label for="input_type" class="text-sm font-medium mb-1 block">
+                    <div class="w-full mb-7">
+                        <p class="text-sm font-medium mb-2">
                             Tipe Input
                             <span class="text-red-500">(wajib)</span>
-                        </label>
-                        <select id="input_type" name="input_type" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" required>
-                            <option disabled selected>Pilih</option>
-                            <option value="1" class="{{ ($part->id == 1 || $part->id == 2 || $part->id == 6) ? '' : 'hidden' }}">Input : Text</option>
-                            <option value="2" class="{{ ($part->id == 1 || $part->id == 2 || $part->id == 6) ? '' : 'hidden' }}">Input : Number</option>
-                            <option value="3" class="{{ ($part->id == 1 || $part->id == 2 || $part->id == 6) ? '' : 'hidden' }}">Input : Date</option>
-                            <option value="4" class="{{ ($part->id == 1 || $part->id == 2 || $part->id == 6) ? '' : 'hidden' }}">Input : (Contoh No. Telp)</option>
-                            <option value="5" class="{{ ($part->id == 1 || $part->id == 2 || $part->id == 6) ? '' : 'hidden' }}">Select : (Pilih salah satu)</option>
-                            <option value="6" class="{{ ($part->id == 3) ? '' : 'hidden' }}">Select : Liketr Scale (Contoh 1. Sangat Setuju, 2. Setuju, ...)</option>
-                            <option value="7" class="{{ ($part->id == 1 || $part->id == 2 || $part->id == 6) ? '' : 'hidden' }}">Select : Yes or No</option>
-                            <option value="8" class="{{ ($part->id == 4) ? '' : 'hidden' }}">Rating : (Pilih 1 s/d 10)</option>
-                            <option value="9" class="{{ ($part->id == 5) ? '' : 'hidden' }}">Textarea</option>
-                        </select>
+                        </p>
+                        
+                        <div id="type_input" class="mt-3">
+
+                            {{-- 1 . Input : Text --}}
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="type_input" id="type_input_1" value="1" class="w-4 h-4 flex-shrink-0" required>
+                                <label for="type_input_1" class="ms-2 text-sm font-medium">Input : Text</label>
+                            </div>
+    
+                            {{-- 2. Input : Numeric --}}
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="type_input" id="type_input_2" value="2" class="w-4 h-4 flex-shrink-0" required>
+                                <label for="type_input_2" class="ms-2 text-sm font-medium">Input : Numeric</label>
+                            </div>
+
+                            {{-- 3. Input : Date --}}
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="type_input" id="type_input_3" value="3" class="w-4 h-4 flex-shrink-0" required>
+                                <label for="type_input_3" class="ms-2 text-sm font-medium">Input : Date</label>
+                            </div>
+                            
+                            {{-- 4. Input : (Contoh No. Telp) --}}
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="type_input" id="type_input_4" value="4" class="w-4 h-4 flex-shrink-0" required>
+                                <label for="type_input_4" class="ms-2 text-sm font-medium">Input : (Contoh No. Telp)</label>
+                            </div>
+
+                            {{-- 5. Select : (Pilih salah satu) --}}
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="type_input" id="type_input_5" value="5" class="w-4 h-4 flex-shrink-0" required>
+                                <label for="type_input_5" class="ms-2 text-sm font-medium">Select : (Pilih salah satu)</label>
+                            </div>
+
+                            {{-- 6. Select : Liketr Scale (Contoh 1. Sangat Setuju, 2. Setuju, ...) --}}
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="type_input" id="type_input_6" value="6" class="w-4 h-4 flex-shrink-0" required>
+                                <label for="type_input_6" class="ms-2 text-sm font-medium">Select : Liketr Scale (Contoh 1. Sangat Setuju, 2. Setuju, ...)</label>
+                            </div>
+
+                            {{-- 7. Select : Yes or No --}}
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="type_input" id="type_input_7" value="7" class="w-4 h-4 flex-shrink-0" required>
+                                <label for="type_input_7" class="ms-2 text-sm font-medium">Select : Yes or No</label>
+                            </div>
+
+                            {{-- 8. Rating (Pilih 1 s/d 10) --}}
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="type_input" id="type_input_8" value="8" class="w-4 h-4 flex-shrink-0" required>
+                                <label for="type_input_8" class="ms-2 text-sm font-medium">Rating (Pilih 1 s/d 10)</label>
+                            </div>
+
+                            {{-- 9. Textarea --}}
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="type_input" id="type_input_9" value="9" class="w-4 h-4 flex-shrink-0" required>
+                                <label for="type_input_9" class="ms-2 text-sm font-medium">Textarea</label>
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -120,46 +209,64 @@
                 <div id="input-type-area">
 
                     {{-- Input Start --}}
-                    <div id="card-input" class="hidden bg-white rounded-md shadow-md mb-9 px-3 py-5">
+                    <div id="card-input" class="bg-white rounded-md shadow-md mb-9 p-7">
+
+                        <p class="text-sm font-semibold mb-7 border-b-2 pb-3">Khusus untuk Tipe Input : Input</p>
                         
-                        <div id="maks-char-div" class="w-full px-2 mb-3">
-                            <label for="maks_char" class="text-sm font-medium mb-1 block">
+                        <div id="maks-char-div" class="w-full mb-7">
+                            <label for="maks_char" class="text-sm font-medium mb-2 block">
                                 Batas maksimal karakter yang bisa diinputkan (huruf, termasuk spasi)
                                 <span class="text-red-500">(wajib)</span>
                             </label>
 
+                            <p class="text-sm text-slate-500 mb-2 italic opacity-50">Masukkan 0 jika Input jawaban diatas adalah 3 atau 4</p>
+
                             <input type="number" name="maks_char" id="maks_char" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none {{ ($part->id == 1 || $part->id == 2 || $part->id == 6) ? '' : 'readonly' }}" {{ ($part->id == 1 || $part->id == 2 || $part->id == 6) ? '' : 'readonly' }} required value="{{ ($part->id == 1 || $part->id == 2 || $part->id == 6) ? '' : '0' }}">
                             
-                            <p class="text-sm text-slate-500 my-1 italic opacity-50">Masukkan 0 jika Input jawaban diatas adalah 3 atau 4</p>
-
                         </div>
 
                     </div>
                     {{-- Input End --}}
 
                     {{-- Select Start --}}
-                    <div id="card-select" class="hidden bg-white rounded-md shadow-md mb-9 px-3 py-5">
+                    <div id="card-select" class="bg-white rounded-md shadow-md mb-9 p-7">
                         
-                        <div id="has-other-div" class=" w-full px-2 mb-3">
-                            <label for="has_other" class="text-sm font-medium mb-1 block">
+                        <p class="text-sm font-semibold mb-7 border-b-2 pb-3">Khusus untuk Tipe Input : Select dan Rating</p>
+
+                        <div id="has-other-div" class=" w-full mb-7">
+                            <p class="text-sm font-medium mb-2">
                                 Apakah terdapat pilihan Other?
                                 <span class="text-red-500">(wajib)</span>
-                            </label>
+                            </p>
                             
-                            <input type="number" name="has_other" id="has_other" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'readonly' : '' }}" {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'readonly' : '' }} required value="{{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? '0' : '' }}">
-                            <p class="text-sm text-slate-500 my-1 italic opacity-50">1 : Yes <br>0 : No</p>
+                            <div id="has_other" class="mt-3">
+                            
+                                {{-- Yes --}}
+                                <div class="flex items-center mb-4">
+                                    <input type="radio" name="has_other" id="has_other_1" value="1" class="w-4 h-4 flex-shrink-0" required {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'disabled' : '' }}>
+                                    <label for="has_other_1" class="ms-2 text-sm font-medium">Yes</label>
+                                </div>
+    
+                                {{-- No --}}
+                                <div class="flex items-center mb-4">
+                                    <input type="radio" name="has_other" id="has_other_0" value="0" class="w-4 h-4 flex-shrink-0" required {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'checked' : '' }}>
+                                    <label for="has_other_0" class="ms-2 text-sm font-medium">No</label>
+                                </div>
+    
+                            </div>
 
                         </div>
 
-                        <div id="option-number-div" class="hidden w-full px-2 mb-3">
-                            <label for="option_number" class="text-sm font-medium mb-1 block">
+                        <div id="option-number-div" class="w-full mb-7">
+                            <label for="option_number" class="text-sm font-medium mb-2 block">
                                 Jumlah Pilihan
                                 <span class="text-red-500">(wajib)</span>
                             </label>
+
+                            <p class="text-sm text-slate-500 mb-2 italic opacity-50">Jumlah pilihan termasuk pilihan Other</p>
                             
                             <input type="number" name="option_number" id="option_number" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'readonly' : '' }}" {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'readonly' : '' }} required value="{{ ($part->id == 3) ? '4' : (($part->id == 4) ? '10' : (($part->id == 5) ? '0' : '')) }}">
                             
-                            <p class="text-sm text-slate-500 my-1 italic opacity-50">Jumlah pilihan termasuk pilihan Other</p>
                         </div>
 
                     </div>
@@ -169,20 +276,35 @@
                 {{-- Input Type Area End --}}
 
                 {{-- Chart Start --}}
-                <div id="card-chart" class="hidden bg-white rounded-md shadow-md mb-9 px-3 py-5">
+                <div id="card-chart" class="bg-white rounded-md shadow-md mb-9 p-7">
 
-                    <div id="has-chart-div" class="w-full px-2 mb-3">
-                        <label for="has_chart" class="text-sm font-medium mb-1 block">
+                    <p class="text-sm font-semibold mb-7 border-b-2 pb-3">Grafik Pie Chart</p>
+
+                    <div id="has-chart-div" class="w-full mb-7">
+                        <p class="text-sm font-medium mb-2">
                             Apakah ditampilkan sebagai Grafik Pie Chart di Dashboard?
                             <span class="text-red-500">(wajib)</span>
-                        </label>
+                        </p>
                         
-                        <input type="number" name="has_chart" id="has_chart" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none {{ ($part->id == 1 || $part->id == 2) ? '' : 'readonly' }}" {{ ($part->id == 1 || $part->id == 2) ? '' : 'readonly' }} required value="{{ ($part->id == 1 || $part->id == 2) ? '' : '0' }}">
-                        <p class="text-sm text-slate-500 my-1 italic opacity-50">1 : Yes <br>0 : No</p>
+                        <div id="has_chart" class="mt-3">
+                            
+                            {{-- Yes --}}
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="has_chart" id="has_chart_1" value="1" class="w-4 h-4 flex-shrink-0" required {{ ($part->id == 1 || $part->id == 2) ? '' : 'disabled' }}>
+                                <label for="has_chart_1" class="ms-2 text-sm font-medium">Yes</label>
+                            </div>
+
+                            {{-- No --}}
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="has_chart" id="has_chart_0" value="0" class="w-4 h-4 flex-shrink-0" required {{ ($part->id == 1 || $part->id == 2) ? '' : 'checked' }}>
+                                <label for="has_chart_0" class="ms-2 text-sm font-medium">No</label>
+                            </div>
+
+                        </div>
                         
                     </div>
 
-                    <div id="title-chart-div" class="hidden w-full px-2 mb-3">
+                    <div id="title-chart-div" class="w-full mb-7">
                         <label for="title_chart" class="text-sm font-medium mb-1 block">
                             Judul Chart
                             <span class="text-red-500">(wajib)</span>
@@ -209,326 +331,17 @@
 
     {{-- JS --}}
     <script>
+
         var partId = document.querySelector('#part_id').textContent;
 
         // Input Type
         var inputType = document.querySelector('#input_type');
 
-        // Input
-        var cardInput = document.querySelector('#card-input');
-        var maksCharDiv = document.querySelector('#maks-char-div');
-        var maksChar = document.querySelector('#maks_char');
-
-        // Select
-        var cardSelect = document.querySelector('#card-select');
-        var hasOtherDiv = document.querySelector('#has-other-div');
-        var hasOther = document.querySelector('#has_other');
-        var optionNumberDiv = document.querySelector('#option-number-div');
-        var optionNumber = document.querySelector('#option_number');
-
-        // Chart
-        var cardChart = document.querySelector('#card-chart');
-        var hasChartDiv = document.querySelector('#has-chart-div');
-        var hasChart = document.querySelector('#has_chart');
-        var titleChartDiv = document.querySelector('#title-chart-div');
-        var titleChart = document.querySelector('#title_chart');
-
-        function refreshInput() {
-            maksChar.classList.remove('readonly');
-            maksChar.readOnly = false;
-            maksChar.value = '';
-
-            cardInput.classList.add('hidden');
-        }
-
-        function refreshSelect() {
-            hasOther.classList.remove('readonly');
-            hasOther.readOnly = false;
-            hasOther.value = '';
-
-            optionNumber.classList.remove('readonly');
-            optionNumber.readOnly = false;
-            optionNumber.value = '';
-
-            cardSelect.classList.add('hidden');
-        }
-
-        function refreshChart(){
-            hasChart.classList.remove('readonly');
-            hasChart.readOnly = false;
-            hasChart.value = '';
-
-            titleChart.classList.remove('readonly');
-            titleChart.readOnly = false;
-            titleChart.value = '';
-
-            cardChart.classList.add('hidden');
-        }
-
-        function refreshInputType() {
-            if (partId === '1' || partId === '2') {
-                refreshInput();
-                refreshSelect();
-                refreshChart();
-            }
-            else if (partId === '6') {
-                refreshInput();
-                refreshSelect();
-            }
-        }
-
 
         document.addEventListener('DOMContentLoaded', function () {
-            
-            // Ketika input-type diganti
-            inputType.addEventListener('change', function() {
-                // Refresh setiap Input Type diganti
-                refreshInputType();
-
-                // 1 -> Input : Text
-                if (inputType.value === '1') {
-                    if (partId === '1' || partId === '2') {
-                        // Menampilkan card-input
-                        cardInput.classList.remove('hidden');
                         
-                        // Menonaktifkan Select
-                        hasOther.classList.add('readonly');
-                        hasOther.readOnly = true;
-                        hasOther.value = '0';
-
-                        optionNumber.classList.add('readonly');
-                        optionNumber.readOnly = true;
-                        optionNumber.value = '0';
-
-                        // Menonaktifkan Chart
-                        hasChart.classList.add('readonly');
-                        hasChart.readOnly = true;
-                        hasChart.value = '0';
-
-                        titleChart.classList.add('readonly');
-                        titleChart.readOnly = true;
-                        titleChart.value = '-';
-                    }
-                    else if (partId === '6') {
-                        // Menampilkan card-input
-                        cardInput.classList.remove('hidden');
-                        
-                        // Menonaktifkan Select
-                        hasOther.classList.add('readonly');
-                        hasOther.readOnly = true;
-                        hasOther.value = '0';
-
-                        optionNumber.classList.add('readonly');
-                        optionNumber.readOnly = true;
-                        optionNumber.value = '0';  
-                    }
-                }
-                // 2 -> Input : Numeric
-                else if (inputType.value === '2') {
-                    if (partId === '1' || partId === '2') {
-                        // Menonaktikan Input dikarenakan Numeric tidak bisa mengatur maks-char (maksLength)
-                        maksChar.classList.add('readonly');
-                        maksChar.readOnly = true;
-                        maksChar.value = '0';
-                        
-                        // Menonaktifkan Select
-                        hasOther.classList.add('readonly');
-                        hasOther.readOnly = true;
-                        hasOther.value = '0';
-
-                        optionNumber.classList.add('readonly');
-                        optionNumber.readOnly = true;
-                        optionNumber.value = '0';
-
-                        // Menonaktifkan Chart
-                        hasChart.classList.add('readonly');
-                        hasChart.readOnly = true;
-                        hasChart.value = '0';
-
-                        titleChart.classList.add('readonly');
-                        titleChart.readOnly = true;
-                        titleChart.value = '-';
-                    }
-                    else if (partId === '6') {
-                        // Menonaktikan Input dikarenakan Numeric tidak bisa mengatur maks-char (maksLength)
-                        maksChar.classList.add('readonly');
-                        maksChar.readOnly = true;
-                        maksChar.value = '0';
-
-                        // Menonaktifkan Select
-                        hasOther.classList.add('readonly');
-                        hasOther.readOnly = true;
-                        hasOther.value = '0';
-
-                        optionNumber.classList.add('readonly');
-                        optionNumber.readOnly = true;
-                        optionNumber.value = '0';
-                    }
-                }
-                // 3 -> Input : Date
-                else if (inputType.value === '3') {
-                    if (partId === '1' || partId === '2') {
-                        // Menonaktikan Input dikarenakan Date tidak bisa mengatur maks-char (maksLength)
-                        maksChar.classList.add('readonly');
-                        maksChar.readOnly = true;
-                        maksChar.value = '0';
-                        
-                        // Menonaktifkan Select
-                        hasOther.classList.add('readonly');
-                        hasOther.readOnly = true;
-                        hasOther.value = '0';
-
-                        optionNumber.classList.add('readonly');
-                        optionNumber.readOnly = true;
-                        optionNumber.value = '0';
-
-                        // Menonaktifkan Chart
-                        hasChart.classList.add('readonly');
-                        hasChart.readOnly = true;
-                        hasChart.value = '0';
-
-                        titleChart.classList.add('readonly');
-                        titleChart.readOnly = true;
-                        titleChart.value = '-';
-                    }
-                    else if (partId === '6') {
-                        // Menonaktikan Input dikarenakan Date tidak bisa mengatur maks-char (maksLength)
-                        maksChar.classList.add('readonly');
-                        maksChar.readOnly = true;
-                        maksChar.value = '0';
-                        
-                        // Menonaktifkan Select
-                        hasOther.classList.add('readonly');
-                        hasOther.readOnly = true;
-                        hasOther.value = '0';
-
-                        optionNumber.classList.add('readonly');
-                        optionNumber.readOnly = true;
-                        optionNumber.value = '0';
-                    }
-                }
-                // 4 -> Input : (Phone Number)
-                else if (inputType.value === '4') {
-                    if (partId === '1' || partId === '2') {
-                        // Menonaktikan Input dikarenakan Tipe ini tidak bisa mengatur maks-char (maksLength)
-                        maksChar.classList.add('readonly');
-                        maksChar.readOnly = true;
-                        maksChar.value = '0';
-                        
-                        // Menonaktifkan Select
-                        hasOther.classList.add('readonly');
-                        hasOther.readOnly = true;
-                        hasOther.value = '0';
-
-                        optionNumber.classList.add('readonly');
-                        optionNumber.readOnly = true;
-                        optionNumber.value = '0';
-
-                        // Menonaktifkan Chart
-                        hasChart.classList.add('readonly');
-                        hasChart.readOnly = true;
-                        hasChart.value = '0';
-
-                        titleChart.classList.add('readonly');
-                        titleChart.readOnly = true;
-                        titleChart.value = '-';
-                    }
-                    else if (partId === '6') {
-                        // Menonaktikan Input dikarenakan Tipe ini tidak bisa mengatur maks-char (maksLength)
-                        maksChar.classList.add('readonly');
-                        maksChar.readOnly = true;
-                        maksChar.value = '0';
-                        
-                        // Menonaktifkan Select
-                        hasOther.classList.add('readonly');
-                        hasOther.readOnly = true;
-                        hasOther.value = '0';
-
-                        optionNumber.classList.add('readonly');
-                        optionNumber.readOnly = true;
-                        optionNumber.value = '0';
-                    }
-                }
-                // 5 -> Select : (Pilih salah satu)
-                else if (inputType.value === '5') {
-                    // Menampilkan card-select
-                    cardSelect.classList.remove('hidden');
-                    
-                    // Menonaktifkan Input
-                    maksChar.classList.add('readonly');
-                    maksChar.readOnly = true;
-                    maksChar.value = '0';
-
-                }
-                // 7 -> Select : Yes or No
-                else if (inputType.value === '7') {
-                    // Menonaktifkan Input
-                    maksChar.classList.add('readonly');
-                    maksChar.readOnly = true;
-                    maksChar.value = '0';
-
-                    // Menonaktifkan Select dikarenakan Tipe Ini tidak membutuhkan 2 Hal tersebut
-                    hasOther.classList.add('readonly');
-                    hasOther.readOnly = true;
-                    hasOther.value = '0';
-
-                    optionNumber.classList.add('readonly');
-                    optionNumber.readOnly = true;
-                    optionNumber.value = '0';
-
-                }
-
-                // 6 -> Select : Liketr Scale (Contoh 1. Sangat Setuju, 2. Setuju, ...)
-                // 8 -> Rating (Pilih 1 s/d 10)
-                // 9 -> Textarea
-                // Tiga Pilihan diatas tidak memerlukan hal-hal pada card-input, card-select, dan card-chart
-
-            });
-
-            // Ketika has-other di-inputkan
-            hasOther.addEventListener('input', function() {
-                optionNumberDiv.classList.add('hidden');
-                optionNumber.value = '';
-
-                if (hasOther.value === '0' || hasOther.value === '1') {
-                    optionNumberDiv.classList.remove('hidden');
-                }
-
-                cardChart.classList.add('hidden');
-            });
-
-            // Khusus untuk partId 1 dan 2 dikarenakan hanya part itu saja yang bisa mengatur Chart
-            if (partId === '1' || partId === '2') {
-                // Ketika option-number di-inputkan
-                optionNumber.addEventListener('input', function() {
-                    cardChart.classList.add('hidden');
-                    var bilOptionNumber = parseInt(optionNumber.value, 10);
-    
-                    if (!isNaN(bilOptionNumber) && bilOptionNumber > 1) {
-                        cardChart.classList.remove('hidden');
-                    }
-                });
-            }
-
-            // Ketika has-chart di-inputkan
-            hasChart.addEventListener('input', function() {
-                titleChartDiv.classList.add('hidden');
-                titleChart.classList.remove('readonly');
-                titleChart.readOnly = false;
-                titleChart.value = '';
-                
-                if (hasChart.value === '0') {
-                    titleChart.classList.add('readonly');
-                    titleChart.readOnly = true;
-                    titleChart.value = '-';
-                }
-
-                else if (hasChart.value === '1') {
-                    titleChartDiv.classList.remove('hidden');
-                }
-            });
-
-        }); 
+        });
+         
     </script>    
 
 @endsection

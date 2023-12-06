@@ -30,7 +30,7 @@ class ManageFormController extends Controller
     }
 
     public function storeQuestion(Request $request, Part $part) {
-        
+        dd($request);
     }
 
     public function selection() {
