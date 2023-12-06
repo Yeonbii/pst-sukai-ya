@@ -29,6 +29,10 @@ class ManageFormController extends Controller
         ]);
     }
 
+    public function storeQuestion(Request $request, Part $part) {
+        
+    }
+
     public function selection() {
         return view('dashboard.manage-forms.selection');
     }

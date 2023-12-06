@@ -32,32 +32,38 @@ class DatabaseSeeder extends Seeder
 
         Part::create([
             'name' => 'Bagian Identitas',
-            'slug' => 'identity'
+            'code' => 'i'
+            // i --> identity
         ]);
         
         Part::create([
             'name' => 'Bagian Layanan',
-            'slug' => 'service'
+            'code' => 's'
+            // s --> service
         ]);
 
         Part::create([
             'name' => 'Bagian Nilai Pelayanan',
-            'slug' => 'service-value'
+            'code' => 'sv'
+            // sv --> service value
         ]);
 
         Part::create([
             'name' => 'Bagian Rating Pelayanan',
-            'slug' => 'service-rating'
+            'code' => 'sr'
+            // sr --> service rating
         ]);
 
         Part::create([
             'name' => 'Bagian Feedback',
-            'slug' => 'feedback'
+            'code' => 'f'
+            // f --> feedback
         ]);
 
         Part::create([
             'name' => 'Bagian Lain-lain',
-            'slug' => 'other'
+            'code' => 'o'
+            // o --> other
         ]);
 
     }

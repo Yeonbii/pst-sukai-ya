@@ -15,19 +15,23 @@ return new class extends Migration
             $table->id();
             $table->foreignId('part_id');
             $table->integer('no');
-            $table->enum('input_type', ['Input', 'Select', 'Rating', 'Checkbox', 'Textarea']);
-            // Type Input
-            $table->boolean('is_date');
-            $table->boolean('is_number_phone');
-            $table->boolean('is_number');
+            $table->enum('input_type', ['1', '2', '3', '4', '5', '6', '7', '8', '9']);
+            // 1 -> Input : Text
+            // 2 -> Input : Numeric
+            // 3 -> Input : Date
+            // 4 -> Input : (Phone Number)
+            // 5 -> Select : (Pilih salah satu)
+            // 6 -> Select : Liketr Scale (Contoh 1. Sangat Setuju, 2. Setuju, ...)
+            // 7 -> Select : Yes or No
+            // 8 -> Rating (Pilih 1 s/d 10)
+            // 9 -> Textarea
+
+            // Input : Text
             $table->integer('maks_char');
-            // Type Select
-            $table->boolean('is_order');
+
+            // Select : (Pilih Salah Satu)
             $table->boolean('has_other');
-            // Type Select, Rating, dan Checkbox
-            $table->integer('selection_number');
-            // Type Textarea
-            $table->integer('row');
+            $table->integer('option_number');
 
             $table->string('text');
             $table->boolean('is_required');

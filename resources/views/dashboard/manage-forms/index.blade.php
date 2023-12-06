@@ -17,7 +17,7 @@
                         <ul>
                             @foreach ($parts as $part)
                             <li class="group">
-                                <a href="/dashboard/manage-form/create/{{ $part->slug }}" class="text-base text-dark p-2 mb-2 flex group-hover:bg-slate-100 group-hover:bg-opacity-70 group-hover:rounded-md group-hover:text-primary">{{ $part->name }}</a>
+                                <a href="/dashboard/manage-form/create/{{ $part->code }}" class="text-base text-dark p-2 mb-2 flex group-hover:bg-slate-100 group-hover:bg-opacity-70 group-hover:rounded-md group-hover:text-primary">{{ $part->name }}</a>
                             </li>
                             @endforeach
                         </ul>

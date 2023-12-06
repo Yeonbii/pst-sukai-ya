@@ -29,7 +29,10 @@ Route::get('/dashboard/manage-chart', [DashboardController::class, 'chart'])->mi
 
 Route::get('/dashboard/manage-form', [ManageFormController::class, 'index'])->middleware('auth');
 Route::get('/dashboard/manage-form/show', [ManageFormController::class, 'show'])->middleware('auth');
-Route::get('/dashboard/manage-form/create/{part:slug}', [ManageFormController::class, 'create'])->middleware('auth');
+
+Route::get('/dashboard/manage-form/create/{part:code}', [ManageFormController::class, 'create'])->middleware('auth');
+Route::post('/dashboard/manage-form/store-question', [ManageFormController::class, 'storeQuestion'])->name('storeQuestion')->middleware('auth');
+
 Route::get('/dashboard/manage-form/selection', [ManageFormController::class, 'selection'])->middleware('auth');
 
 
