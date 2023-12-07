@@ -2,18 +2,24 @@
 
 namespace App\Models;
 
+use App\Models\Trigger;
 use App\Models\Question;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Part extends Model
+class Option extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    public function questions()
+    public function question()
     {
-        return $this->hasMany(Question::class);
+        return $this->belongsTo(Question::class);
+    }
+
+    public function trigger()
+    {
+        return $this->hasOne(Trigger::class);
     }
 }

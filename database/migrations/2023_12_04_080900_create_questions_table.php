@@ -13,33 +13,37 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('part_id');
+            $table->unsignedBigInteger('part_id');
             $table->integer('no');
+            
+            $table->string('text');
+            $table->char('is_required', 1);
+            $table->char('need_note', 1);
+            $table->text('note');
+            
+            $table->char('is_triggered', 1);
+            
             $table->enum('input_type', ['1', '2', '3', '4', '5', '6', '7', '8', '9']);
             // 1 -> Input : Text
             // 2 -> Input : Numeric
             // 3 -> Input : Date
-            // 4 -> Input : (Phone Number)
+            // 4 -> Input : (Contoh No. Telp)
             // 5 -> Select : (Pilih salah satu)
             // 6 -> Select : Liketr Scale (Contoh 1. Sangat Setuju, 2. Setuju, ...)
             // 7 -> Select : Yes or No
             // 8 -> Rating (Pilih 1 s/d 10)
             // 9 -> Textarea
-
+            
             // Input : Text
             $table->integer('maks_char');
-
+            
             // Select : (Pilih Salah Satu)
-            $table->boolean('has_other');
+            $table->char('has_other', 1);
             $table->integer('option_number');
-
-            $table->string('text');
-            $table->boolean('is_required');
-            $table->text('note');
-
-            $table->boolean('has_chart');
-            $table->boolean('is_triggered');
-
+            
+            $table->char('has_chart', 1);
+            
+            $table->foreign('part_id')->references('id')->on('parts');
             $table->timestamps();
         });
     }

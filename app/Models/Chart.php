@@ -6,14 +6,16 @@ use App\Models\Question;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Part extends Model
+class Chart extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    public function questions()
+    protected $with = ['question'];
+
+    public function question() 
     {
-        return $this->hasMany(Question::class);
+        return $this->belongsTo(Question::class);
     }
 }
