@@ -80,7 +80,6 @@ class DatabaseSeeder extends Seeder
             'is_required' => '1',
             'need_note' => '0',
             'note' => '-',
-            'is_triggered' => '0',
             'input_type' => '1',
             'maks_char' => '0',
             'has_other' => '0',
@@ -96,7 +95,6 @@ class DatabaseSeeder extends Seeder
             'is_required' => '1',
             'need_note' => '0',
             'note' => '-',
-            'is_triggered' => '0',
             'input_type' => '5',
             'maks_char' => '0',
             'has_other' => '0',
@@ -128,7 +126,6 @@ class DatabaseSeeder extends Seeder
             'is_required' => '1',
             'need_note' => '0',
             'note' => '-',
-            'is_triggered' => '0',
             'input_type' => '5',
             'maks_char' => '0',
             'has_other' => '0',
@@ -191,7 +188,6 @@ class DatabaseSeeder extends Seeder
             'is_required' => '1',
             'need_note' => '0',
             'note' => '-',
-            'is_triggered' => '0',
             'input_type' => '1',
             'maks_char' => '0',
             'has_other' => '0',
@@ -207,7 +203,6 @@ class DatabaseSeeder extends Seeder
             'is_required' => '1',
             'need_note' => '0',
             'note' => '-',
-            'is_triggered' => '0',
             'input_type' => '4',
             'maks_char' => '0',
             'has_other' => '0',
@@ -223,7 +218,6 @@ class DatabaseSeeder extends Seeder
             'is_required' => '0',
             'need_note' => '0',
             'note' => '-',
-            'is_triggered' => '0',
             'input_type' => '4',
             'maks_char' => '0',
             'has_other' => '0',
@@ -239,7 +233,6 @@ class DatabaseSeeder extends Seeder
             'is_required' => '0',
             'need_note' => '0',
             'note' => '-',
-            'is_triggered' => '0',
             'input_type' => '1',
             'maks_char' => '0',
             'has_other' => '0',
@@ -259,7 +252,6 @@ class DatabaseSeeder extends Seeder
             'is_required' => '1',
             'need_note' => '0',
             'note' => '-',
-            'is_triggered' => '0',
             'input_type' => '3',
             'maks_char' => '0',
             'has_other' => '0',
@@ -275,7 +267,6 @@ class DatabaseSeeder extends Seeder
             'is_required' => '1',
             'need_note' => '0',
             'note' => '-',
-            'is_triggered' => '0',
             'input_type' => '5',
             'maks_char' => '0',
             'has_other' => '0',
@@ -330,7 +321,6 @@ class DatabaseSeeder extends Seeder
             'is_required' => '1',
             'need_note' => '0',
             'note' => '-',
-            'is_triggered' => '0',
             'input_type' => '5',
             'maks_char' => '0',
             'has_other' => '1',
@@ -433,7 +423,705 @@ class DatabaseSeeder extends Seeder
             'show' => '1'
         ]);
 
+        // Bagian Layanan - 4
+        Question::create([
+            'part_id' => Part::where('code', 's')->value('id'),
+            'no' => 4,
+            'text' => 'Petugas yang melayani',
+            'is_required' => '1',
+            'need_note' => '0',
+            'note' => '-',
+            'input_type' => '5',
+            'maks_char' => '0',
+            'has_other' => '0',
+            'option_number' => '12',
+            'has_chart' => '1'
+        ]);
+
+        // Bagian Layanan - 4 :  Pilihan 1
+        Option::create([
+            'question_id' => Question::where('text', 'Petugas yang melayani')->value('id'),
+            'no' => 1,
+            'text' => 'Tidak Datang Langsung ke PST BPS Kab. HSU',
+            'value' => 'Tidak Datang Langsung ke PST BPS Kab. HSU'
+        ]);
+
+        // Bagian Layanan - 4 :  Pilihan 2
+        Option::create([
+            'question_id' => Question::where('text', 'Petugas yang melayani')->value('id'),
+            'no' => 2,
+            'text' => 'Masdani',
+            'value' => 'Masdani'
+        ]);
+
+        // Bagian Layanan - 4 :  Pilihan 3
+        Option::create([
+            'question_id' => Question::where('text', 'Petugas yang melayani')->value('id'),
+            'no' => 3,
+            'text' => 'Eko W. L.',
+            'value' => 'Eko W. L.'
+        ]);
+
+        // Bagian Layanan - 4 :  Pilihan 4
+        Option::create([
+            'question_id' => Question::where('text', 'Petugas yang melayani')->value('id'),
+            'no' => 4,
+            'text' => 'M. Adi W. K.',
+            'value' => 'M. Adi W. K.'
+        ]);
+
+        // Bagian Layanan - 4 :  Pilihan 5
+        Option::create([
+            'question_id' => Question::where('text', 'Petugas yang melayani')->value('id'),
+            'no' => 5,
+            'text' => 'Oktaviani',
+            'value' => 'Oktaviani'
+        ]);
+
+        // Bagian Layanan - 4 :  Pilihan 6
+        Option::create([
+            'question_id' => Question::where('text', 'Petugas yang melayani')->value('id'),
+            'no' => 6,
+            'text' => 'Hanif Y. R.',
+            'value' => 'Hanif Y. R.'
+        ]);
+
+        // Bagian Layanan - 4 :  Pilihan 7
+        Option::create([
+            'question_id' => Question::where('text', 'Petugas yang melayani')->value('id'),
+            'no' => 7,
+            'text' => 'M. Imam S.',
+            'value' => 'M. Imam S.'
+        ]);
+
+        // Bagian Layanan - 4 :  Pilihan 8
+        Option::create([
+            'question_id' => Question::where('text', 'Petugas yang melayani')->value('id'),
+            'no' => 8,
+            'text' => 'Safrian F.',
+            'value' => 'Safrian F.'
+        ]);
+
+        // Bagian Layanan - 4 :  Pilihan 9
+        Option::create([
+            'question_id' => Question::where('text', 'Petugas yang melayani')->value('id'),
+            'no' => 9,
+            'text' => 'Ghytsa A. J.',
+            'value' => 'Ghytsa A. J.'
+        ]);
+
+        // Bagian Layanan - 4 :  Pilihan 10
+        Option::create([
+            'question_id' => Question::where('text', 'Petugas yang melayani')->value('id'),
+            'no' => 10,
+            'text' => 'Faizal R.',
+            'value' => 'Faizal R.'
+        ]);
+
+        // Bagian Layanan - 4 :  Pilihan 11
+        Option::create([
+            'question_id' => Question::where('text', 'Petugas yang melayani')->value('id'),
+            'no' => 11,
+            'text' => 'Ariq',
+            'value' => 'Ariq'
+        ]);
+
+        // Bagian Layanan - 4 :  Pilihan 12
+        Option::create([
+            'question_id' => Question::where('text', 'Petugas yang melayani')->value('id'),
+            'no' => 12,
+            'text' => 'Ridha',
+            'value' => 'Ridha'
+        ]);
+
+        // Bagian Layanan - 4 : Chart
+        Chart::create([
+            'question_id' => Question::where('text', 'Petugas yang melayani')->value('id'),
+            'order' => 4,
+            'show' => '1'
+        ]);
+
+
+
         // BAGIAN LAYANAN END
+
+
+
+        // BAGIAN NILAI PELAYANAN START
+
+
+
+        // Bagian Nilai Pelayanan - 1
+        Question::create([
+            'part_id' => Part::where('code', 'sv')->value('id'),
+            'no' => 1,
+            'text' => 'Bagaimana pendapat Saudara tentang kesesuaian persyaratan pelayanan dengan jenis pelayanannya?',
+            'is_required' => '1',
+            'need_note' => '1',
+            'note' => 'Persyaratan pelayanan dapat dilihat pada poster di ruang pelayanan atau di link*https://ppid.bps.go.id/app/konten/6308/Standar-Layanan-Informasi-Publik.html*link',
+            'input_type' => '6',
+            'maks_char' => '0',
+            'has_other' => '0',
+            'option_number' => '4',
+            'has_chart' => '0'
+        ]);
+
+        // Bagian Nilai Pelayanan - 1 :  Pilihan 1
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kesesuaian persyaratan pelayanan dengan jenis pelayanannya?')->value('id'),
+            'no' => 1,
+            'text' => 'Tidak Sesuai',
+            'value' => '1'
+        ]);
+
+        // Bagian Nilai Pelayanan - 1 :  Pilihan 2
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kesesuaian persyaratan pelayanan dengan jenis pelayanannya?')->value('id'),
+            'no' => 2,
+            'text' => 'Kurang Sesuai',
+            'value' => '2'
+        ]);
+
+        // Bagian Nilai Pelayanan - 1 :  Pilihan 3
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kesesuaian persyaratan pelayanan dengan jenis pelayanannya?')->value('id'),
+            'no' => 3,
+            'text' => 'Sesuai',
+            'value' => '3'
+        ]);
+
+        // Bagian Nilai Pelayanan - 1 :  Pilihan 4
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kesesuaian persyaratan pelayanan dengan jenis pelayanannya?')->value('id'),
+            'no' => 4,
+            'text' => 'Sangat Sesuai',
+            'value' => '4'
+        ]);
+
+
+
+        // Bagian Nilai Pelayanan - 2
+        Question::create([
+            'part_id' => Part::where('code', 'sv')->value('id'),
+            'no' => 2,
+            'text' => 'Bagaimana pemahaman Saudara tentang kemudahan prosedur pelayanan di unit ini?',
+            'is_required' => '1',
+            'need_note' => '1',
+            'note' => 'Prosedur pelayanan dapat dilihat pada poster di ruang pelayanan atau di link*https://ppid.bps.go.id/app/konten/6308/Standar-Layanan-Informasi-Publik.html*link',
+            'input_type' => '6',
+            'maks_char' => '0',
+            'has_other' => '0',
+            'option_number' => '4',
+            'has_chart' => '0'
+        ]);
+
+        // Bagian Nilai Pelayanan - 2 :  Pilihan 1
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pemahaman Saudara tentang kemudahan prosedur pelayanan di unit ini?')->value('id'),
+            'no' => 1,
+            'text' => 'Tidak Mudah',
+            'value' => '1'
+        ]);
+
+        // Bagian Nilai Pelayanan - 2 :  Pilihan 2
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pemahaman Saudara tentang kemudahan prosedur pelayanan di unit ini?')->value('id'),
+            'no' => 2,
+            'text' => 'Kurang Mudah',
+            'value' => '2'
+        ]);
+
+        // Bagian Nilai Pelayanan - 2 :  Pilihan 3
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pemahaman Saudara tentang kemudahan prosedur pelayanan di unit ini?')->value('id'),
+            'no' => 3,
+            'text' => 'Mudah',
+            'value' => '3'
+        ]);
+
+        // Bagian Nilai Pelayanan - 2 :  Pilihan 4
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pemahaman Saudara tentang kemudahan prosedur pelayanan di unit ini?')->value('id'),
+            'no' => 4,
+            'text' => 'Sangat Mudah',
+            'value' => '4'
+        ]);
+
+
+
+        // Bagian Nilai Pelayanan - 3
+        Question::create([
+            'part_id' => Part::where('code', 'sv')->value('id'),
+            'no' => 3,
+            'text' => 'Bagaimana pendapat Saudara tentang kecepatan waktu dalam memberikan pelayanan?',
+            'is_required' => '1',
+            'need_note' => '1',
+            'note' => 'Jangka waktu pelayanan menurut jenis layanan dan medianya, dapat dilihat pada poster di ruang pelayanan atau di link*https://ppid.bps.go.id/app/konten/6308/Standar-Layanan-Informasi-Publik.html*link',
+            'input_type' => '6',
+            'maks_char' => '0',
+            'has_other' => '0',
+            'option_number' => '4',
+            'has_chart' => '0'
+        ]);
+
+        // Bagian Nilai Pelayanan - 3 :  Pilihan 1
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kecepatan waktu dalam memberikan pelayanan?')->value('id'),
+            'no' => 1,
+            'text' => 'Tidak Cepat',
+            'value' => '1'
+        ]);
+
+        // Bagian Nilai Pelayanan - 3 :  Pilihan 2
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kecepatan waktu dalam memberikan pelayanan?')->value('id'),
+            'no' => 2,
+            'text' => 'Kurang Cepat',
+            'value' => '2'
+        ]);
+
+        // Bagian Nilai Pelayanan - 3 :  Pilihan 3
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kecepatan waktu dalam memberikan pelayanan?')->value('id'),
+            'no' => 3,
+            'text' => 'Cepat',
+            'value' => '3'
+        ]);
+
+        // Bagian Nilai Pelayanan - 3 :  Pilihan 4
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kecepatan waktu dalam memberikan pelayanan?')->value('id'),
+            'no' => 4,
+            'text' => 'Sangat Cepat',
+            'value' => '4'
+        ]);
         
+
+
+        // Bagian Nilai Pelayanan - 4
+        Question::create([
+            'part_id' => Part::where('code', 'sv')->value('id'),
+            'no' => 4,
+            'text' => 'Bagaimana pendapat Saudara tentang kewajaran biaya/tarif dalam pelayanan?',
+            'is_required' => '1',
+            'need_note' => '1',
+            'note' => 'Biaya pelayanan di PST BPS Kab. Hulu Sungai Utara gratis, kecuali pelayanan yang telah ditetapkan sebagai Penerimaan Negara Bukan Pajak (PNBP)\r\nBiaya pelayanan dapat dilihat pada poster di ruang pelayanan atau di link*https://ppid.bps.go.id/app/konten/6308/Standar-Layanan-Informasi-Publik.html*link',
+            'input_type' => '6',
+            'maks_char' => '0',
+            'has_other' => '0',
+            'option_number' => '4',
+            'has_chart' => '0'
+        ]);
+
+        // Bagian Nilai Pelayanan - 4 :  Pilihan 1
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kewajaran biaya/tarif dalam pelayanan?')->value('id'),
+            'no' => 1,
+            'text' => 'Sangat Mahal',
+            'value' => '1'
+        ]);
+
+        // Bagian Nilai Pelayanan - 4 :  Pilihan 2
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kewajaran biaya/tarif dalam pelayanan?')->value('id'),
+            'no' => 2,
+            'text' => 'Cukup Mahal',
+            'value' => '2'
+        ]);
+
+        // Bagian Nilai Pelayanan - 4 :  Pilihan 3
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kewajaran biaya/tarif dalam pelayanan?')->value('id'),
+            'no' => 3,
+            'text' => 'Murah',
+            'value' => '3'
+        ]);
+
+        // Bagian Nilai Pelayanan - 4 :  Pilihan 4
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kewajaran biaya/tarif dalam pelayanan?')->value('id'),
+            'no' => 4,
+            'text' => 'Gratis',
+            'value' => '4'
+        ]);
+
+
+        // Bagian Nilai Pelayanan - 5
+        Question::create([
+            'part_id' => Part::where('code', 'sv')->value('id'),
+            'no' => 5,
+            'text' => 'Bagaimana pendapat Saudara tentang kesesuaian produk pelayanan antara yang tercantum dalam standar pelayanan dengan hasil yang diberikan?',
+            'is_required' => '1',
+            'need_note' => '1',
+            'note' => 'Standar pelayanan dapat dilihat pada poster di ruang pelayanan atau di link*https://ppid.bps.go.id/app/konten/6308/Standar-Layanan-Informasi-Publik.html*link',
+            'input_type' => '6',
+            'maks_char' => '0',
+            'has_other' => '0',
+            'option_number' => '4',
+            'has_chart' => '0'
+        ]);
+
+        // Bagian Nilai Pelayanan - 5 :  Pilihan 1
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kesesuaian produk pelayanan antara yang tercantum dalam standar pelayanan dengan hasil yang diberikan?')->value('id'),
+            'no' => 1,
+            'text' => 'Tidak Sesuai',
+            'value' => '1'
+        ]);
+
+        // Bagian Nilai Pelayanan - 5 :  Pilihan 2
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kesesuaian produk pelayanan antara yang tercantum dalam standar pelayanan dengan hasil yang diberikan?')->value('id'),
+            'no' => 2,
+            'text' => 'Kurang Sesuai',
+            'value' => '2'
+        ]);
+
+        // Bagian Nilai Pelayanan - 5 :  Pilihan 3
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kesesuaian produk pelayanan antara yang tercantum dalam standar pelayanan dengan hasil yang diberikan?')->value('id'),
+            'no' => 3,
+            'text' => 'Sesuai',
+            'value' => '3'
+        ]);
+
+        // Bagian Nilai Pelayanan - 5 :  Pilihan 4
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kesesuaian produk pelayanan antara yang tercantum dalam standar pelayanan dengan hasil yang diberikan?')->value('id'),
+            'no' => 4,
+            'text' => 'Sangat Sesuai',
+            'value' => '4'
+        ]);
+
+
+
+        // Bagian Nilai Pelayanan - 6
+        Question::create([
+            'part_id' => Part::where('code', 'sv')->value('id'),
+            'no' => 6,
+            'text' => 'Bagaimana pendapat Saudara tentang kompetensi/ kemampuan petugas dalam pelayanan?',
+            'is_required' => '1',
+            'need_note' => '0',
+            'note' => '-',
+            'input_type' => '6',
+            'maks_char' => '0',
+            'has_other' => '0',
+            'option_number' => '4',
+            'has_chart' => '0'
+        ]);
+
+        // Bagian Nilai Pelayanan - 6 :  Pilihan 1
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kompetensi/ kemampuan petugas dalam pelayanan?')->value('id'),
+            'no' => 1,
+            'text' => 'Tidak Kompeten',
+            'value' => '1'
+        ]);
+
+        // Bagian Nilai Pelayanan - 6 :  Pilihan 2
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kompetensi/ kemampuan petugas dalam pelayanan?')->value('id'),
+            'no' => 2,
+            'text' => 'Kurang Kompeten',
+            'value' => '2'
+        ]);
+
+        // Bagian Nilai Pelayanan - 6 :  Pilihan 3
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kompetensi/ kemampuan petugas dalam pelayanan?')->value('id'),
+            'no' => 3,
+            'text' => 'Kompeten',
+            'value' => '3'
+        ]);
+
+        // Bagian Nilai Pelayanan - 6 :  Pilihan 4
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kompetensi/ kemampuan petugas dalam pelayanan?')->value('id'),
+            'no' => 4,
+            'text' => 'Sangat Kompeten',
+            'value' => '4'
+        ]);
+
+
+
+        // Bagian Nilai Pelayanan - 7
+        Question::create([
+            'part_id' => Part::where('code', 'sv')->value('id'),
+            'no' => 7,
+            'text' => 'Bagamana pendapat saudara perilaku petugas dalam pelayanan terkait kesopanan dan keramahan?',
+            'is_required' => '1',
+            'need_note' => '0',
+            'note' => '-',
+            'input_type' => '6',
+            'maks_char' => '0',
+            'has_other' => '0',
+            'option_number' => '4',
+            'has_chart' => '0'
+        ]);
+
+        // Bagian Nilai Pelayanan - 7 :  Pilihan 1
+        Option::create([
+            'question_id' => Question::where('text', 'Bagamana pendapat saudara perilaku petugas dalam pelayanan terkait kesopanan dan keramahan?')->value('id'),
+            'no' => 1,
+            'text' => 'Tidak Sopan dan Ramah',
+            'value' => '1'
+        ]);
+
+        // Bagian Nilai Pelayanan - 7 :  Pilihan 2
+        Option::create([
+            'question_id' => Question::where('text', 'Bagamana pendapat saudara perilaku petugas dalam pelayanan terkait kesopanan dan keramahan?')->value('id'),
+            'no' => 2,
+            'text' => 'Kurang Sopan dan Ramah',
+            'value' => '2'
+        ]);
+
+        // Bagian Nilai Pelayanan - 7 :  Pilihan 3
+        Option::create([
+            'question_id' => Question::where('text', 'Bagamana pendapat saudara perilaku petugas dalam pelayanan terkait kesopanan dan keramahan?')->value('id'),
+            'no' => 3,
+            'text' => 'Sopan dan Ramah',
+            'value' => '3'
+        ]);
+
+        // Bagian Nilai Pelayanan - 7 :  Pilihan 4
+        Option::create([
+            'question_id' => Question::where('text', 'Bagamana pendapat saudara perilaku petugas dalam pelayanan terkait kesopanan dan keramahan?')->value('id'),
+            'no' => 4,
+            'text' => 'Sangat Sopan dan Ramah',
+            'value' => '4'
+        ]);
+
+
+
+        // Bagian Nilai Pelayanan - 8
+        Question::create([
+            'part_id' => Part::where('code', 'sv')->value('id'),
+            'no' => 8,
+            'text' => 'Bagaimana pendapat Saudara tentang kualitas sarana dan prasarana pelayanan?',
+            'is_required' => '1',
+            'need_note' => '0',
+            'note' => '-',
+            'input_type' => '6',
+            'maks_char' => '0',
+            'has_other' => '0',
+            'option_number' => '4',
+            'has_chart' => '0'
+        ]);
+
+        // Bagian Nilai Pelayanan - 8 :  Pilihan 1
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kualitas sarana dan prasarana pelayanan?')->value('id'),
+            'no' => 1,
+            'text' => 'Buruk',
+            'value' => '1'
+        ]);
+
+        // Bagian Nilai Pelayanan - 8 :  Pilihan 2
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kualitas sarana dan prasarana pelayanan?')->value('id'),
+            'no' => 2,
+            'text' => 'Cukup',
+            'value' => '2'
+        ]);
+
+        // Bagian Nilai Pelayanan - 8 :  Pilihan 3
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kualitas sarana dan prasarana pelayanan?')->value('id'),
+            'no' => 3,
+            'text' => 'Baik',
+            'value' => '3'
+        ]);
+
+        // Bagian Nilai Pelayanan - 8 :  Pilihan 4
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kualitas sarana dan prasarana pelayanan?')->value('id'),
+            'no' => 4,
+            'text' => 'Sangat Baik',
+            'value' => '4'
+        ]);
+
+
+
+        // Bagian Nilai Pelayanan - 9
+        Question::create([
+            'part_id' => Part::where('code', 'sv')->value('id'),
+            'no' => 9,
+            'text' => 'Bagaimana pendapat Saudara tentang penanganan pengaduan pengguna layanan?',
+            'is_required' => '1',
+            'need_note' => '1',
+            'note' => 'Pengaduan dapat dilakukan melalui kotak saran dan pengaduan, email pengaduan6308@bps.go.id, portal layanan BPS HSU di link*http://linktr.ee/bpshsu*link , atau melalui panggilan telepon pada nomor 0812 5068 578',
+            'input_type' => '6',
+            'maks_char' => '0',
+            'has_other' => '0',
+            'option_number' => '4',
+            'has_chart' => '0'
+        ]);
+
+        // Bagian Nilai Pelayanan - 9 :  Pilihan 1
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang penanganan pengaduan pengguna layanan?')->value('id'),
+            'no' => 1,
+            'text' => 'Tidak ada',
+            'value' => '1'
+        ]);
+
+        // Bagian Nilai Pelayanan - 9 :  Pilihan 2
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang penanganan pengaduan pengguna layanan?')->value('id'),
+            'no' => 2,
+            'text' => 'Ada tetapi tidak berfungsi',
+            'value' => '2'
+        ]);
+
+        // Bagian Nilai Pelayanan - 9 :  Pilihan 3
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang penanganan pengaduan pengguna layanan?')->value('id'),
+            'no' => 3,
+            'text' => 'Berfungsi kurang maksimal',
+            'value' => '3'
+        ]);
+
+        // Bagian Nilai Pelayanan - 9 :  Pilihan 4
+        Option::create([
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang penanganan pengaduan pengguna layanan?')->value('id'),
+            'no' => 4,
+            'text' => 'Dikelola dengan baik',
+            'value' => '4'
+        ]);
+
+
+        // BAGIAN NILAI PELAYANAN END
+
+
+
+        // BAGIAN RATING PELAYANAN START
+
+
+        // Bagian Rating Pelayanan - 1
+        Question::create([
+            'part_id' => Part::where('code', 'sr')->value('id'),
+            'no' => 1,
+            'text' => 'Berikan penilaian pelayanan secara umum yang dilakukan petugas/aplikasi (1= sangat buruk, 10=sangat baik)',
+            'is_required' => '1',
+            'need_note' => '0',
+            'note' => '-',
+            'input_type' => '8',
+            'maks_char' => '0',
+            'has_other' => '0',
+            'option_number' => '10',
+            'has_chart' => '0'
+        ]);
+        
+        
+
+        // BAGIAN RATING PELAYANAN END
+
+
+
+        // BAGIAN FEEDBACK START
+
+
+
+        // Bagian Feedback - 1
+        Question::create([
+            'part_id' => Part::where('code', 'f')->value('id'),
+            'no' => 1,
+            'text' => 'Tuliskan komentar, kritik, maupun saran untuk perbaikan layanan selanjutnya sebagai bahan evaluasi',
+            'is_required' => '1',
+            'need_note' => '0',
+            'note' => '-',
+            'input_type' => '9',
+            'maks_char' => '0',
+            'has_other' => '0',
+            'option_number' => '0',
+            'has_chart' => '0'
+        ]);
+
+
+
+        // BAGIAN FEEDBACK END
+
+
+
+        // BAGIAN LAIN-LAIN START
+
+
+
+        // Bagian Lain-lain - 1
+        Question::create([
+            'part_id' => Part::where('code', 'o')->value('id'),
+            'no' => 1,
+            'text' => 'Testimoni pian dalam menerima pelayanan',
+            'is_required' => '1',
+            'need_note' => '0',
+            'note' => '-',
+            'input_type' => '9',
+            'maks_char' => '0',
+            'has_other' => '0',
+            'option_number' => '0',
+            'has_chart' => '0'
+        ]);
+
+        // Bagian Lain-lain - 2
+        Question::create([
+            'part_id' => Part::where('code', 'o')->value('id'),
+            'no' => 2,
+            'text' => 'Apakah bersedia dihubungi jika terpilih menjadi sampel survei kepuasan sejenis?',
+            'is_required' => '1',
+            'need_note' => '0',
+            'note' => '-',
+            'input_type' => '7',
+            'maks_char' => '0',
+            'has_other' => '0',
+            'option_number' => '0',
+            'has_chart' => '0'
+        ]);
+
+        // Bagian Lain-lain - 3
+        Question::create([
+            'part_id' => Part::where('code', 'o')->value('id'),
+            'no' => 3,
+            'text' => 'Apakah bersedia diberikan informasi  melalui WA/Email mengenai Rilis Data Statistik?',
+            'is_required' => '1',
+            'need_note' => '0',
+            'note' => '-',
+            'input_type' => '7',
+            'maks_char' => '0',
+            'has_other' => '0',
+            'option_number' => '0',
+            'has_chart' => '0'
+        ]);
+
+        // Bagian Lain-lain - 4
+        Question::create([
+            'part_id' => Part::where('code', 'o')->value('id'),
+            'no' => 4,
+            'text' => 'Apakah bersedia diberikan informasi  melalui WA/Email mengenai Rilis Buku/Publikasi Statistik?',
+            'is_required' => '1',
+            'need_note' => '0',
+            'note' => '-',
+            'input_type' => '7',
+            'maks_char' => '0',
+            'has_other' => '0',
+            'option_number' => '0',
+            'has_chart' => '0'
+        ]);
+
+        // Bagian Lain-lain - 5
+        Question::create([
+            'part_id' => Part::where('code', 'o')->value('id'),
+            'no' => 5,
+            'text' => 'Apakah bersedia diberikan informasi  melalui WA/Email mengenai Informasi/Berita Kegiatan?',
+            'is_required' => '1',
+            'need_note' => '0',
+            'note' => '-',
+            'input_type' => '7',
+            'maks_char' => '0',
+            'has_other' => '0',
+            'option_number' => '0',
+            'has_chart' => '0'
+        ]);
+
+
     }
 }

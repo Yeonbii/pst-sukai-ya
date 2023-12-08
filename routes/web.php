@@ -67,3 +67,5 @@ Route::get('/form/others', function() {
 Route::get('/form/confirm', function() {
     return view('forms.questions.confirm');
 });
+
+Route::get('/test123', [ManageFormController::class, 'test123']);

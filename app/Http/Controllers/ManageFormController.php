@@ -11,7 +11,8 @@ class ManageFormController extends Controller
     
     public function index() {
         return view('dashboard.manage-forms.index', [
-            'parts' => Part::all()
+            'parts' => Part::all(),
+            'questions' => Question::with('part', 'options')->orderBy('part_id')->orderBy('no')->simplePaginate(5)
         ]);
     }
 
@@ -36,6 +37,13 @@ class ManageFormController extends Controller
 
     public function selection() {
         return view('dashboard.manage-forms.selection');
+    }
+
+    // Test table
+    public function test123() {
+        return view('test', [
+            'questions' => Question::with('part', 'options')->orderBy('part_id')->orderBy('no')->get()
+        ]);
     }
 
 }

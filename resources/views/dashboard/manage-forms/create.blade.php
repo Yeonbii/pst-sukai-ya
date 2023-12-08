@@ -101,35 +101,6 @@
                 </div>
                 {{-- Body Question End --}}
 
-                {{-- Triggered Start --}}
-                <div id="is_triggered_card" class="bg-white rounded-md shadow-md mb-9 p-7 {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'hidden' : '' }}">
-    
-                    <div id="is_triggered_div" class="w-full mb-7">
-                        <p class="text-sm font-medium mb-2">
-                            Apakah Pertanyaan hanya akan muncul ketika Responden menjawab Pertanyaan lain dengan jawaban tertentu?
-                            <span class="text-red-500">(wajib)</span>
-                        </p>
-                        
-                        <div id="is_triggered" class="mt-3">
-                            
-                            {{-- Yes --}}
-                            <div class="flex items-center mb-4">
-                                <input type="radio" name="is_triggered" id="is_triggered_1" value="1" class="w-4 h-4 flex-shrink-0" required {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'disabled' : '' }}>
-                                <label for="is_triggered_1" class="ms-2 text-sm font-medium">Yes</label>
-                            </div>
-
-                            {{-- No --}}
-                            <div class="flex items-center mb-4">
-                                <input type="radio" name="is_triggered" id="is_triggered_0" value="0" class="w-4 h-4 flex-shrink-0" required {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'checked' : '' }}>
-                                <label for="is_triggered_0" class="ms-2 text-sm font-medium">No</label>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-                {{-- Triggered End --}}
 
                 {{-- Input Type Start --}}
                 <div id="input_type_card" class="bg-white rounded-md shadow-md mb-9 p-7 {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'hidden' : '' }}">

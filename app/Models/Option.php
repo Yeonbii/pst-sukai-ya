@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Trigger;
 use App\Models\Question;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,8 +17,4 @@ class Option extends Model
         return $this->belongsTo(Question::class);
     }
 
-    public function trigger()
-    {
-        return $this->hasOne(Trigger::class);
-    }
 }

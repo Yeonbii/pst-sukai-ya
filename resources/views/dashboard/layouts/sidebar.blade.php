@@ -1,4 +1,4 @@
-<aside class="fixed z-20 bg-black top-0 left-0 h-screen w-0 md:w-[95px] md:max-w-[20rem] overflow-hidden text-white transition-width duration-300 ease-in-out" id="sidebar">
+<aside class="fixed z-30 bg-black top-0 left-0 h-screen w-0 md:w-[95px] md:max-w-[20rem] overflow-hidden text-white transition-width duration-300 ease-in-out" id="sidebar">
     <div class="w-full whitespace-nowrap h-full flex flex-col justify-between">
         <div>
             <div class="flex items-center h-[68px] px-4 w-[14rem] md:w-[20rem]">

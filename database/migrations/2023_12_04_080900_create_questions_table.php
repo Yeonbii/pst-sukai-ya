@@ -21,8 +21,6 @@ return new class extends Migration
             $table->char('need_note', 1);
             $table->text('note');
             
-            $table->char('is_triggered', 1);
-            
             $table->enum('input_type', ['1', '2', '3', '4', '5', '6', '7', '8', '9']);
             // 1 -> Input : Text
             // 2 -> Input : Numeric
