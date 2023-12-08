@@ -46,7 +46,7 @@
                             Filter
                         </div>
 
-                        <div id="filter-part" class="absolute z-[99] flex inset-0 bg-black bg-opacity-50 hidden">
+                        <div id="filter-part" class="absolute z-[99] inset-0 bg-black bg-opacity-50 hidden">
                             <div id="filter-area" class="bg-white shadow-lg ms-auto p-4 pt-12 flex flex-col">
                                 
                                 <p class="font-semibold text-xl text-primary my-5 text-center italic">Filter Bagian</p>
@@ -162,11 +162,13 @@
 
             filterButton.addEventListener('click', function() {
                 filterPart.classList.remove('hidden');
+                filterPart.classList.add('flex');
                 document.body.classList.add('overflow-hidden');
             });
 
             closeFilter.addEventListener('click', function() {
                 filterPart.classList.add('hidden');
+                filterPart.classList.remove('flex');
                 document.body.classList.remove('overflow-hidden');
             });
 
