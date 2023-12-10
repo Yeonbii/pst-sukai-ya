@@ -9,10 +9,24 @@ use Illuminate\Http\Request;
 class ManageFormController extends Controller
 {
     
-    public function index() {
+    public function index(Request $request) {
+
+        $filter_part = 'Filter';
+        $search = $request->input('search');
+        if (request('part')) {
+            $part = Part::firstWhere('code', request('part'));
+            $filter_part = 'Filter : ' . $part->name;
+        }
+
+        $questions = Question::with('part', 'options')->orderBy('part_id')->orderBy('no')->filter(request(['search', 'part']));
+        $total = $questions->count();
+
         return view('dashboard.manage-forms.index', [
             'parts' => Part::all(),
-            'questions' => Question::with('part', 'options')->orderBy('part_id')->orderBy('no')->simplePaginate(5)
+            'questions' => $questions->simplePaginate(5)->withQueryString(),
+            'filter_part' => $filter_part,
+            'search' => $search,
+            'total' => $total
         ]);
     }
 

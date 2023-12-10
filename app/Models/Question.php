@@ -14,6 +14,27 @@ class Question extends Model
 
     protected $guarded = ['id'];
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function($query, $search) {
+            return $query->where(function($query) use($search) {
+                $query->where('text', 'like', '%' . $search . '%')
+                      ->orWhereHas('part', function($query) use ($search) {
+                          $query->where('name', 'like', '%' . $search . '%');
+                      })
+                      ->orWhereHas('options', function($query) use ($search) {
+                          $query->where('text', 'like', '%' . $search . '%');
+                      });
+            });
+        });
+
+        $query->when($filters['part'] ?? false, function($query, $part) {
+            return $query->whereHas('part', function($query) use($part) {
+                $query->where('code', $part);
+            });
+        });
+    }
+
     public function part() 
     {
         return $this->belongsTo(Part::class);

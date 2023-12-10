@@ -40,35 +40,43 @@
 
                     <div class="w-full md:w-1/2 flex flex-wrap">
 
-                        <a href="/dashboard/manage-form/show" class="block w-full md:w-[150px] md:max-w-[300px] font-semibold text-sm bg-slate-400 text-white rounded-md py-2 px-8 mb-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Lihat Form</a>
+                        <a href="/dashboard/manage-form/show" class="block w-full md:w-[150px] font-semibold text-sm bg-slate-400 text-white rounded-md py-2 px-8 mb-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Lihat Form</a>
                         
-                        <div id="filter-button" class="w-full md:w-[150px] md:max-w-[300px] truncate font-semibold text-sm bg-primary text-white rounded-md py-2 px-8 mb-3 lg:ms-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
-                            Filter
+                        <div id="filter-button" class="w-full md:w-auto md:min-w-[150px] md:max-w-[250px] truncate font-semibold text-sm bg-primary text-white rounded-md py-2 px-8 mb-3 lg:ms-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
+                            {{ $filter_part }}
                         </div>
 
+
                         <div id="filter-part" class="absolute z-[99] inset-0 bg-black bg-opacity-50 hidden">
-                            <div id="filter-area" class="bg-white shadow-lg ms-auto p-4 pt-12 flex flex-col">
+                            <div id="filter-area" class="bg-white shadow-lg ms-auto p-4 pt-12 flex flex-col w-[300px]">
                                 
                                 <p class="font-semibold text-xl text-primary my-5 text-center italic">Filter Bagian</p>
 
                                 <ul>
-                                    @foreach ($parts as $part)
                                     <li class="group">
-                                        <a href="/dashboard/manage-form/create/{{ $part->code }}" class="text-base text-dark p-4 mb-2 flex group-hover:bg-slate-100 group-hover:bg-opacity-70 group-hover:rounded-md group-hover:text-primary">{{ $part->name }}</a>
+                                        <a href="/dashboard/manage-form" class="text-base p-4 mb-2 flex group-hover:bg-slate-100 group-hover:bg-opacity-70 group-hover:rounded-md group-hover:text-primary {{ !Request::has('part') ? 'text-primary' : 'text-dark' }}">Semua Bagian</a>
                                     </li>
+                                    @foreach ($parts as $part)
+                                        <li class="group">
+                                            <a href="/dashboard/manage-form?part={{ $part->code }}" class="text-base p-4 mb-2 flex group-hover:bg-slate-100 group-hover:bg-opacity-70 group-hover:rounded-md group-hover:text-primary {{ (Request::has('part') && Request::input('part') == $part->code) ? 'text-primary' : 'text-dark' }}">{{ $part->name }}</a>
+                                        </li>
                                     @endforeach
+
                                 </ul>
 
-                                <div id="close-filter" class="text-base font-semibold text-white bg-dark rounded-md p-1 mb-12 mt-auto flex justify-center items-center hover:bg-opacity-70 duration-300">Tutup</div>
+                                <div id="close-filter" class="text-base font-semibold text-white bg-dark rounded-md p-2 mt-auto mb-12 flex justify-center items-center hover:bg-opacity-70 duration-300 cursor-pointer">Tutup</div>
                             </div>
                             
                         </div>
                         
                     </div>
                         
-                    <div class="w-full md:w-1/2 flex">
-                        <input id="" name="" type="search" class="w-full md:max-w-sm text-sm ms-auto py-2 px-4 mb-3 border-2 rounded-md hover:bg-opacity-80 focus:border-secondary focus:outline-none" placeholder="Search">
-                    </div>
+                    <form id="search_form" action="/dashboard/manage-form" class="w-full md:w-1/2 flex">
+                        @if (request('part'))
+                            <input type="hidden" name="part" value="{{ request('part') }}">
+                        @endif
+                        <input id="search" name="search" type="search" class="w-full md:max-w-sm text-sm ms-auto py-2 px-4 mb-3 border-2 rounded-md hover:bg-opacity-80 focus:border-secondary focus:outline-none" placeholder="Search" value="{{ $search }}">
+                    </form>
 
                 </div>
            
@@ -77,43 +85,55 @@
                 <div class="relative overflow-x-auto rounded-md mb-2">
 
                     <div class="w-full text-sm text-left text-gray-500 border-t-2 pt-2 md:pt-7">
-                        
-                        @foreach ($questions as $question)
-                            <div class="list-item border-b-2 mb-4 p-2 md:p-7 hover:bg-slate-300 hover:bg-opacity-30">
-                                <p class="mb-3 font-semibold">{{ $question->part->name }} - {{ $question->no }}</p>
-                                <p class="mb-3">{{ $question->text }}</p>
-                               
-                                @foreach ($question->options as $option)
-                                    <div class="mb-3">
-                                        <p>{{ $option->no }}. {{ $option->text }}</p>
-                                    </div>
-                                @endforeach
 
-                                <div class="action-item hidden mb-4 flex-wrap justify-end">
-                                    <a href="#" class="group h-9 mr-3 px-1 rounded-md flex items-center text-blue-500 hover:opacity-80">
-                                        <i class="fa-solid fa-pen"></i>
-                                        <span class="ms-2 group-hover:underline">Edit</span>
-                                    </a>
+                        @if ($questions->count())
+                            @foreach ($questions as $question)
+                                <div class="list-item border-b-2 mb-4 p-2 md:p-7 hover:bg-slate-300 hover:bg-opacity-30">
+                                    <p class="mb-3 font-semibold">{{ $question->part->name }} - {{ $question->no }}</p>
+                                    <p class="mb-3">{{ $question->text }}</p>
+                                
+                                    @foreach ($question->options as $option)
+                                        <div class="mb-3">
+                                            @php
+                                                $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" class="text-blue-500 italic underline">$1</a>', $option->text);
+                                            @endphp
+                                            <p>{{ $option->no }}. {!! nl2br($modifiedText) !!}</p>
+                                        </div>
+                                    @endforeach
 
-                                    @if ($question->options->count() > 0)
-                                        <a href="#" class="group h-9 mr-3 px-1 rounded-md flex items-center text-primary hover:opacity-80">
+                                    <div class="action-item hidden mb-4 flex-wrap justify-end">
+                                        <a href="#" class="group h-9 mr-3 px-1 rounded-md flex items-center text-blue-500 hover:opacity-80">
                                             <i class="fa-solid fa-pen"></i>
-                                            <span class="ms-2 group-hover:underline">Edit Selection</span>
+                                            <span class="ms-2 group-hover:underline">Edit</span>
                                         </a>
-                                    @endif
-                                    
-                                    <a href="#" class="group h-9 mr-3 px-1 rounded-md flex items-center text-red-500 hover:opacity-80">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                        <span class="ms-2 group-hover:underline">Delete</span>
-                                    </a>
-                                </div>   
-                            </div>
-                        @endforeach
+
+                                        @if ($question->options->count() > 0)
+                                            <a href="#" class="group h-9 mr-3 px-1 rounded-md flex items-center text-primary hover:opacity-80">
+                                                <i class="fa-solid fa-pen"></i>
+                                                <span class="ms-2 group-hover:underline">Edit Selection</span>
+                                            </a>
+                                        @endif
+                                        
+                                        <a href="#" class="group h-9 mr-3 px-1 rounded-md flex items-center text-red-500 hover:opacity-80">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                            <span class="ms-2 group-hover:underline">Delete</span>
+                                        </a>
+                                    </div>   
+                                </div>
+                            @endforeach
+                        @else
+                             <p class="text-center font-semibold text-base">No question found.</p>   
+                        @endif
 
                     </div>
 
-                    <div class="flex">
-                        <div class="ms-auto">
+                    <div class="flex flex-wrap px-2">
+                        <div class="text-sm flex items-center text-slate-400 mb-3">
+                            @if ($questions->count())
+                                Showing {{ $questions->firstItem() }} to {{ $questions->lastItem() }} of {{ $total }} entries
+                            @endif
+                        </div>
+                        <div class="ms-auto mb-3">
                             {{ $questions->links() }}
                         </div>
                     </div>
@@ -172,6 +192,22 @@
                 document.body.classList.remove('overflow-hidden');
             });
 
+        });
+
+        // Ambil elemen formulir dan input
+        var form = document.getElementById('search_form');
+        var input = document.getElementById('search');
+
+        var debounceTimer;
+
+        input.addEventListener('input', function() {
+            // Hapus timer sebelumnya (jika ada)
+            clearTimeout(debounceTimer);
+
+            // Set timer baru untuk menunda pengiriman formulir
+            debounceTimer = setTimeout(function() {
+                form.submit();
+            }, 500); // Ubah nilai ini sesuai kebutuhan (dalam milidetik)
         });
         
     </script>      
