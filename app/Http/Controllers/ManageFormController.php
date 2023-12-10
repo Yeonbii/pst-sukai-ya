@@ -45,7 +45,26 @@ class ManageFormController extends Controller
     }
 
     public function storeQuestion(Request $request, Part $part) {
-        dd($request, $part);
+        // dd($request, $part);
+   
+        $validatedData = $request->validate([
+            'no' => 'required',
+            'text' => 'required',
+            'is_required' => 'required',
+            'need_note' => 'required',
+            'note' => 'required',
+            'input_type' => 'required',
+            'maks_char' => 'required',
+            'has_other' => 'required',
+            'option_number' => 'required',
+            'has_chart' => 'required'
+        ]);
+
+        $validatedData['part_id'] = $part->id;
+
+        Question::create($validatedData);
+
+        return redirect('/dashboard/manage-form')->with('success','New question has been added!');
 
     }
 

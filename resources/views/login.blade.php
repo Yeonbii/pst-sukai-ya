@@ -15,7 +15,7 @@
         
         {{-- Alert Start --}}
         @if (session()->has('loginError'))
-            <div class="" id="alert-card">
+            <div id="alert-card">
                 <div class="w-full mb-5 rounded-md shadow-md font-medium border h-9 p-5 bg-opacity-30 flex items-center border-red-600 bg-red-600 text-red-600">
                     <div class="ms-4">
                         Login Gagal

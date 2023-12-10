@@ -1,6 +1,26 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
+    
+    @if (session()->has('success'))
+        <div id="alert-card">
+            <div class="w-full mb-5 rounded-md shadow-md font-medium border h-9 p-5 bg-opacity-30 flex items-center border-green-500 bg-green-500 text-green-900">
+                <div class="ms-4">
+                    {{ session('success') }}
+                </div>
+                <button type="button" class="w-8 h-8 flex justify-center items-center ms-auto" onclick="closeAlert()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <script>
+            var alertCard = document.querySelector('#alert-card');
+            function closeAlert() {
+                alertCard.classList.add('hidden');
+            }
+        </script>
+    @endif
 
     <div class="flex flex-wrap justify-between items-end h-[44px]">
         <div class="w-full md:w-1/2">
@@ -47,7 +67,7 @@
                         </div>
 
 
-                        <div id="filter-part" class="absolute z-[99] inset-0 bg-black bg-opacity-50 hidden">
+                        <div id="filter-part" class="fixed z-[99] inset-0 bg-black bg-opacity-50 hidden">
                             <div id="filter-area" class="bg-white shadow-lg ms-auto p-4 pt-12 flex flex-col w-[300px]">
                                 
                                 <p class="font-semibold text-xl text-primary my-5 text-center italic">Filter Bagian</p>
@@ -97,7 +117,7 @@
                                             @php
                                                 $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" class="text-blue-500 italic underline">$1</a>', $option->text);
                                             @endphp
-                                            <p>{{ $option->no }}. {!! nl2br($modifiedText) !!}</p>
+                                            <div class="flex"><div class="w-6 text-end me-2">{{ $option->no }}.</div> {!! nl2br($modifiedText) !!}</div>
                                         </div>
                                     @endforeach
 
@@ -210,6 +230,6 @@
             }, 500); // Ubah nilai ini sesuai kebutuhan (dalam milidetik)
         });
         
-    </script>      
+    </script>    
 
 @endsection

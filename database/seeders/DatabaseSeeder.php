@@ -705,7 +705,7 @@ class DatabaseSeeder extends Seeder
             'text' => 'Bagaimana pendapat Saudara tentang kewajaran biaya/tarif dalam pelayanan?',
             'is_required' => '1',
             'need_note' => '1',
-            'note' => 'Biaya pelayanan di PST BPS Kab. Hulu Sungai Utara gratis, kecuali pelayanan yang telah ditetapkan sebagai Penerimaan Negara Bukan Pajak (PNBP)\r\nBiaya pelayanan dapat dilihat pada poster di ruang pelayanan atau di link*https://ppid.bps.go.id/app/konten/6308/Standar-Layanan-Informasi-Publik.html*link',
+            'note' => 'Biaya pelayanan di PST BPS Kab. Hulu Sungai Utara gratis, kecuali pelayanan yang telah ditetapkan sebagai Penerimaan Negara Bukan Pajak (PNBP). Biaya pelayanan dapat dilihat pada poster di ruang pelayanan atau di link*https://ppid.bps.go.id/app/konten/6308/Standar-Layanan-Informasi-Publik.html*link',
             'input_type' => '6',
             'maks_char' => '0',
             'has_other' => '0',
@@ -799,7 +799,7 @@ class DatabaseSeeder extends Seeder
         Question::create([
             'part_id' => Part::where('code', 'sv')->value('id'),
             'no' => 6,
-            'text' => 'Bagaimana pendapat Saudara tentang kompetensi/ kemampuan petugas dalam pelayanan?',
+            'text' => 'Bagaimana pendapat Saudara tentang kompetensi/kemampuan petugas dalam pelayanan?',
             'is_required' => '1',
             'need_note' => '0',
             'note' => '-',
@@ -812,7 +812,7 @@ class DatabaseSeeder extends Seeder
 
         // Bagian Nilai Pelayanan - 6 :  Pilihan 1
         Option::create([
-            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kompetensi/ kemampuan petugas dalam pelayanan?')->value('id'),
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kompetensi/kemampuan petugas dalam pelayanan?')->value('id'),
             'no' => 1,
             'text' => 'Tidak Kompeten',
             'value' => '1'
@@ -820,7 +820,7 @@ class DatabaseSeeder extends Seeder
 
         // Bagian Nilai Pelayanan - 6 :  Pilihan 2
         Option::create([
-            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kompetensi/ kemampuan petugas dalam pelayanan?')->value('id'),
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kompetensi/kemampuan petugas dalam pelayanan?')->value('id'),
             'no' => 2,
             'text' => 'Kurang Kompeten',
             'value' => '2'
@@ -828,7 +828,7 @@ class DatabaseSeeder extends Seeder
 
         // Bagian Nilai Pelayanan - 6 :  Pilihan 3
         Option::create([
-            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kompetensi/ kemampuan petugas dalam pelayanan?')->value('id'),
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kompetensi/kemampuan petugas dalam pelayanan?')->value('id'),
             'no' => 3,
             'text' => 'Kompeten',
             'value' => '3'
@@ -836,7 +836,7 @@ class DatabaseSeeder extends Seeder
 
         // Bagian Nilai Pelayanan - 6 :  Pilihan 4
         Option::create([
-            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kompetensi/ kemampuan petugas dalam pelayanan?')->value('id'),
+            'question_id' => Question::where('text', 'Bagaimana pendapat Saudara tentang kompetensi/kemampuan petugas dalam pelayanan?')->value('id'),
             'no' => 4,
             'text' => 'Sangat Kompeten',
             'value' => '4'
