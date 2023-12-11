@@ -37,7 +37,7 @@
                         <ul>
                             @foreach ($parts as $part)
                             <li class="group">
-                                <a href="/dashboard/manage-form/create/{{ $part->code }}" class="text-base text-dark p-2 mb-2 flex group-hover:bg-slate-100 group-hover:bg-opacity-70 group-hover:rounded-md group-hover:text-primary">{{ $part->name }}</a>
+                                <a href="/dashboard/manage-form/{{ $part->code }}/create" class="text-base text-dark p-2 mb-2 flex group-hover:bg-slate-100 group-hover:bg-opacity-70 group-hover:rounded-md group-hover:text-primary">{{ $part->name }}</a>
                             </li>
                             @endforeach
                         </ul>
@@ -122,7 +122,7 @@
                                     @endforeach
 
                                     <div class="action-item hidden mb-4 flex-wrap justify-end">
-                                        <a href="#" class="group h-9 mr-3 px-1 rounded-md flex items-center text-blue-500 hover:opacity-80">
+                                        <a href="/dashboard/manage-form/{{ $question->id }}/edit" class="group h-9 mr-3 px-1 rounded-md flex items-center text-blue-500 hover:opacity-80">
                                             <i class="fa-solid fa-pen"></i>
                                             <span class="ms-2 group-hover:underline">Edit</span>
                                         </a>

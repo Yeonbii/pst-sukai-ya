@@ -23,13 +23,13 @@
     @endif
 
     <div class="flex h-[44px] items-end">
-        <h3 class="font-semibold text-xl">Manage Form - Tambah Pertanyaan <span class="text-primary">{{ $part->name }}</span></h3>
-        <p id="part_id" class="hidden">{{ $part->id }}</p>
+        <h3 class="font-semibold text-xl">Manage Form - Tambah Pertanyaan <span class="text-primary">{{ $question->part->name }}</span></h3>
+        <p id="part_id" class="hidden">{{ $question->part_id }}</p>
     </div>
 
     <div class="py-12">
 
-        <form action="/dashboard/manage-form/{{ $part->code }}/create" method="post">
+        <form action="/dashboard/manage-form/{{ $question->id }}/edit" method="post">
             @csrf
             <div class="w-full">
 
@@ -43,13 +43,7 @@
                         </label>
                         <select id="no" name="no" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" autofocus required>
                             @for ($i = 1; $i <= $count; $i++)
-                                <option value="{{ $i }}"
-                                    @if ($errors->any())
-                                        {{ ($i == old('no')) ? 'selected' : '' }}
-                                    @else
-                                        {{ ($i == $count) ? 'selected' : '' }}
-                                    @endif
-                                >{{ $i }}</option>
+                                <option value="{{ $i }}" {{ ($i == $question->no) ? 'selected' : '' }}>{{ $i }}</option>
                             @endfor
                         </select>
                     </div>
@@ -65,7 +59,7 @@
                             Isi Pertanyaan
                             <span class="text-red-500">(wajib)</span>
                         </label>
-                        <input type="text" name="text" id="text" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" required value="{{ old('text') }}">
+                        <input type="text" name="text" id="text" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" required value="{{ $question->text }}">
                     </div>
 
                     <div id="is_required_div" class="w-full mb-7">
@@ -78,13 +72,13 @@
                             
                             {{-- Yes --}}
                             <div class="flex items-center mb-4">
-                                <input type="radio" name="is_required" id="is_required_1" value="1" class="w-4 h-4 flex-shrink-0" required {{ (old('is_required') === '1') ? 'checked' : '' }}>
+                                <input type="radio" name="is_required" id="is_required_1" value="1" class="w-4 h-4 flex-shrink-0" required {{ ($question->is_required === '1') ? 'checked' : '' }}>
                                 <label for="is_required_1" class="ms-2 text-sm font-medium">Yes</label>
                             </div>
 
                             {{-- No --}}
                             <div class="flex items-center mb-4">
-                                <input type="radio" name="is_required" id="is_required_0" value="0" class="w-4 h-4 flex-shrink-0" required {{ (old('is_required') === '0') ? 'checked' : '' }}>
+                                <input type="radio" name="is_required" id="is_required_0" value="0" class="w-4 h-4 flex-shrink-0" required {{ ($question->is_required === '0') ? 'checked' : '' }}>
                                 <label for="is_required_0" class="ms-2 text-sm font-medium">No</label>
                             </div>
 
@@ -102,13 +96,13 @@
                             
                             {{-- Yes --}}
                             <div class="flex items-center mb-4">
-                                <input type="radio" name="need_note" id="need_note_1" value="1" class="w-4 h-4 flex-shrink-0" required onchange="need_note_change(this)" {{ (old('need_note') === '1') ? 'checked' : '' }}>
+                                <input type="radio" name="need_note" id="need_note_1" value="1" class="w-4 h-4 flex-shrink-0" required onchange="need_note_change(this)" {{ ($question->need_note === '1') ? 'checked' : '' }}>
                                 <label for="need_note_1" class="ms-2 text-sm font-medium">Yes</label>
                             </div>
 
                             {{-- No --}}
                             <div class="flex items-center mb-4">
-                                <input type="radio" name="need_note" id="need_note_0" value="0" class="w-4 h-4 flex-shrink-0" required onchange="need_note_change(this)" {{ (old('need_note') === '0') ? 'checked' : '' }}>
+                                <input type="radio" name="need_note" id="need_note_0" value="0" class="w-4 h-4 flex-shrink-0" required onchange="need_note_change(this)" {{ ($question->need_note === '0') ? 'checked' : '' }}>
                                 <label for="need_note_0" class="ms-2 text-sm font-medium">No</label>
                             </div>
 
@@ -116,12 +110,12 @@
 
                     </div>
 
-                    <div id="note_div" class="w-full mb-7 {{ (old('need_note') === '1') ? '' : 'hidden' }}">
+                    <div id="note_div" class="w-full mb-7 {{ ($question->need_note === '1') ? '' : 'hidden' }}">
                         <label for="note" class="text-sm font-medium mb-2 block">
                             Keterangan
                             <span class="text-red-500">(wajib)</span>
                         </label>
-                        <textarea id="note" name="note" rows="4" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" required>{{ old('note') }}</textarea>
+                        <textarea id="note" name="note" rows="4" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" required>{{ $question->note }}</textarea>
                         <p class="text-sm text-slate-500 mb-2 italic opacity-50">Jika terdapat sebuah link, maka tolong apitkan dengan link*...*link,<br>contoh <span class="font-semibold text-blue-500">link*google.com*link</span></p>
                     </div>
 
@@ -130,7 +124,7 @@
 
 
                 {{-- Input Type Start --}}
-                <div id="input_type_card" class="bg-white rounded-md shadow-md mb-9 p-7 {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'hidden' : '' }}">
+                <div id="input_type_card" class="bg-white rounded-md shadow-md mb-9 p-7 {{ ($question->part_id == 3 || $question->part_id == 4 || $question->part_id == 5) ? 'hidden' : '' }}">
 
                     <div id="input_type_div" class="w-full mb-7">
                         <p class="text-sm font-medium mb-2">
@@ -142,64 +136,64 @@
 
                             {{-- 1 . Input : Text --}}
                             {{-- Hilangkan pilihan ketika Bagian Nilai Pelayanan, Rating Pelayanan, dan Feedback --}}
-                            <div class="flex items-center mb-4 {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'hidden' : '' }}">
-                                <input type="radio" name="input_type" id="input_type_1" value="1" class="w-4 h-4 flex-shrink-0" required onchange="input_type_change(this)" {{ (old('input_type') === '1') ? 'checked' : '' }}>
+                            <div class="flex items-center mb-4 {{ ($question->part_id == 3 || $question->part_id == 4 || $question->part_id == 5) ? 'hidden' : '' }}">
+                                <input type="radio" name="input_type" id="input_type_1" value="1" class="w-4 h-4 flex-shrink-0" required onchange="input_type_change(this)" {{ ($question->input_type === '1') ? 'checked' : '' }}>
                                 <label for="input_type_1" class="ms-2 text-sm font-medium">Input : Text</label>
                             </div>
     
                             {{-- 2. Input : Numeric --}}
                             {{-- Hilangkan pilihan ketika Bagian Nilai Pelayanan, Rating Pelayanan, dan Feedback --}}
-                            <div class="flex items-center mb-4 {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'hidden' : '' }}">
-                                <input type="radio" name="input_type" id="input_type_2" value="2" class="w-4 h-4 flex-shrink-0" required onchange="input_type_change(this)" {{ (old('input_type') === '2') ? 'checked' : '' }}>
+                            <div class="flex items-center mb-4 {{ ($question->part_id == 3 || $question->part_id == 4 || $question->part_id == 5) ? 'hidden' : '' }}">
+                                <input type="radio" name="input_type" id="input_type_2" value="2" class="w-4 h-4 flex-shrink-0" required onchange="input_type_change(this)" {{ ($question->input_type === '2') ? 'checked' : '' }}>
                                 <label for="input_type_2" class="ms-2 text-sm font-medium">Input : Numeric</label>
                             </div>
 
                             {{-- 3. Input : Date --}}
                             {{-- Hilangkan pilihan ketika Bagian Nilai Pelayanan, Rating Pelayanan, dan Feedback --}}
-                            <div class="flex items-center mb-4 {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'hidden' : '' }}">
-                                <input type="radio" name="input_type" id="input_type_3" value="3" class="w-4 h-4 flex-shrink-0" required onchange="input_type_change(this)" {{ (old('input_type') === '3') ? 'checked' : '' }}>
+                            <div class="flex items-center mb-4 {{ ($question->part_id == 3 || $question->part_id == 4 || $question->part_id == 5) ? 'hidden' : '' }}">
+                                <input type="radio" name="input_type" id="input_type_3" value="3" class="w-4 h-4 flex-shrink-0" required onchange="input_type_change(this)" {{ ($question->input_type === '3') ? 'checked' : '' }}>
                                 <label for="input_type_3" class="ms-2 text-sm font-medium">Input : Date</label>
                             </div>
                             
                             {{-- 4. Input : (Contoh No. Telp) --}}
                             {{-- Hilangkan pilihan ketika Bagian Nilai Pelayanan, Rating Pelayanan, dan Feedback --}}
-                            <div class="flex items-center mb-4 {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'hidden' : '' }}">
-                                <input type="radio" name="input_type" id="input_type_4" value="4" class="w-4 h-4 flex-shrink-0" required onchange="input_type_change(this)" {{ (old('input_type') === '4') ? 'checked' : '' }}>
+                            <div class="flex items-center mb-4 {{ ($question->part_id == 3 || $question->part_id == 4 || $question->part_id == 5) ? 'hidden' : '' }}">
+                                <input type="radio" name="input_type" id="input_type_4" value="4" class="w-4 h-4 flex-shrink-0" required onchange="input_type_change(this)" {{ ($question->input_type === '4') ? 'checked' : '' }}>
                                 <label for="input_type_4" class="ms-2 text-sm font-medium">Input : (Contoh No. Telp)</label>
                             </div>
 
                             {{-- 5. Select : (Pilih salah satu) --}}
                             {{-- Hilangkan pilihan ketika Bagian Nilai Pelayanan, Rating Pelayanan, dan Feedback --}}
-                            <div class="flex items-center mb-4 {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'hidden' : '' }}">
-                                <input type="radio" name="input_type" id="input_type_5" value="5" class="w-4 h-4 flex-shrink-0" required onchange="input_type_change(this)" {{ (old('input_type') === '5') ? 'checked' : '' }}>
+                            <div class="flex items-center mb-4 {{ ($question->part_id == 3 || $question->part_id == 4 || $question->part_id == 5) ? 'hidden' : '' }}">
+                                <input type="radio" name="input_type" id="input_type_5" value="5" class="w-4 h-4 flex-shrink-0" required onchange="input_type_change(this)" {{ ($question->input_type === '5') ? 'checked' : '' }}>
                                 <label for="input_type_5" class="ms-2 text-sm font-medium">Select : (Pilih salah satu)</label>
                             </div>
 
                             {{-- 6. Select : Liketr Scale (Contoh 1. Sangat Setuju, 2. Setuju, ...) --}}
                             {{-- Pilihan hanya tersedia untuk Bagian Nilai Pelayanan --}}
-                            <div class="flex items-center mb-4 {{ ($part->id == 3) ? '' : 'hidden' }}">
-                                <input type="radio" name="input_type" id="input_type_6" value="6" class="w-4 h-4 flex-shrink-0" required {{ ($part->id == 3) ? 'checked' : '' }}>
+                            <div class="flex items-center mb-4 {{ ($question->part_id == 3) ? '' : 'hidden' }}">
+                                <input type="radio" name="input_type" id="input_type_6" value="6" class="w-4 h-4 flex-shrink-0" required {{ ($question->part_id == 3) ? 'checked' : '' }}>
                                 <label for="input_type_6" class="ms-2 text-sm font-medium">Select : Liketr Scale (Contoh 1. Sangat Setuju, 2. Setuju, ...)</label>
                             </div>
 
                             {{-- 7. Select : Yes or No --}}
                             {{-- Hilangkan pilihan ketika Bagian Nilai Pelayanan, Rating Pelayanan, dan Feedback --}}
-                            <div class="flex items-center mb-4 {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'hidden' : '' }}">
-                                <input type="radio" name="input_type" id="input_type_7" value="7" class="w-4 h-4 flex-shrink-0" required onchange="input_type_change(this)" {{ (old('input_type') === '7') ? 'checked' : '' }}>
+                            <div class="flex items-center mb-4 {{ ($question->part_id == 3 || $question->part_id == 4 || $question->part_id == 5) ? 'hidden' : '' }}">
+                                <input type="radio" name="input_type" id="input_type_7" value="7" class="w-4 h-4 flex-shrink-0" required onchange="input_type_change(this)" {{ ($question->input_type === '7') ? 'checked' : '' }}>
                                 <label for="input_type_7" class="ms-2 text-sm font-medium">Select : Yes or No</label>
                             </div>
 
                             {{-- 8. Rating (Pilih 1 s/d 10) --}}
                             {{-- Pilihan hanya tersedia untuk Bagian Rating Pelayanan --}}
-                            <div class="flex items-center mb-4 {{ ($part->id == 4) ? '' : 'hidden' }}">
-                                <input type="radio" name="input_type" id="input_type_8" value="8" class="w-4 h-4 flex-shrink-0" required {{ ($part->id == 4) ? 'checked' : '' }}>
+                            <div class="flex items-center mb-4 {{ ($question->part_id == 4) ? '' : 'hidden' }}">
+                                <input type="radio" name="input_type" id="input_type_8" value="8" class="w-4 h-4 flex-shrink-0" required {{ ($question->part_id == 4) ? 'checked' : '' }}>
                                 <label for="input_type_8" class="ms-2 text-sm font-medium">Rating (Pilih 1 s/d 10)</label>
                             </div>
 
                             {{-- 9. Textarea --}}
                             {{-- Pilihan hanya tersedia untuk Bagian Feedback dan Other --}}
-                            <div class="flex items-center mb-4 {{ ($part->id == 5 || $part->id == 6) ? '' : 'hidden' }}">
-                                <input type="radio" name="input_type" id="input_type_9" value="9" class="w-4 h-4 flex-shrink-0" required {{ ($part->id == 5 || old('input_type') === '9') ? 'checked' : '' }} onchange="input_type_change(this)">
+                            <div class="flex items-center mb-4 {{ ($question->part_id == 5 || $question->part_id == 6) ? '' : 'hidden' }}">
+                                <input type="radio" name="input_type" id="input_type_9" value="9" class="w-4 h-4 flex-shrink-0" required {{ ($question->part_id == 5 || $question->input_type === '9') ? 'checked' : '' }} onchange="input_type_change(this)">
                                 <label for="input_type_9" class="ms-2 text-sm font-medium">Textarea</label>
                             </div>
 
@@ -214,7 +208,7 @@
                 <div id="input_type_area">
 
                     {{-- Input Start --}}
-                    <div id="input_card" class="bg-white rounded-md shadow-md mb-9 p-7 {{ (old('input_type') === '1') ? '' : 'hidden' }}">
+                    <div id="input_card" class="bg-white rounded-md shadow-md mb-9 p-7 {{ ($question->input_type === '1') ? '' : 'hidden' }}">
 
                         <p class="text-sm font-semibold mb-7 border-b-2 pb-3">Khusus untuk Tipe Input : Input</p>
                         <div id="maks_char_div" class="w-full mb-7">
@@ -225,16 +219,7 @@
 
                             <p class="text-sm text-slate-500 mb-2 italic opacity-50">Masukkan 0 jika tidak mempunyai batasan <br>Jika mempunyai batasan, maka masukkan antara 1 s/d 50</p>
 
-                            <input type="number" name="maks_char" id="maks_char" class="text-sm border-2 {{ ($errors->has('maks_char')) ? 'border-red-500' : 'border-slate-300' }} rounded-md w-full p-2.5 focus:border-secondary focus:outline-none {{ ($part->id == 1 || $part->id == 2 || $part->id == 6) ? '' : 'readonly' }}" {{ ($part->id == 1 || $part->id == 2 || $part->id == 6) ? '' : 'readonly' }} required value="{{ ($part->id == 1 || $part->id == 2 || $part->id == 6) ? old('maks_char') : '0' }}">
-                            
-                            @error('maks_char')
-                                <div class="flex justify-between items-center text-sm text-red-500 font-medium my-1">
-                                    <p>{{ $message }}</p>
-                                    <div class="ms-3">
-                                        <i class="fa-solid fa-circle-exclamation"></i>
-                                    </div>
-                                </div>
-                            @enderror
+                            <input type="number" name="maks_char" id="maks_char" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none {{ ($question->part_id == 1 || $question->part_id == 2 || $question->part_id == 6) ? '' : 'readonly' }}" {{ ($question->part_id == 1 || $question->part_id == 2 || $question->part_id == 6) ? '' : 'readonly' }} required value="{{ ($question->part_id == 1 || $question->part_id == 2 || $question->part_id == 6) ? $question->maks_char : '0' }}">
 
                         </div>
 
@@ -242,7 +227,7 @@
                     {{-- Input End --}}
 
                     {{-- Select Start --}}
-                    <div id="select_card" class="bg-white rounded-md shadow-md mb-9 p-7 {{ (old('input_type') === '5') ? '' : 'hidden'  }}">
+                    <div id="select_card" class="bg-white rounded-md shadow-md mb-9 p-7 {{ ($question->input_type === '5') ? '' : 'hidden'  }}">
                         
                         <p class="text-sm font-semibold mb-7 border-b-2 pb-3">Khusus untuk Tipe Input : Select dan Rating</p>
 
@@ -256,13 +241,13 @@
                             
                                 {{-- Yes --}}
                                 <div class="flex items-center mb-4">
-                                    <input type="radio" name="has_other" id="has_other_1" value="1" class="w-4 h-4 flex-shrink-0" required {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'disabled' : ''}} {{ (old('has_other') === '1') ? 'checked' : '' }}>
+                                    <input type="radio" name="has_other" id="has_other_1" value="1" class="w-4 h-4 flex-shrink-0" required {{ ($question->part_id == 3 || $question->part_id == 4 || $question->part_id == 5) ? 'disabled' : ''}} {{ ($question->has_other === '1') ? 'checked' : '' }}>
                                     <label for="has_other_1" class="ms-2 text-sm font-medium">Yes</label>
                                 </div>
     
                                 {{-- No --}}
                                 <div class="flex items-center mb-4">
-                                    <input type="radio" name="has_other" id="has_other_0" value="0" class="w-4 h-4 flex-shrink-0" required {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'checked' : '' }} {{ (old('has_other') === '0') ? 'checked' : '' }}>
+                                    <input type="radio" name="has_other" id="has_other_0" value="0" class="w-4 h-4 flex-shrink-0" required {{ ($question->part_id == 3 || $question->part_id == 4 || $question->part_id == 5) ? 'checked' : '' }} {{ ($question->has_other === '0') ? 'checked' : '' }}>
                                     <label for="has_other_0" class="ms-2 text-sm font-medium">No</label>
                                 </div>
     
@@ -278,16 +263,8 @@
 
                             <p class="text-sm text-slate-500 mb-2 italic opacity-50">Jika terdapat pilih Other, maka Jumlah Pilihan termasuk pilihan Other <br>Masukkan antara 1 s/d 30</p>
                             
-                            <input type="number" name="option_number" id="option_number" class="text-sm border-2 {{ ($errors->has('option_number')) ? 'border-red-500' : 'border-slate-300' }} rounded-md w-full p-2.5 focus:border-secondary focus:outline-none {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'readonly' : '' }}" {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'readonly' : '' }} required value="{{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? '0' : old('option_number') }}">
+                            <input type="number" name="option_number" id="option_number" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none {{ ($question->part_id == 3 || $question->part_id == 4 || $question->part_id == 5) ? 'readonly' : '' }}" {{ ($question->part_id == 3 || $question->part_id == 4 || $question->part_id == 5) ? 'readonly' : '' }} required value="{{ ($question->part_id == 3 || $question->part_id == 4 || $question->part_id == 5) ? '0' : $question->option_number }}">
                             
-                            @error('option_number')
-                                <div class="flex justify-between items-center text-sm text-red-500 font-medium my-1">
-                                    <p>{{ $message }}</p>
-                                    <div class="ms-3">
-                                        <i class="fa-solid fa-circle-exclamation"></i>
-                                    </div>
-                                </div>
-                            @enderror
 
                         </div>
 
@@ -298,7 +275,7 @@
                 {{-- Input Type Area End --}}
 
                 {{-- Chart Start --}}
-                <div id="chart_card" class="bg-white rounded-md shadow-md mb-9 p-7 {{ (old('input_type') === '5' && ($part->id == 1 || $part->id == 2)) ? '' : 'hidden'  }}">
+                <div id="chart_card" class="bg-white rounded-md shadow-md mb-9 p-7 {{ ($question->input_type === '5' && ($question->part_id == 1 || $question->part_id == 2)) ? '' : 'hidden'  }}">
 
                     <p class="text-sm font-semibold mb-7 border-b-2 pb-3">Grafik Pie Chart</p>
 
@@ -312,13 +289,13 @@
                             
                             {{-- Yes --}}
                             <div class="flex items-center mb-4">
-                                <input type="radio" name="has_chart" id="has_chart_1" value="1" class="w-4 h-4 flex-shrink-0" required {{ ($part->id == 1 || $part->id == 2) ? '' : 'disabled' }} {{ (old('has_chart') === '1') ? 'checked' : '' }}>
+                                <input type="radio" name="has_chart" id="has_chart_1" value="1" class="w-4 h-4 flex-shrink-0" required {{ ($question->part_id == 1 || $question->part_id == 2) ? '' : 'disabled' }} {{ ($question->has_chart === '1') ? 'checked' : '' }}>
                                 <label for="has_chart_1" class="ms-2 text-sm font-medium">Yes</label>
                             </div>
 
                             {{-- No --}}
                             <div class="flex items-center mb-4">
-                                <input type="radio" name="has_chart" id="has_chart_0" value="0" class="w-4 h-4 flex-shrink-0" required {{ ($part->id == 1 || $part->id == 2) ? '' : 'checked' }} {{ (old('has_chart') === '0') ? 'checked' : '' }}>
+                                <input type="radio" name="has_chart" id="has_chart_0" value="0" class="w-4 h-4 flex-shrink-0" required {{ ($question->part_id == 1 || $question->part_id == 2) ? '' : 'checked' }} {{ ($question->has_chart === '0') ? 'checked' : '' }}>
                                 <label for="has_chart_0" class="ms-2 text-sm font-medium">No</label>
                             </div>
 

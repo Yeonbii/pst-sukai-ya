@@ -176,7 +176,7 @@ class DatabaseSeeder extends Seeder
         // Bagian Identitas - 3 : Chart
         Chart::create([
             'question_id' => Question::where('text', 'Pendidikan yang ditamatkan')->value('id'),
-            'order' => 1,
+            'no' => 1,
             'show' => '1'
         ]);
 
@@ -309,7 +309,7 @@ class DatabaseSeeder extends Seeder
         // Bagian Layanan - 2 : Chart
         Chart::create([
             'question_id' => Question::where('text', 'Jenis Layanan')->value('id'),
-            'order' => 2,
+            'no' => 2,
             'show' => '1'
         ]);
 
@@ -419,7 +419,7 @@ class DatabaseSeeder extends Seeder
         // Bagian Layanan - 3 : Chart
         Chart::create([
             'question_id' => Question::where('text', 'Media yang digunakan')->value('id'),
-            'order' => 3,
+            'no' => 3,
             'show' => '1'
         ]);
 
@@ -537,7 +537,7 @@ class DatabaseSeeder extends Seeder
         // Bagian Layanan - 4 : Chart
         Chart::create([
             'question_id' => Question::where('text', 'Petugas yang melayani')->value('id'),
-            'order' => 4,
+            'no' => 4,
             'show' => '1'
         ]);
 
@@ -562,7 +562,7 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'has_other' => '0',
-            'option_number' => '4',
+            'option_number' => '0',
             'has_chart' => '0'
         ]);
 
@@ -611,7 +611,7 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'has_other' => '0',
-            'option_number' => '4',
+            'option_number' => '0',
             'has_chart' => '0'
         ]);
 
@@ -660,7 +660,7 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'has_other' => '0',
-            'option_number' => '4',
+            'option_number' => '0',
             'has_chart' => '0'
         ]);
 
@@ -709,7 +709,7 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'has_other' => '0',
-            'option_number' => '4',
+            'option_number' => '0',
             'has_chart' => '0'
         ]);
 
@@ -757,7 +757,7 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'has_other' => '0',
-            'option_number' => '4',
+            'option_number' => '0',
             'has_chart' => '0'
         ]);
 
@@ -806,7 +806,7 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'has_other' => '0',
-            'option_number' => '4',
+            'option_number' => '0',
             'has_chart' => '0'
         ]);
 
@@ -855,7 +855,7 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'has_other' => '0',
-            'option_number' => '4',
+            'option_number' => '0',
             'has_chart' => '0'
         ]);
 
@@ -904,7 +904,7 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'has_other' => '0',
-            'option_number' => '4',
+            'option_number' => '0',
             'has_chart' => '0'
         ]);
 
@@ -953,7 +953,7 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'has_other' => '0',
-            'option_number' => '4',
+            'option_number' => '0',
             'has_chart' => '0'
         ]);
 
@@ -1008,7 +1008,7 @@ class DatabaseSeeder extends Seeder
             'input_type' => '8',
             'maks_char' => '0',
             'has_other' => '0',
-            'option_number' => '10',
+            'option_number' => '0',
             'has_chart' => '0'
         ]);
         

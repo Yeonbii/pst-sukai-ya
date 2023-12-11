@@ -34,9 +34,12 @@
                 </li>
             </ul>
         </div>
-        <a href="/login" class="text-sm font-bold text-dark py-2 mx-4 mb-12 flex items-center h-[40px] bg-light rounded-md hover:opacity-80 transition duration-300 ease-in-out">
-            <i class="fa-solid fa-right-from-bracket text-base mx-5"></i>
-            <span class="hidden">Logout</span>
-        </a>
+        <form action="/logout" method="post" class="px-4">
+            @csrf
+            <button type="submit" class="text-sm font-bold text-dark py-2 mb-12 w-full flex items-center h-[40px] bg-light rounded-md hover:opacity-80 transition duration-300 ease-in-out">
+                <i class="fa-solid fa-right-from-bracket text-base mx-5"></i>
+                <span class="hidden">Logout</span>
+            </button>
+        </form>
     </div>
 </aside>

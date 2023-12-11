@@ -17,7 +17,7 @@
                     <th style="">Text</th>
                     <th style="min-width: 300px">Note</th>
                     <th style="min-width: 300px">Pilihan Jawaban</th>
-                    <th style="min-width: 300px">Pilihan Jawaban</th>
+                    <th style="min-width: 300px">Nilai Jawaban</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,7 +34,7 @@
                         </td>
                         <td>
                             @foreach ($question->options as $option)
-                                <p>{{ $option->no }}. {{ $option->text }}</p>
+                                <p>{{ $option->value }}</p>
                             @endforeach
                         </td>
                     </tr>

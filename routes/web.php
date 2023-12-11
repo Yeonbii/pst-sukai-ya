@@ -30,8 +30,13 @@ Route::get('/dashboard/manage-chart', [DashboardController::class, 'chart'])->mi
 Route::get('/dashboard/manage-form', [ManageFormController::class, 'index'])->middleware('auth');
 Route::get('/dashboard/manage-form/show', [ManageFormController::class, 'show'])->middleware('auth');
 
-Route::get('/dashboard/manage-form/create/{part:code}', [ManageFormController::class, 'create'])->middleware('auth');
-Route::post('/dashboard/manage-form/create/{part:code}', [ManageFormController::class, 'storeQuestion'])->name('storeQuestion')->middleware('auth');
+// Create Question
+Route::get('/dashboard/manage-form/{part:code}/create', [ManageFormController::class, 'create'])->middleware('auth');
+Route::post('/dashboard/manage-form/{part:code}/create', [ManageFormController::class, 'storeQuestion'])->middleware('auth');
+
+// Edit Question
+Route::get('/dashboard/manage-form/{question:id}/edit', [ManageFormController::class, 'edit'])->middleware('auth');
+Route::post('/dashboard/manage-form/{question:id}/edit', [ManageFormController::class, 'updateQuestion'])->middleware('auth');
 
 Route::get('/dashboard/manage-form/selection', [ManageFormController::class, 'selection'])->middleware('auth');
 
