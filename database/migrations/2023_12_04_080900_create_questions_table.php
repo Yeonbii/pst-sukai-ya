@@ -36,7 +36,6 @@ return new class extends Migration
             $table->integer('maks_char');
             
             // Select : (Pilih Salah Satu)
-            $table->char('has_other', 1);
             $table->integer('option_number');
             
             $table->char('has_chart', 1);

@@ -216,7 +216,7 @@
                     {{-- Input Start --}}
                     <div id="input_card" class="bg-white rounded-md shadow-md mb-9 p-7 {{ (old('input_type') === '1') ? '' : 'hidden' }}">
 
-                        <p class="text-sm font-semibold mb-7 border-b-2 pb-3">Khusus untuk Tipe Input : Input</p>
+                        <p class="text-base font-semibold mb-7 border-b-2 pb-3">Khusus untuk Tipe Input : Input</p>
                         <div id="maks_char_div" class="w-full mb-7">
                             <label for="maks_char" class="text-sm font-medium mb-2 block">
                                 Batas maksimal karakter yang bisa diinputkan (huruf, termasuk spasi)
@@ -244,31 +244,7 @@
                     {{-- Select Start --}}
                     <div id="select_card" class="bg-white rounded-md shadow-md mb-9 p-7 {{ (old('input_type') === '5') ? '' : 'hidden'  }}">
                         
-                        <p class="text-sm font-semibold mb-7 border-b-2 pb-3">Khusus untuk Tipe Input : Select dan Rating</p>
-
-                        <div id="has_other_div" class=" w-full mb-7">
-                            <p class="text-sm font-medium mb-2">
-                                Apakah terdapat pilihan Other (Yang Lain)?
-                                <span class="text-red-500">(wajib)</span>
-                            </p>
-                            
-                            <div id="has_other" class="mt-3">
-                            
-                                {{-- Yes --}}
-                                <div class="flex items-center mb-4">
-                                    <input type="radio" name="has_other" id="has_other_1" value="1" class="w-4 h-4 flex-shrink-0" required {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'disabled' : ''}} {{ (old('has_other') === '1') ? 'checked' : '' }}>
-                                    <label for="has_other_1" class="ms-2 text-sm font-medium">Yes</label>
-                                </div>
-    
-                                {{-- No --}}
-                                <div class="flex items-center mb-4">
-                                    <input type="radio" name="has_other" id="has_other_0" value="0" class="w-4 h-4 flex-shrink-0" required {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'checked' : '' }} {{ (old('has_other') === '0') ? 'checked' : '' }}>
-                                    <label for="has_other_0" class="ms-2 text-sm font-medium">No</label>
-                                </div>
-    
-                            </div>
-
-                        </div>
+                        <p class="text-base font-semibold mb-7 border-b-2 pb-3">Khusus untuk Tipe Input : Select dan Rating</p>
 
                         <div id="option_number_div" class="w-full mb-7">
                             <label for="option_number" class="text-sm font-medium mb-2 block">
@@ -276,7 +252,7 @@
                                 <span class="text-red-500">(wajib)</span>
                             </label>
 
-                            <p class="text-sm text-slate-500 mb-2 italic opacity-50">Jika terdapat pilih Other, maka Jumlah Pilihan termasuk pilihan Other <br>Masukkan antara 1 s/d 30</p>
+                            <p class="text-sm text-slate-500 mb-2 italic opacity-50">Masukkan antara 1 s/d 30</p>
                             
                             <input type="number" name="option_number" id="option_number" class="text-sm border-2 {{ ($errors->has('option_number')) ? 'border-red-500' : 'border-slate-300' }} rounded-md w-full p-2.5 focus:border-secondary focus:outline-none {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'readonly' : '' }}" {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'readonly' : '' }} required value="{{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? '0' : old('option_number') }}">
                             
@@ -300,7 +276,7 @@
                 {{-- Chart Start --}}
                 <div id="chart_card" class="bg-white rounded-md shadow-md mb-9 p-7 {{ (old('input_type') === '5' && ($part->id == 1 || $part->id == 2)) ? '' : 'hidden'  }}">
 
-                    <p class="text-sm font-semibold mb-7 border-b-2 pb-3">Grafik Pie Chart</p>
+                    <p class="text-base font-semibold mb-7 border-b-2 pb-3">Grafik Pie Chart</p>
 
                     <div id="has_chart_div" class="w-full mb-7">
                         <p class="text-sm font-medium mb-2">
@@ -357,8 +333,6 @@
 
         // Select
         var select_card = document.querySelector('#select_card');
-        var has_other_div = document.querySelector('#has_other_div');
-        var has_other = document.querySelector('#has_other');
         var option_number_div = document.querySelector('#option_number_div');
         var option_number = document.querySelector('#option_number');
 
@@ -429,7 +403,6 @@
 
             refresh_input(maks_char);
 
-            refresh_radio(has_other);
             refresh_input(option_number);
 
             if (part_id === '1' || part_id === '2') {
@@ -441,7 +414,6 @@
             if (pilih.value === '1') {
                 input_card.classList.remove('hidden');
 
-                lock_radio(has_other, 1);
                 lock_input(option_number, '0');
 
                 if (part_id === '1' || part_id === '2') {
@@ -453,7 +425,6 @@
             else if (pilih.value === '2' || pilih.value === '3' || pilih.value === '4') {
                 lock_input(maks_char, '0');
 
-                lock_radio(has_other, 1);
                 lock_input(option_number, '0');
 
                 if (part_id === '1' || part_id === '2') {
@@ -476,7 +447,6 @@
             else if (pilih.value === '7'){
                 lock_input(maks_char, '0');
 
-                lock_radio(has_other, 1);
                 lock_input(option_number, '0');
 
                 if (part_id === '1' || part_id === '2') {
@@ -488,8 +458,7 @@
             else if (pilih.value === '9'){
                 if (part_id === '6') {
                     lock_input(maks_char, '0');
-
-                    lock_radio(has_other, 1);
+                    
                     lock_input(option_number, '0');
                 }
             }

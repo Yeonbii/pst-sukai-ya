@@ -37,8 +37,12 @@ Route::post('/dashboard/manage-form/{part:code}/create', [ManageFormController::
 // Edit Question
 Route::get('/dashboard/manage-form/{question:id}/edit', [ManageFormController::class, 'edit'])->middleware('auth');
 Route::post('/dashboard/manage-form/{question:id}/edit', [ManageFormController::class, 'updateQuestion'])->middleware('auth');
+Route::delete('/dashboard/manage-form/{question:id}', [ManageFormController::class, 'destroy'])->middleware('auth');
 
-Route::get('/dashboard/manage-form/selection', [ManageFormController::class, 'selection'])->middleware('auth');
+Route::middleware(['auth', 'checkInputType'])->group(function () {
+    Route::get('/dashboard/manage-form/{question:id}/edit-options', [ManageFormController::class, 'editOptions']);
+    Route::post('/dashboard/manage-form/{question:id}/edit-options', [ManageFormController::class, 'storeOptions']);
+});
 
 
 Route::get('/form', function () {

@@ -82,7 +82,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '1',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -97,7 +96,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '5',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '2',
             'has_chart' => '0'
         ]);
@@ -128,7 +126,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '5',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '5',
             'has_chart' => '1'
         ]);
@@ -190,7 +187,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '1',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -205,7 +201,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '4',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -220,7 +215,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '4',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -235,7 +229,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '1',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -254,7 +247,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '3',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -269,7 +261,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '5',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '4',
             'has_chart' => '1'
         ]);
@@ -323,7 +314,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '5',
             'maks_char' => '0',
-            'has_other' => '1',
             'option_number' => '11',
             'has_chart' => '1'
         ]);
@@ -413,7 +403,7 @@ class DatabaseSeeder extends Seeder
             'question_id' => Question::where('text', 'Media yang digunakan')->value('id'),
             'no' => 11,
             'text' => 'Yang lain',
-            'value' => 'Other'
+            'value' => 'Yang lain'
         ]);
 
         // Bagian Layanan - 3 : Chart
@@ -433,7 +423,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '5',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '12',
             'has_chart' => '1'
         ]);
@@ -561,7 +550,6 @@ class DatabaseSeeder extends Seeder
             'note' => 'Persyaratan pelayanan dapat dilihat pada poster di ruang pelayanan atau di link*https://ppid.bps.go.id/app/konten/6308/Standar-Layanan-Informasi-Publik.html*link',
             'input_type' => '6',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -610,7 +598,6 @@ class DatabaseSeeder extends Seeder
             'note' => 'Prosedur pelayanan dapat dilihat pada poster di ruang pelayanan atau di link*https://ppid.bps.go.id/app/konten/6308/Standar-Layanan-Informasi-Publik.html*link',
             'input_type' => '6',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -659,7 +646,6 @@ class DatabaseSeeder extends Seeder
             'note' => 'Jangka waktu pelayanan menurut jenis layanan dan medianya, dapat dilihat pada poster di ruang pelayanan atau di link*https://ppid.bps.go.id/app/konten/6308/Standar-Layanan-Informasi-Publik.html*link',
             'input_type' => '6',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -708,7 +694,6 @@ class DatabaseSeeder extends Seeder
             'note' => 'Biaya pelayanan di PST BPS Kab. Hulu Sungai Utara gratis, kecuali pelayanan yang telah ditetapkan sebagai Penerimaan Negara Bukan Pajak (PNBP). Biaya pelayanan dapat dilihat pada poster di ruang pelayanan atau di link*https://ppid.bps.go.id/app/konten/6308/Standar-Layanan-Informasi-Publik.html*link',
             'input_type' => '6',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -756,7 +741,6 @@ class DatabaseSeeder extends Seeder
             'note' => 'Standar pelayanan dapat dilihat pada poster di ruang pelayanan atau di link*https://ppid.bps.go.id/app/konten/6308/Standar-Layanan-Informasi-Publik.html*link',
             'input_type' => '6',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -805,7 +789,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '6',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -854,7 +837,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '6',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -903,7 +885,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '6',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -952,7 +933,6 @@ class DatabaseSeeder extends Seeder
             'note' => 'Pengaduan dapat dilakukan melalui kotak saran dan pengaduan, email pengaduan6308@bps.go.id, portal layanan BPS HSU di link*http://linktr.ee/bpshsu*link , atau melalui panggilan telepon pada nomor 0812 5068 578',
             'input_type' => '6',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -1007,7 +987,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '8',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -1032,7 +1011,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '9',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -1057,7 +1035,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '9',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -1072,7 +1049,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '7',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -1087,7 +1063,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '7',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -1102,7 +1077,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '7',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);
@@ -1117,7 +1091,6 @@ class DatabaseSeeder extends Seeder
             'note' => '-',
             'input_type' => '7',
             'maks_char' => '0',
-            'has_other' => '0',
             'option_number' => '0',
             'has_chart' => '0'
         ]);

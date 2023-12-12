@@ -231,37 +231,13 @@
                         
                         <p class="text-sm font-semibold mb-7 border-b-2 pb-3">Khusus untuk Tipe Input : Select dan Rating</p>
 
-                        <div id="has_other_div" class=" w-full mb-7">
-                            <p class="text-sm font-medium mb-2">
-                                Apakah terdapat pilihan Other (Yang Lain)?
-                                <span class="text-red-500">(wajib)</span>
-                            </p>
-                            
-                            <div id="has_other" class="mt-3">
-                            
-                                {{-- Yes --}}
-                                <div class="flex items-center mb-4">
-                                    <input type="radio" name="has_other" id="has_other_1" value="1" class="w-4 h-4 flex-shrink-0" required {{ ($question->part_id == 3 || $question->part_id == 4 || $question->part_id == 5) ? 'disabled' : ''}} {{ ($question->has_other === '1') ? 'checked' : '' }}>
-                                    <label for="has_other_1" class="ms-2 text-sm font-medium">Yes</label>
-                                </div>
-    
-                                {{-- No --}}
-                                <div class="flex items-center mb-4">
-                                    <input type="radio" name="has_other" id="has_other_0" value="0" class="w-4 h-4 flex-shrink-0" required {{ ($question->part_id == 3 || $question->part_id == 4 || $question->part_id == 5) ? 'checked' : '' }} {{ ($question->has_other === '0') ? 'checked' : '' }}>
-                                    <label for="has_other_0" class="ms-2 text-sm font-medium">No</label>
-                                </div>
-    
-                            </div>
-
-                        </div>
-
                         <div id="option_number_div" class="w-full mb-7">
                             <label for="option_number" class="text-sm font-medium mb-2 block">
                                 Jumlah Pilihan
                                 <span class="text-red-500">(wajib)</span>
                             </label>
 
-                            <p class="text-sm text-slate-500 mb-2 italic opacity-50">Jika terdapat pilih Other, maka Jumlah Pilihan termasuk pilihan Other <br>Masukkan antara 1 s/d 30</p>
+                            <p class="text-sm text-slate-500 mb-2 italic opacity-50">Masukkan antara 1 s/d 30</p>
                             
                             <input type="number" name="option_number" id="option_number" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none {{ ($question->part_id == 3 || $question->part_id == 4 || $question->part_id == 5) ? 'readonly' : '' }}" {{ ($question->part_id == 3 || $question->part_id == 4 || $question->part_id == 5) ? 'readonly' : '' }} required value="{{ ($question->part_id == 3 || $question->part_id == 4 || $question->part_id == 5) ? '0' : $question->option_number }}">
                             
@@ -309,7 +285,7 @@
 
                 <div class="flex">
                     <button type="submit" class="font-semibold text-sm bg-primary text-white rounded-md mt-2 me-3 py-2 px-8 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Simpan</button>
-                    <a href="/dashboard/manage-form" class="font-semibold text-sm bg-slate-400 text-white rounded-md mt-2 py-2 px-8 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Batal</a>
+                    <button type="button" class="font-semibold text-sm bg-slate-400 text-white rounded-md mt-2 py-2 px-8 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center" onclick="back()">Batal</button>
                 </div>
                 
             </div>
@@ -334,8 +310,6 @@
 
         // Select
         var select_card = document.querySelector('#select_card');
-        var has_other_div = document.querySelector('#has_other_div');
-        var has_other = document.querySelector('#has_other');
         var option_number_div = document.querySelector('#option_number_div');
         var option_number = document.querySelector('#option_number');
 
@@ -344,6 +318,11 @@
         var has_chart_div = document.querySelector('#has_chart_div');
         var has_chart = document.querySelector('#has_chart');
         
+        // Tombol Kembali
+        function back() {
+            window.history.back();
+        }
+
         // FUngsi Lock Input
         function lock_input(lock, value) {
             lock.classList.add('readonly');
@@ -406,7 +385,6 @@
 
             refresh_input(maks_char);
 
-            refresh_radio(has_other);
             refresh_input(option_number);
 
             if (part_id === '1' || part_id === '2') {
@@ -418,7 +396,6 @@
             if (pilih.value === '1') {
                 input_card.classList.remove('hidden');
 
-                lock_radio(has_other, 1);
                 lock_input(option_number, '0');
 
                 if (part_id === '1' || part_id === '2') {
@@ -430,7 +407,6 @@
             else if (pilih.value === '2' || pilih.value === '3' || pilih.value === '4') {
                 lock_input(maks_char, '0');
 
-                lock_radio(has_other, 1);
                 lock_input(option_number, '0');
 
                 if (part_id === '1' || part_id === '2') {
@@ -453,7 +429,6 @@
             else if (pilih.value === '7'){
                 lock_input(maks_char, '0');
 
-                lock_radio(has_other, 1);
                 lock_input(option_number, '0');
 
                 if (part_id === '1' || part_id === '2') {
@@ -466,7 +441,6 @@
                 if (part_id === '6') {
                     lock_input(maks_char, '0');
 
-                    lock_radio(has_other, 1);
                     lock_input(option_number, '0');
                 }
             }

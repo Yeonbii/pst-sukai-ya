@@ -22,6 +22,26 @@
         </script>
     @endif
 
+    @if (session()->has('nothing'))
+        <div id="alert-card">
+            <div class="w-full mb-5 rounded-md shadow-md font-medium border h-9 p-5 bg-opacity-30 flex items-center border-slate-500 bg-slate-500 text-slate-900">
+                <div class="ms-4">
+                    {{ session('nothing') }}
+                </div>
+                <button type="button" class="w-8 h-8 flex justify-center items-center ms-auto" onclick="closeAlert()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <script>
+            var alertCard = document.querySelector('#alert-card');
+            function closeAlert() {
+                alertCard.classList.add('hidden');
+            }
+        </script>
+    @endif
+
     <div class="flex flex-wrap justify-between items-end h-[44px]">
         <div class="w-full md:w-1/2">
             <h3 class="font-semibold text-xl">Manage Form</h3>
@@ -115,7 +135,7 @@
                                     @foreach ($question->options as $option)
                                         <div class="mb-3">
                                             @php
-                                                $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" class="text-blue-500 italic underline">$1</a>', $option->text);
+                                                $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $option->text);
                                             @endphp
                                             <div class="flex"><div class="w-6 text-end me-2">{{ $option->no }}.</div> {!! nl2br($modifiedText) !!}</div>
                                         </div>
@@ -128,16 +148,20 @@
                                         </a>
 
                                         @if ($question->options->count() > 0)
-                                            <a href="#" class="group h-9 mr-3 px-1 rounded-md flex items-center text-primary hover:opacity-80">
+                                            <a href="/dashboard/manage-form/{{ $question->id }}/edit-options" class="group h-9 mr-3 px-1 rounded-md flex items-center text-primary hover:opacity-80">
                                                 <i class="fa-solid fa-pen"></i>
                                                 <span class="ms-2 group-hover:underline">Edit Selection</span>
                                             </a>
                                         @endif
                                         
-                                        <a href="#" class="group h-9 mr-3 px-1 rounded-md flex items-center text-red-500 hover:opacity-80">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                            <span class="ms-2 group-hover:underline">Delete</span>
-                                        </a>
+                                        <form action="/dashboard/manage-form/{{ $question->id }}" method="post">
+                                            @method('delete')
+                                            @csrf
+                                            <button type="submit" class="group h-9 mr-3 px-1 rounded-md flex items-center text-red-500 hover:opacity-80" onclick="return confirm('Aru you sure?')">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                                <span class="ms-2 group-hover:underline">Delete</span>
+                                            </button>
+                                        </form>
                                     </div>   
                                 </div>
                             @endforeach

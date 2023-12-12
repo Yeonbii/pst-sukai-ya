@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chart;
+use Log;
 use App\Models\Part;
+use App\Models\Chart;
 use App\Models\Option;
 use App\Models\Question;
 use Illuminate\Http\Request;
@@ -12,13 +13,14 @@ use Illuminate\Support\Facades\DB;
 class ManageFormController extends Controller
 {
     
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
 
-        $filter_part = 'Filter';
+        $filter_part = 'Filter Bagian';
         $search = $request->input('search');
         if (request('part')) {
             $part = Part::firstWhere('code', request('part'));
-            $filter_part = 'Filter : ' . $part->name;
+            $filter_part = 'Filter Bagian : ' . $part->name;
         }
 
         $questions = Question::with('part', 'options')->orderBy('part_id')->orderBy('no')->filter(request(['search', 'part']));
@@ -33,11 +35,15 @@ class ManageFormController extends Controller
         ]);
     }
 
-    public function show() {
-        return view('dashboard.manage-forms.show');
+    public function show() 
+    {
+        return view('dashboard.manage-forms.show', [
+            'questions' => Question::orderBy('part_id')->orderBy('no')->get()
+        ]);
     }
 
-    public function create(Part $part) {
+    public function create(Part $part) 
+    {
         
         $count = $part->questions()->count() + 1;
         
@@ -47,7 +53,8 @@ class ManageFormController extends Controller
         ]);
     }
 
-    public function storeQuestion(Request $request, Part $part) {
+    public function storeQuestion(Request $request, Part $part) 
+    {
         // dd($request, $part);
    
         $validatedData = $request->validate([
@@ -58,7 +65,6 @@ class ManageFormController extends Controller
             'note' => 'required',
             'input_type' => 'required',
             'maks_char' => 'required|numeric|between:0,50',
-            'has_other' => 'required',
             'option_number' => 'required|numeric|between:0,30',
             'has_chart' => 'required'
         ]);
@@ -118,7 +124,8 @@ class ManageFormController extends Controller
 
     }
 
-    public function edit(Question $question) {
+    public function edit(Question $question) 
+    {
         $count = Question::where('part_id', $question->part_id)->count();
         
         return view('dashboard.manage-forms.edit', [
@@ -127,7 +134,8 @@ class ManageFormController extends Controller
         ]);
     }
 
-    public function updateQuestion(Request $request, Question $question) {
+    public function updateQuestion(Request $request, Question $question) 
+    {
         // dd($request, $question);
 
         $validatedData = $request->validate([
@@ -138,7 +146,6 @@ class ManageFormController extends Controller
             'note' => 'required',
             'input_type' => 'required',
             'maks_char' => 'required|numeric|between:0,50',
-            'has_other' => 'required',
             'option_number' => 'required|numeric|between:0,30',
             'has_chart' => 'required'
         ]);
@@ -163,8 +170,8 @@ class ManageFormController extends Controller
         }
 
         if($validatedData['input_type'] != $question->input_type) {
-            if($question->input_type == '5' || $question->input_type == '6') {
-                // Jika sebelumnnya input_type = 5 atau 6, kemudian berubah
+            if($question->input_type == '5') {
+                // Jika sebelumnnya input_type = 5, kemudian berubah
                 Option::where('question_id', '=', $question->id)->delete();
             }
             
@@ -182,44 +189,30 @@ class ManageFormController extends Controller
                 }
             }
             
-            // 6 -> Select : Liketr Scale (Contoh 1. Sangat Setuju, 2. Setuju, ...)
-            else if($validatedData['input_type'] == '6') {
-                for ($i = 1; $i <= 4; $i++) {
-                
-                    Option::create([
-                        'question_id' => $question->id,
-                        'no' => $i,
-                        'text' => '-',
-                        'value' => strval($i)
-                    ]);
-                }
-            }
 
         } else {
             // Jika input_type sama tetapi option_number berubah
             if($validatedData['option_number'] != $question->option_number) {
                 // 5 -> Select : (Pilih salah satu)
                 if ($validatedData['input_type'] == '5') {
-                    for ($i = 1; $i <= $validatedData['option_number']; $i++) {
+                    // JIka nilai option_number baru > option_number lama
+                    if ($validatedData['option_number'] > $question->option_number){
+                        
+                        for ($i = ($question->option_number + 1); $i <= $validatedData['option_number']; $i++) {
                     
-                        Option::create([
-                            'question_id' => $question->id,
-                            'no' => $i,
-                            'text' => '-',
-                            'value' => '-'
-                        ]);
-                    }
-                }
-                // 6 -> Select : Liketr Scale (Contoh 1. Sangat Setuju, 2. Setuju, ...)
-                else if($validatedData['input_type'] == '6') {
-                    for ($i = 1; $i <= 4; $i++) {
-                    
-                        Option::create([
-                            'question_id' => $question->id,
-                            'no' => $i,
-                            'text' => '-',
-                            'value' => strval($i)
-                        ]);
+                            Option::create([
+                                'question_id' => $question->id,
+                                'no' => $i,
+                                'text' => '-',
+                                'value' => '-'
+                            ]);
+                        }
+
+                    } else {
+                        // Jika nilai option_number baru < option_number lama
+                        Option::where('question_id', '=', $question->id)
+                            ->where('no', '>', $validatedData['option_number'])
+                            ->delete();
                     }
                 }
             }
@@ -255,12 +248,105 @@ class ManageFormController extends Controller
 
     }
 
-    public function selection() {
-        return view('dashboard.manage-forms.selection');
+    public function destroy(Question $question) 
+    {
+        if($question->input_type == '5' || $question->input_type == '6') {
+            // Hapus data pada entitas Option jika input_type = 5 atau 6
+            Option::where('question_id', '=', $question->id)->delete();
+        }
+
+        if($question->has_chart == '1') {
+            // Hapus data pada entitas Chart jika punya chart
+            DB::transaction(function () use ($question) {
+                $chartNo = optional($question->chart)->no;
+    
+                if (!is_null($chartNo)) {
+                    Chart::where('no', '>', $chartNo)->update(['no' => DB::raw('no - 1')]);
+                }
+    
+                Chart::where('question_id', '=', $question->id)->delete();
+            });
+        }
+
+
+        if (!is_null($question->no)) {
+            // Mengurangkan nomor pertanyaan untuk pertanyaan dengan nomor lebih besar yang memiliki part yang sama
+            Question::where('part_id', '=', $question->part_id)
+                ->where('no', '>', $question->no)
+                ->update(['no' => DB::raw('no - 1')]);
+        }
+
+        Question::destroy($question->id);
+
+        return redirect('/dashboard/manage-form')->with('success','Question has been deleted!');
+    }
+
+    public function editOptions(Question $question) 
+    {
+        if($question->input_type == '5') {
+            $input_type = 'Select : (Pilih salah satu)';
+        }
+
+        else if($question->input_type == '6') {
+            $input_type = 'Select : Liketr Scale (Contoh 1. Sangat Setuju, 2. Setuju, ...)';
+        }
+
+        return view('dashboard.manage-forms.edit-options', [
+            'question' => $question,
+            'input_type' => $input_type,
+            'change_option_number' => session('change_option_number', null)
+        ]);
+    }
+
+    public function storeOptions(Request $request, Question $question) 
+    {
+        $change = 0;
+        if ($question->input_type == '5') {
+            $number = $question->option_number;
+        }
+        else if ($question->input_type == '6') {
+            $number = 4;
+        }
+
+        for ($i=1; $i <= $number; $i++) {
+            $validatedData = $request->validate([
+                'no_'.$i => 'required|numeric',
+                'option_'.$i => 'required', // option->text
+            ]);
+
+            // Jika input teks nya berbeda dari nilai yang lama
+            if ($validatedData['option_'.$i] != $question->options[$i-1]->text) {
+                $storeOption = [
+                    'question_id' => $question->id,
+                    'no' => $validatedData['no_' . $i],
+                    'text' => $validatedData['option_' . $i],
+                ];
+
+                // Select : (Pilih salah satu)
+                if ($question->input_type == '5') {
+                    $storeOption['value'] = $validatedData['option_'.$i];
+                } 
+                
+                if ($question->input_type == '6') {
+                    // Select : Liketr Scale (Contoh 1. Sangat Setuju, 2. Setuju, ...)
+                    $storeOption['value'] = strval($i);
+                }
+
+                Option::where('id', $question->options[$i-1]->id)->update($storeOption);
+                $change++;
+            }
+        }
+
+        if ($change == 0) {
+            return redirect('/dashboard/manage-form')->with('nothing','None of the options have been updated!');
+        } else {
+            return redirect('/dashboard/manage-form')->with('success','Options has been updated!');
+        }
     }
 
     // Test table
-    public function test123() {
+    public function test123() 
+    {
         return view('test', [
             'questions' => Question::with('part', 'options')->orderBy('part_id')->orderBy('no')->get()
         ]);

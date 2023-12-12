@@ -49,5 +49,5 @@ class Question extends Model
     {
         return $this->hasOne(Chart::class);
     }
-
+    
 }
