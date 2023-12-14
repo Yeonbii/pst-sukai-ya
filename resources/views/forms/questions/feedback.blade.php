@@ -2,33 +2,58 @@
 
 @section('container')
 
-    <form action="">
-        
-        
+    <form action="/form/f" method="post">
+        @csrf
 
-        <div class="w-full bg-white rounded-md mb-5 p-4">
+        <div class="bg-white rounded-md shadow-md mb-9 p-7">
+            
+            <p class="text-base font-semibold border-b-2 pb-3 md:text-2xl">Bagian Feedback</p>
+    
+                @php
+                    $no_question = 1;
+                @endphp
 
-            <h3 class="font-semibold text-lg px-2 pb-2 mb-5 border-b md:text-3xl">Bagian Feedback</h3>
+                @foreach ($questions_f as $question)
+                   
+                    {{-- 9 -> Textarea --}}
+                    <div id="f_{{ $no_question }}_div" class="w-full pb-7 pt-5 {{ ($question->no == 1) ? '' : 'border-t-2' }}">
+                        <p class="text-sm font-medium mb-2">
+                            {{ $question->text }}
+                            @if ($question->is_required == '1')
+                                <span class="text-red-500">(wajib)</span>
+                            @endif
+                        </p>
 
-            <div class="w-full px-2 mb-3">
-                <label for="feedback" class="text-sm font-medium mb-1 block">
-                    Tuliskan komentar, kritik, maupun saran untuk perbaikan layanan selanjutnya sebagai bahan evaluasi
-                    <span class="text-red-500">(wajib)</span>
-                </label>
-                <textarea name="feedback" id="feedback" rows="4" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none"></textarea>
-            </div>
-       
+                        @if ($question->need_note == 1)
+                            @php
+                                $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $question->note);
+                            @endphp
+                            <p class="text-sm text-slate-500 mb-2 italic opacity-50">{!! nl2br($modifiedText) !!}</p>
+                        @endif
+
+                        <textarea name="f_{{ $no_question }}" id="f_{{ $no_question }}" rows="3" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" {{ ($question->is_required == '1') ? 'required' : '' }} >@if (session()->has('form_f')){{ $form_f['f_'.$no_question] }}@endif</textarea>
+
+                    </div>    
+
+                    @php
+                        $no_question++;
+                    @endphp
+                    
+                @endforeach
+    
         </div>
+
+        
 
         <div class="flex flex-wrap items-center justify-between md:flex-row-reverse">
             
-            <a href="/form/others" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-blue-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg">
+            <button type="submit" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-blue-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg">
                 Lanjut
-            </a>
+            </button>
 
-            <a href="/form/service-rate" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-yellow-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg">
+            <div class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-yellow-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg cursor-pointer" onclick="window.history.back()">
                 Kembali
-            </a>
+            </div>
 
             <a href="/form" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-red-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg">
                 Ulang
@@ -37,15 +62,5 @@
         </div>
 
     </form>
-
-    
-
-
-
-    {{-- JS Start --}}
-    <script>
-
-    </script>
-    {{-- JS End --}}
 
 @endsection

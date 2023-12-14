@@ -37,8 +37,20 @@ class ManageFormController extends Controller
 
     public function show() 
     {
+        $question_i = Question::where('part_id', 1)->orderBy('no')->get();
+        $question_s = Question::where('part_id', 2)->orderBy('no')->get();
+        $question_sv = Question::where('part_id', 3)->orderBy('no')->get();
+        $question_sr = Question::where('part_id', 4)->orderBy('no')->get();
+        $question_f = Question::where('part_id', 5)->orderBy('no')->get();
+        $question_o = Question::where('part_id', 6)->orderBy('no')->get();
+
         return view('dashboard.manage-forms.show', [
-            'questions' => Question::orderBy('part_id')->orderBy('no')->get()
+            'questions_i' => $question_i, 
+            'questions_s' => $question_s, 
+            'questions_sv' => $question_sv, 
+            'questions_sr' => $question_sr, 
+            'questions_f' => $question_f, 
+            'questions_o' => $question_o 
         ]);
     }
 

@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
-    
+
     @if (session()->has('success'))
         <div id="alert-card">
             <div class="w-full mb-5 rounded-md shadow-md font-medium border h-9 p-5 bg-opacity-30 flex items-center border-green-500 bg-green-500 text-green-900">
@@ -80,7 +80,7 @@
 
                     <div class="w-full md:w-1/2 flex flex-wrap">
 
-                        <a href="/dashboard/manage-form/show" class="block w-full md:w-[150px] font-semibold text-sm bg-slate-400 text-white rounded-md py-2 px-8 mb-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Lihat Form</a>
+                        <a href="/dashboard/manage-form/show" target="_blank" class="block w-full md:w-[150px] font-semibold text-sm bg-slate-400 text-white rounded-md py-2 px-8 mb-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Lihat Form</a>
                         
                         <div id="filter-button" class="w-full md:w-auto md:min-w-[150px] md:max-w-[250px] truncate font-semibold text-sm bg-primary text-white rounded-md py-2 px-8 mb-3 lg:ms-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
                             {{ $filter_part }}
@@ -150,14 +150,14 @@
                                         @if ($question->options->count() > 0)
                                             <a href="/dashboard/manage-form/{{ $question->id }}/edit-options" class="group h-9 mr-3 px-1 rounded-md flex items-center text-primary hover:opacity-80">
                                                 <i class="fa-solid fa-pen"></i>
-                                                <span class="ms-2 group-hover:underline">Edit Selection</span>
+                                                <span class="ms-2 group-hover:underline">Edit Options</span>
                                             </a>
                                         @endif
                                         
                                         <form action="/dashboard/manage-form/{{ $question->id }}" method="post">
                                             @method('delete')
                                             @csrf
-                                            <button type="submit" class="group h-9 mr-3 px-1 rounded-md flex items-center text-red-500 hover:opacity-80" onclick="return confirm('Aru you sure?')">
+                                            <button type="submit" class="group h-9 mr-3 px-1 rounded-md flex items-center text-red-500 hover:opacity-80" onclick="return confirm('Are you sure?')">
                                                 <i class="fa-solid fa-trash-can"></i>
                                                 <span class="ms-2 group-hover:underline">Delete</span>
                                             </button>
@@ -191,6 +191,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            alert('P E R I N G A T A N !!!\nJika Anda melakukan perubahan baik itu MENAMBAHKAN PERTANYAAN, MENGHAPUS PERTANYAAN, MENGUBAH PERTANYAAN, atau MENGUBAH OPSI PERTANYAAN\nmaka sistem akan AUTOMATIS MENGHAPUS SELURUH DATA RESPONDEN PADA DATABASE dan Melakukan CONVERT seluruh data responden yang akan disimpan di Riwayat Data Responden');
+
             var tambahPertanyaan = document.querySelector('#tambah-pertanyaan');
             var listItem = document.querySelectorAll('.list-item');
             var filterButton = document.querySelector('#filter-button');

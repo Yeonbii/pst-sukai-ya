@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ManageFormController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\FormController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ManageFormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    session()->flush();
     return view('index');
 });
 
@@ -45,36 +48,27 @@ Route::middleware(['auth', 'checkInputType'])->group(function () {
 });
 
 
-Route::get('/form', function () {
-    return view('forms.index');
-});
+Route::get('/form', [FormController::class, 'index']);
 
-Route::get('/form/identity', function () {
-    return view('forms.questions.identity');
-});
+Route::get('/form/i', [FormController::class, 'formIdentity']);
+Route::post('/form/i', [FormController::class, 'storeIdentity']);
 
-Route::get('/form/service', function () {
-    return view('forms.questions.service');
-});
+Route::get('/form/s', [FormController::class, 'formService']);
+Route::post('/form/s', [FormController::class, 'storeService']);
 
-Route::get('/form/service-value', function () {
-    return view('forms.questions.service-value');
-});
+Route::get('/form/sv', [FormController::class, 'formServiceValue']);
+Route::post('/form/sv', [FormController::class, 'storeServiceValue']);
 
-Route::get('/form/service-rate', function () {
-    return view('forms.questions.service-rate');
-});
+Route::get('/form/sr', [FormController::class, 'formServiceRate']);
+Route::post('/form/sr', [FormController::class, 'storeServiceRate']);
 
-Route::get('/form/feedback', function() {
-    return view('forms.questions.feedback');
-});
+Route::get('/form/f', [FormController::class, 'formFeedback']);
+Route::post('/form/f', [FormController::class, 'storeFeedback']);
 
-Route::get('/form/others', function() {
-    return view('forms.questions.others');
-});
+Route::get('/form/o', [FormController::class, 'formOthers']);
+Route::post('/form/o', [FormController::class, 'storeOthers']);
 
-Route::get('/form/confirm', function() {
-    return view('forms.questions.confirm');
-});
+Route::get('/form/confirm', [FormController::class, 'confirm']);
+Route::post('/form/confirm', [FormController::class, 'storeConfirm']);
 
 Route::get('/test123', [ManageFormController::class, 'test123']);

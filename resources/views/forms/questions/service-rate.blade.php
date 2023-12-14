@@ -2,123 +2,88 @@
 
 @section('container')
 
-    <form action="">
+    <form action="/form/sr" method="post">
+        @csrf
         
-        <div class="w-full bg-white rounded-md mb-5 p-4">
+        <div class="bg-white rounded-md shadow-md mb-9 p-7">
+            
+            <p class="text-base font-semibold border-b-2 pb-3 md:text-2xl">Bagian Rating Pelayanan</p>
 
-            <h3 class="font-semibold text-lg px-2 pb-2 mb-5 border-b md:text-3xl">Bagian Rating Pelayanan</h3>
+            @php
+                    $no_question = 1;
+                @endphp
 
-            <div class="w-full px-2 mb-3">
-                <p class="text-sm font-medium mb-1 block">
-                    Berikan penilaian pelayanan secara umum yang dilakukan petugas/aplikasi (1= sangat buruk, 10=sangat baik) 
-                    <span class="text-red-500">(wajib)</span>
-                </p>
-                <div id="service-rate-1" class="max-w-lg mx-auto text-sm p-2.5 flex flex-wrap items-center justify-around">
+                @foreach ($questions_sr as $question)
+                   
+                    {{-- 8 -> Rating (Pilih 1 s/d 10) --}}
+                    <div id="sr_{{ $no_question }}_div" class="w-full pb-7 pt-5 {{ ($question->no == 1) ? '' : 'border-t-2' }}">
+                        <p class="text-sm font-medium mb-2">
+                            {{ $question->text }}
+                            <span class="text-red-500">(wajib)</span>
+                        </p>
 
-                    <div>
-                        <input type="radio" name="service-rate-1" id="1" class="hidden" value="1">
-                        <label for="1">
-                            <div class="w-9 h-9 mx-1.5 mb-3 rounded-md flex justify-center items-center unselected-selection border-2 border-dark border-opacity-30 hover:bg-dark hover:text-white">
-                                1
+                        @if ($question->need_note == 1)
+                            @php
+                                $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $question->note);
+                            @endphp
+                            <p class="text-sm text-slate-500 mb-2 italic opacity-50">{!! nl2br($modifiedText) !!}</p>
+                        @endif
+
+                        <div id="sr_{{ $no_question }}" class="mt-3">
+
+                            <div class="service-rate max-w-lg mx-auto text-sm p-2.5 flex flex-wrap items-center justify-around">
+    
+                                @php
+                                    $option_number = 10;
+                                @endphp
+
+                                @for ($i = 1; $i <= $option_number; $i++)
+                                    
+                                    <div>
+                                        <input type="radio" name="sr_{{ $no_question }}" id="{{ $i }}" class="hidden" value="{{ $i }}"
+                                            {{ ($question->is_required == '1') ? 'required' : '' }} 
+                                            @if (session()->has('form_sr'))
+                                                {{ ($form_sr['sr_'.$no_question]  == $i) ? 'checked' : '' }}
+                                            @endif  
+                                        >
+                                        <label for="{{ $i }}">
+                                            <div class="cursor-pointer w-9 h-9 mx-1 mb-3 rounded-md flex justify-center items-center border-2 border-dark border-opacity-30 hover:bg-dark hover:text-white 
+                                                @if (session()->has('form_sr'))
+                                                    {{ ($form_sr['sr_'.$no_question]  == $i) ? 'selected-selection' : 'unselected-selection' }}
+                                                @else
+                                                    unselected-selection
+                                                @endif"
+                                            >
+                                                {{ $i }}
+                                            </div>
+                                        </label>
+                                    </div> 
+
+                                @endfor
+                
                             </div>
-                        </label>
-                    </div>   
 
-                    <div>
-                        <input type="radio" name="service-rate-1" id="2" class="hidden" value="2">
-                        <label for="2">
-                            <div class="w-9 h-9 mx-1.5 mb-3 rounded-md flex justify-center items-center unselected-selection border-2 border-dark border-opacity-30 hover:bg-dark hover:text-white">
-                                2
-                            </div>
-                        </label>
-                    </div>
+                        </div>
 
-                    <div>
-                        <input type="radio" name="service-rate-1" id="3" class="hidden" value="3">
-                        <label for="3">
-                            <div class="w-9 h-9 mx-1.5 mb-3 rounded-md flex justify-center items-center unselected-selection border-2 border-dark border-opacity-30 hover:bg-dark hover:text-white">
-                                3
-                            </div>
-                        </label>
-                    </div>
+                    </div>    
 
-                    <div>
-                        <input type="radio" name="service-rate-1" id="4" class="hidden" value="4">
-                        <label for="4">
-                            <div class="w-9 h-9 mx-1.5 mb-3 rounded-md flex justify-center items-center unselected-selection border-2 border-dark border-opacity-30 hover:bg-dark hover:text-white">
-                                4
-                            </div>
-                        </label>
-                    </div>
-
-                    <div>
-                        <input type="radio" name="service-rate-1" id="5" class="hidden" value="5">
-                        <label for="5">
-                            <div class="w-9 h-9 mx-1.5 mb-3 rounded-md flex justify-center items-center unselected-selection border-2 border-dark border-opacity-30 hover:bg-dark hover:text-white">
-                                5
-                            </div>
-                        </label>
-                    </div>
-
-                    <div>
-                        <input type="radio" name="service-rate-1" id="6" class="hidden" value="6">
-                        <label for="6">
-                            <div class="w-9 h-9 mx-1.5 mb-3 rounded-md flex justify-center items-center unselected-selection border-2 border-dark border-opacity-30 hover:bg-dark hover:text-white">
-                                6
-                            </div>
-                        </label>
-                    </div>
-
-                    <div>
-                        <input type="radio" name="service-rate-1" id="7" class="hidden" value="7">
-                        <label for="7">
-                            <div class="w-9 h-9 mx-1.5 mb-3 rounded-md flex justify-center items-center unselected-selection border-2 border-dark border-opacity-30 hover:bg-dark hover:text-white">
-                                7
-                            </div>
-                        </label>
-                    </div>
-
-                    <div>
-                        <input type="radio" name="service-rate-1" id="8" class="hidden" value="8">
-                        <label for="8">
-                            <div class="w-9 h-9 mx-1.5 mb-3 rounded-md flex justify-center items-center unselected-selection border-2 border-dark border-opacity-30 hover:bg-dark hover:text-white">
-                                8
-                            </div>
-                        </label>
-                    </div>
-
-                    <div>
-                        <input type="radio" name="service-rate-1" id="9" class="hidden" value="9">
-                        <label for="9">
-                            <div class="w-9 h-9 mx-1.5 mb-3 rounded-md flex justify-center items-center unselected-selection border-2 border-dark border-opacity-30 hover:bg-dark hover:text-white">
-                                9
-                            </div>
-                        </label>
-                    </div>
-
-                    <div>
-                        <input type="radio" name="service-rate-1" id="10" class="hidden" value="10">
-                        <label for="10">
-                            <div class="w-9 h-9 mx-1.5 mb-3 rounded-md flex justify-center items-center unselected-selection border-2 border-dark border-opacity-30 hover:bg-dark hover:text-white">
-                                10
-                            </div>
-                        </label>
-                    </div>
-
-                </div>
-            </div>
-       
+                    @php
+                        $no_question++;
+                    @endphp
+                    
+                @endforeach
+    
         </div>
 
         <div class="flex flex-wrap items-center justify-between md:flex-row-reverse">
             
-            <a href="/form/feedback" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-blue-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg">
+            <button type="submit" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-blue-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg">
                 Lanjut
-            </a>
+            </button>
 
-            <a href="/form/service-value" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-yellow-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg">
+            <div class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-yellow-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg cursor-pointer" onclick="window.history.back()">
                 Kembali
-            </a>
+            </div>
 
             <a href="/form" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-red-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg">
                 Ulang
@@ -135,19 +100,25 @@
     {{-- JS Start --}}
     <script>
 
-        var serviceRate1 = document.querySelector('#service-rate-1');
-        var selection = serviceRate1.querySelectorAll('label');
+        var serviceRate = document.querySelectorAll('.service-rate');
 
-        selection.forEach(function(element) {
-            element.addEventListener('click', function() {
-                selection.forEach(function(e) {
-                    e.querySelector('div').classList.remove('selected-selection');
-                    e.querySelector('div').classList.add('unselected-selection');
+        if (serviceRate.length > 0) {
+            serviceRate.forEach(function (sr) {
+                var selection = sr.querySelectorAll('label');
+
+                selection.forEach(function (element) {
+                    element.addEventListener('click', function () {
+                        selection.forEach(function (e) {
+                            e.querySelector('div').classList.remove('selected-selection');
+                            e.querySelector('div').classList.add('unselected-selection');
+                        });
+
+                        element.querySelector('div').classList.remove('unselected-selection');
+                        element.querySelector('div').classList.add('selected-selection');
+                    });
                 });
-                element.querySelector('div').classList.remove('unselected-selection');
-                element.querySelector('div').classList.add('selected-selection');
             });
-        });
+        }
 
     </script>
     {{-- JS End --}}

@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     
-    public function index() {
+    public function index() 
+    {
+        session()->flush();
         return view('login');
     }
 

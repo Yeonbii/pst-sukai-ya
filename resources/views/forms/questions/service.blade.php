@@ -2,91 +2,231 @@
 
 @section('container')
 
-    <form action="">
+    <form action="/form/s" method="post">
+        @csrf
+        
+        <div class="bg-white rounded-md shadow-md mb-9 p-7">
+            
+            <p class="text-base font-semibold border-b-2 pb-3 md:text-2xl">Bagian Layanan</p>
+            
+            @php
+                $no_question = 1;
+            @endphp
 
-        <div class="w-full bg-white rounded-md mb-5 p-4">
+            @foreach ($questions_s as $question)
+                
+                @if ($question->input_type == '1')
+                    {{-- 1 -> Input : Text --}}
+                    <div id="s_{{ $no_question }}_div" class="w-full pb-7 pt-5 {{ ($question->no == 1) ? '' : 'border-t-2' }}">
 
-            <h3 class="font-semibold text-lg px-2 pb-2 mb-5 border-b md:text-3xl">Bagian Layanan</h3>
+                        <label for="s_{{ $no_question }}" class="text-sm font-medium mb-2 block">
+                            {{ $question->text }}
+                            @if ($question->is_required == '1')
+                                <span class="text-red-500">(wajib)</span>
+                            @endif
+                        </label>
 
-            <div class="w-full px-2 mb-3">
-                <label for="date" class="text-sm font-medium mb-1 block">
-                    Tanggal pelayanan diterima
-                    <span class="text-red-500">(wajib)</span>
-                </label>
-                <input type="date" name="date" id="date" class="text-sm border-2 border-slate-300 rounded-md w-full px-2.5 py-2 focus:border-secondary focus:outline-none">
-            </div>
+                        @if ($question->need_note == 1)
+                            @php
+                                $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $question->note);
+                            @endphp
+                            <p class="text-sm text-slate-500 mb-2 italic opacity-50">{!! nl2br($modifiedText) !!}</p>
+                        @endif
 
-            <div class="w-full px-2 mb-3">
-                <label for="service_1" class="text-sm font-medium mb-1 block">
-                    Jenis layanan
-                    <span class="text-red-500">(wajib)</span>
-                </label>
-                <select name="service_1" id="service_1" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
-                    <option selected>Pilih</option>
-                    <option value="Perpustakaan">Perpustakaan</option>
-                    <option value="Konsultasi">Konsultasi</option>
-                    <option value="Rekomendasi">Rekomendasi</option>
-                    <option value="Penjualan">Penjualan</option>
-                </select>
-            </div>
-          
-            <div class="w-full px-2 mb-3">
-                <label for="service_2" class="text-sm font-medium mb-1 block">
-                    Media yang digunakan
-                    <span class="text-red-500">(wajib)</span>
-                </label>
-                <select name="service_2" id="service_2" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 overflow-auto focus:border-secondary focus:outline-none" onchange="showOtherInput()">
-                    <option selected>Pilih</option>
-                    <option value="Datang Langsung ke PST BPS Kab. HSU">Datang Langsung ke PST BPS Kab. HSU</option>
-                    <option value="Whatsapp message">Whatsapp message</option>
-                    <option value="Website BPS (http://hulusungaiutarakab.bps.go.id)
-">Website BPS (http://hulusungaiutarakab.bps.go.id)
-</option>
-                    <option value="Aplikasi Allstats BPS">Aplikasi Allstats BPS</option>
-                    <option value="Email">Email</option>
-                    <option value="Romantik Online (http://romantik.bps.go.id)">Romantik Online (http://romantik.bps.go.id)</option>
-                    <option value="Surat">Surat</option>
-                    <option value="Website PST (pst.bps.go.id)">Website PST (pst.bps.go.id)</option>
-                    <option value="Portal satu data HSU (http://data.hsu.go.id)">Portal satu data HSU (http://data.hsu.go.id)</option>
-                    <option value="Acil bungas di Perpustakaan STIPER Amuntai">Acil bungas di Perpustakaan STIPER Amuntai</option>
-                    <option value="Yang lain">Yang lain</option>
-                </select>
-                {{-- Ketika Yang lain dipilih --}}
-                <input type="text" name="other_service_2" id="other_service_2" class="hidden mt-3 text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
-            </div>
+                        <input type="text" name="s_{{ $no_question }}" id="s_{{ $no_question }}" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none"
+                            {{ ($question->is_required == '1') ? 'required' : '' }} 
+                            @if (session()->has('form_s'))
+                                value="{{ $form_s['s_'.$no_question] }}"
+                            @endif
+                            {{ ($question->maks_char != 0) ? 'maxlength='.$question->maks_char : '' }} 
+                        >
 
-            <div class="w-full px-2 mb-3">
-                <label for="service_3" class="text-sm font-medium mb-1 block">
-                    Petugas yang melayani
-                    <span class="text-red-500">(wajib)</span>
-                </label>
-                <select name="service_3" id="service_3" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">
-                    <option selected>Pilih</option>
-                    <option value="Masdani">Masdani</option>
-                    <option value="Eko W.L.">Eko W.L.</option>
-                    <option value="M. Adi W.K.">M. Adi W.K.</option>
-                    <option value="Oktaviani">Oktaviani</option>
-                    <option value="Hanif Y.R.">Hanif Y.R.</option>
-                    <option value="M. Imam S.">M. Imam S.</option>
-                    <option value="Safrian F.">Safrian F.</option>
-                    <option value="Ghytsa A.J.">Ghytsa A.J.</option>
-                    <option value="Faizal R.">Faizal R.</option>
-                    <option value="Ariq">Ariq</option>
-                    <option value="Ridha">Ridha</option>
-                </select>
-            </div>
-       
+                    </div>
+
+                @elseif($question->input_type == '2')
+                    {{-- 2 -> Input : Numeric --}}
+                    <div id="s_{{ $no_question }}_div" class="w-full pb-7 pt-5 {{ ($question->no == 1) ? '' : 'border-t-2' }}">
+
+                        <label for="s_{{ $no_question }}" class="text-sm font-medium mb-2 block">
+                            {{ $question->text }}
+                            @if ($question->is_required == '1')
+                                <span class="text-red-500">(wajib)</span>
+                            @endif
+                        </label>
+
+                        @if ($question->need_note == 1)
+                            @php
+                                $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $question->note);
+                            @endphp
+                            <p class="text-sm text-slate-500 mb-2 italic opacity-50">{!! nl2br($modifiedText) !!}</p>
+                        @endif
+
+                        <input type="number" name="s_{{ $no_question }}" id="s_{{ $no_question }}" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none"
+                            {{ ($question->is_required == '1') ? 'required' : '' }} 
+                            @if (session()->has('form_s'))
+                                value="{{ $form_s['s_'.$no_question] }}"
+                            @endif
+                        >
+                    </div>
+
+                @elseif($question->input_type == '3')
+                    {{-- 3 -> Input : Date --}}
+                    <div id="s_{{ $no_question }}_div" class="w-full pb-7 pt-5 {{ ($question->no == 1) ? '' : 'border-t-2' }}">
+
+                        <label for="s_{{ $no_question }}" class="text-sm font-medium mb-2 block">
+                            {{ $question->text }}
+                            @if ($question->is_required == '1')
+                                <span class="text-red-500">(wajib)</span>
+                            @endif
+                        </label>
+
+                        @if ($question->need_note == 1)
+                            @php
+                                $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $question->note);
+                            @endphp
+                            <p class="text-sm text-slate-500 mb-2 italic opacity-50">{!! nl2br($modifiedText) !!}</p>
+                        @endif
+
+                        <input type="date" name="s_{{ $no_question }}" id="s_{{ $no_question }}" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none"
+                            {{ ($question->is_required == '1') ? 'required' : '' }} 
+                            @if (session()->has('form_s'))
+                                value="{{ $form_s['s_'.$no_question] }}"
+                            @endif
+                        >
+                    </div>
+                
+                @elseif($question->input_type == '4')
+                    {{-- 4 -> Input : (Contoh No. Telp) --}}
+                    <div id="s_{{ $no_question }}_div" class="w-full pb-7 pt-5 {{ ($question->no == 1) ? '' : 'border-t-2' }}">
+
+                        <label for="s_{{ $no_question }}" class="text-sm font-medium mb-2 block">
+                            {{ $question->text }}
+                            @if ($question->is_required == '1')
+                                <span class="text-red-500">(wajib)</span>
+                            @endif
+                        </label>
+
+                        @if ($question->need_note == 1)
+                            @php
+                                $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $question->note);
+                            @endphp
+                            <p class="text-sm text-slate-500 mb-2 italic opacity-50">{!! nl2br($modifiedText) !!}</p>
+                        @endif
+
+                        <input type="text" name="s_{{ $no_question }}" id="s_{{ $no_question }}" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none"
+                            {{ ($question->is_required == '1') ? 'required' : '' }}     
+                            @if (session()->has('form_s'))
+                                value="{{ $form_s['s_'.$no_question] }}"
+                            @endif
+                            maxlength="13"
+                        >
+                    </div>
+
+                @elseif($question->input_type == '5')
+                    {{-- 5 -> Select : (Pilih salah satu) --}}
+                    <div id="s_{{ $no_question }}_div" class="w-full pb-7 pt-5 {{ ($question->no == 1) ? '' : 'border-t-2' }}">
+                        <p class="text-sm font-medium mb-2">
+                            {{ $question->text }}
+                            <span class="text-red-500">(wajib)</span>
+                        </p>
+
+                        @if ($question->need_note == 1)
+                            @php
+                                $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $question->note);
+                            @endphp
+                            <p class="text-sm text-slate-500 mb-2 italic opacity-50">{!! nl2br($modifiedText) !!}</p>
+                        @endif
+
+                        <div id="s_{{ $no_question }}" class="mt-3">
+                            @php
+                                $no_option = 1;
+                            @endphp
+                            @foreach ($question->options as $option)    
+                                <div class="flex items-center mb-4">
+                                    <input type="radio" name="s_{{ $no_question }}" id="s_{{ $no_question }}_{{ $no_option }}" value="{{ $option->value }}" class="w-4 h-4 flex-shrink-0"
+                                        {{ ($question->is_required == '1') ? 'required' : '' }} 
+                                        @if (session()->has('form_s'))
+                                            {{ ($form_s['s_'.$no_question]  == $option->value) ? 'checked' : '' }}
+                                        @endif           
+                                    >
+                                    @php
+                                        $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $option->text);
+                                    @endphp
+                                    <label for="s_{{ $no_question }}_{{ $no_option }}" class="ms-2 text-sm font-medium">
+                                        {!! $modifiedText !!}
+                                    </label>
+                                </div>
+                                @php
+                                    $no_option++
+                                @endphp
+                            @endforeach
+
+                        </div>
+
+                    </div>
+
+                @elseif($question->input_type == '7')
+                    {{-- 7 -> Select : Yes or No --}}
+                    <div id="s_{{ $no_question }}_div" class="w-full pb-7 pt-5 {{ ($question->no == 1) ? '' : 'border-t-2' }}">
+                        <p class="text-sm font-medium mb-2">
+                            {{ $question->text }}
+                            <span class="text-red-500">(wajib)</span>
+                        </p>
+
+                        @if ($question->need_note == 1)
+                            @php
+                                $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $question->note);
+                            @endphp
+                            <p class="text-sm text-slate-500 mb-2 italic opacity-50">{!! nl2br($modifiedText) !!}</p>
+                        @endif
+
+                        <div id="s_{{ $no_question }}" class="mt-3">
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="s_{{ $no_question }}" id="s_{{ $no_question }}_1" value="Yes" class="w-4 h-4 flex-shrink-0"
+                                    {{ ($question->is_required == '1') ? 'required' : '' }} 
+                                    @if (session()->has('form_s'))
+                                        {{ ($form_s['s_'.$no_question]  == 'Yes') ? 'checked' : '' }}
+                                    @endif  
+                                >
+                                <label for="s_{{ $no_question }}_1" class="ms-2 text-sm font-medium">
+                                    Yes
+                                </label>
+                            </div>
+
+                            <div class="flex items-center mb-4">
+                                <input type="radio" name="s_{{ $no_question }}" id="s_{{ $no_question }}_2" value="No" class="w-4 h-4 flex-shrink-0"
+                                    {{ ($question->is_required == '1') ? 'required' : '' }} 
+                                    @if (session()->has('form_s'))
+                                        {{ ($form_s['s_'.$no_question]  == 'No') ? 'checked' : '' }}
+                                    @endif  
+                                >
+                                <label for="s_{{ $no_question }}_2" class="ms-2 text-sm font-medium">
+                                    No
+                                </label>
+                            </div>
+
+                        </div>
+
+                    </div>
+                @endif
+
+                @php
+                    $no_question++;
+                @endphp
+
+            @endforeach
+    
         </div>
 
         <div class="flex flex-wrap items-center justify-between md:flex-row-reverse">
             
-            <a href="/form/service-value" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-blue-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg">
+            <button type="submit" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-blue-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg">
                 Lanjut
-            </a>
+            </button>
             
-            <a href="/form/identity" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-yellow-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg">
+            <div class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-yellow-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg cursor-pointer" onclick="window.history.back()">
                 Kembali
-            </a>
+            </div>
 
             <a href="/form" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-red-500 text-white text-center py-2 rounded-md w-full md:max-w-[200px] mb-3 hover:shadow-lg">
                 Ulang

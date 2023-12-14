@@ -3,7 +3,7 @@
 @section('container')
 
     <div class="flex h-[44px] items-end">
-        <h3 class="font-semibold text-xl">Manage Form - Selection</h3>
+        <h3 class="font-semibold text-xl">Manage Form - Edit Options</h3>
     </div>
    
     <div class="py-12">
@@ -44,6 +44,8 @@
 
             <div id="option-container" class="bg-white rounded-md shadow-md mb-9 p-7">
                 
+                <p class="text-sm text-slate-500 mb-5 italic opacity-50">Jika terdapat sebuah link, maka tolong apitkan dengan link*...*link,<br>contoh <span class="font-semibold text-blue-500">link*google.com*link</span></p>
+
                 @php
                     if ($question->input_type == '5') {
                         $number = $question->option_number;
@@ -66,7 +68,7 @@
             </div>
 
             <div class="flex">
-                <button type="submit" value="save" class="font-semibold text-sm bg-primary text-white rounded-md mt-2 me-3 py-2 px-8 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Simpan</button>
+                <button type="submit" value="save" class="font-semibold text-sm bg-primary text-white rounded-md mt-2 me-3 py-2 px-8 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center" onclick="return confirm('Are you sure?')">Simpan</button>
                 <a href="/dashboard/manage-form" class="font-semibold text-sm bg-slate-400 text-white rounded-md mt-2 py-2 px-8 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Batal</a>
             </div>
 
