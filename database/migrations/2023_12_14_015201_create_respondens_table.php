@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('respondens', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->char('is_read', 1);
+            $table->char('is_acc', 1)->nullable();
             $table->timestamps();
         });
     }

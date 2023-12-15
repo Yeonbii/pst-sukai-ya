@@ -19,7 +19,13 @@ use App\Http\Controllers\ManageFormController;
 */
 
 Route::get('/', function () {
-    session()->flush();
+    session()->forget('form_i');
+    session()->forget('form_s');
+    session()->forget('form_sv');
+    session()->forget('form_sr');
+    session()->forget('form_f');
+    session()->forget('form_o');
+    session()->forget('form_done');
     return view('index');
 });
 
@@ -70,5 +76,7 @@ Route::post('/form/o', [FormController::class, 'storeOthers']);
 
 Route::get('/form/confirm', [FormController::class, 'confirm']);
 Route::post('/form/confirm', [FormController::class, 'storeConfirm']);
+
+Route::get('/form/done', [FormController::class, 'done']);
 
 Route::get('/test123', [ManageFormController::class, 'test123']);

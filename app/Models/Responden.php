@@ -17,7 +17,7 @@ class Responden extends Model
 
         static::creating(function ($model) {
             // Tentukan kata pada atribut name dan gabungkan dengan timestamp
-            $model->name = now()->timestamp .'_responden';
+            $model->name = now()->timestamp . '_RESPONDEN';
         });
     }
 

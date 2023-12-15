@@ -10,7 +10,13 @@ class LoginController extends Controller
     
     public function index() 
     {
-        session()->flush();
+        session()->forget('form_i');
+        session()->forget('form_s');
+        session()->forget('form_sv');
+        session()->forget('form_sr');
+        session()->forget('form_f');
+        session()->forget('form_o');
+        session()->forget('form_done');
         return view('login');
     }
 

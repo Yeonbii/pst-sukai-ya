@@ -3,13 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Models\Responden;
 use Illuminate\Http\Request;
 
 class FormController extends Controller
 {
     public function index()
     {
-        session()->flush();
+        session()->forget('form_i');
+        session()->forget('form_s');
+        session()->forget('form_sv');
+        session()->forget('form_sr');
+        session()->forget('form_f');
+        session()->forget('form_o');
+        session()->forget('form_done');
         return view('forms.index');
     }
 
@@ -25,7 +32,7 @@ class FormController extends Controller
                 'form_i' => $form_i
             ]);
         } else {
-            return redirect('/form');
+            return redirect('/some-error');
         }
     }
 
@@ -302,6 +309,129 @@ class FormController extends Controller
         } else {
             return redirect('/form');
         }
+    }
+
+    public function storeConfirm()
+    {
+        $form_i = session('form_i', []);
+        $form_s = session('form_s', []);
+        $form_sv = session('form_sv', []);
+        $form_sr = session('form_sr', []);
+        $form_f = session('form_f', []);
+        $form_o = session('form_o', []);
+
+        // dd($form_i, $form_s, $form_sv, $form_sr, $form_f, $form_o);
+
+        $responden = Responden::create([
+            'is_read' => '0'
+        ]);
+
+        // PART IDENTiTAS
+        $question_i = Question::where('part_id', 1)->orderBy('no')->get();
+        $total = $question_i->count();
+
+        if ($total > 0) {
+            for ($i = 0; $i < $total; $i++) {
+                // dd($question_i[$i]->id, $form_i['i_' . ($i + 1)]);
+                $question_id = $question_i[$i]->id;
+    
+                $responden->questions()->attach($question_id, [
+                    'value' => $form_i['i_' . ($i + 1)]
+                ]);
+            }
+        }
+
+        // PART LAYANAN
+        $question_s = Question::where('part_id', 2)->orderBy('no')->get();
+        $total = $question_s->count();
+
+        if ($total > 0) {
+            for ($i = 0; $i < $total; $i++) {
+                $question_id = $question_s[$i]->id;
+    
+                $responden->questions()->attach($question_id, [
+                    'value' => $form_s['s_' . ($i + 1)]
+                ]);
+            }
+        }
+
+        // PART NILAI PELAYANAN
+        $question_sv = Question::where('part_id', 3)->orderBy('no')->get();
+        $total = $question_sv->count();
+
+        if ($total > 0) {
+            for ($i = 0; $i < $total; $i++) {
+                $question_id = $question_sv[$i]->id;
+    
+                $responden->questions()->attach($question_id, [
+                    'value' => $form_sv['sv_' . ($i + 1)]
+                ]);
+            }
+        }
+
+        // PART RATING PELAYANAN
+        $question_sr = Question::where('part_id', 4)->orderBy('no')->get();
+        $total = $question_sr->count();
+
+        if ($total > 0) {
+            for ($i = 0; $i < $total; $i++) {
+                $question_id = $question_sr[$i]->id;
+    
+                $responden->questions()->attach($question_id, [
+                    'value' => $form_sr['sr_' . ($i + 1)]
+                ]);
+            }
+        }
+
+        // PART FEEDBACK
+        $question_f = Question::where('part_id', 5)->orderBy('no')->get();
+        $total = $question_f->count();
+
+        if ($total > 0) {
+            for ($i = 0; $i < $total; $i++) {
+                $question_id = $question_f[$i]->id;
+    
+                $responden->questions()->attach($question_id, [
+                    'value' => $form_f['f_' . ($i + 1)]
+                ]);
+            }
+        }
+
+        // PART OTHERS
+        $question_o = Question::where('part_id', 6)->orderBy('no')->get();
+        $total = $question_o->count();
+
+        if ($total > 0) {
+            for ($i = 0; $i < $total; $i++) {
+                $question_id = $question_o[$i]->id;
+    
+                $responden->questions()->attach($question_id, [
+                    'value' => $form_o['o_' . ($i + 1)]
+                ]);
+            }
+        }
+
+        session()->forget('form_i');
+        session()->forget('form_s');
+        session()->forget('form_sv');
+        session()->forget('form_sr');
+        session()->forget('form_f');
+        session()->forget('form_o');
+
+        session(['form_done' => $responden->name]);
+
+        return redirect('/form/done');
+
+    }
+
+    public function done()
+    {
+        $form_done = session('form_done', []);
+        if (empty($form_done)) {
+            return redirect('/form');
+        }
+
+        return view('forms.done');
     }
 
 }
