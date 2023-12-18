@@ -42,7 +42,18 @@
                             <span class="text-red-500">(wajib)</span>
                         </label>
                         <select id="no" name="no" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" autofocus required>
-                            @for ($i = 1; $i <= $count; $i++)
+
+                            @php
+                                if ($part->id == 1) {
+                                    $bil = 3;
+                                } elseif ($part->id == 2) {
+                                    $bil = 2;
+                                } else {
+                                    $bil = 1;
+                                }
+                            @endphp
+
+                            @for ($i = $bil; $i <= $count; $i++)
                                 <option value="{{ $i }}"
                                     @if ($errors->any())
                                         {{ ($i == old('no')) ? 'selected' : '' }}
@@ -51,6 +62,7 @@
                                     @endif
                                 >{{ $i }}</option>
                             @endfor
+                            
                         </select>
                     </div>
 

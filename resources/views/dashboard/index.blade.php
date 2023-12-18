@@ -24,8 +24,8 @@
                     <div class="w-3/4 flex flex-col text-sm">
                         <h6 class="mb-2 font-semibold">Jumlah Responden</h6>
                         <div class="value mt-auto">
-                            <p  class="border-b-2 border-secondary py-1 mb-1 text-secondary font-semibold">100</p>
-                            <p>2 Responden Baru</p>
+                            <p  class="border-b-2 border-secondary py-1 mb-1 text-secondary font-semibold">{{ $respondens->count() }}</p>
+                            <p class="truncate">{{ $respondens->where('is_read', '0')->count() }} Responden Baru</p>
                         </div>
                     </div>
                 </div>

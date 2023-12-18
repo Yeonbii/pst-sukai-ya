@@ -83,7 +83,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '1',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '1'
         ]);
 
         // Bagian Identitas - 2
@@ -97,7 +98,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '5',
             'maks_char' => '0',
             'option_number' => '2',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '1'
         ]);
 
         // Bagian Identitas - 2 : Pilihan 1
@@ -127,7 +129,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '5',
             'maks_char' => '0',
             'option_number' => '5',
-            'has_chart' => '1'
+            'has_chart' => '1',
+            'is_locked' => '0'
         ]);
 
         // Bagian Identitas - 3 :  Pilihan 1
@@ -188,7 +191,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '1',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
         // Bagian Identitas - 5
@@ -202,7 +206,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '4',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
         // Bagian Identitas - 6
@@ -216,7 +221,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '4',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
         // Bagian Identitas - 7
@@ -230,7 +236,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '1',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
         // BAGIAN IDENTITAS END
@@ -248,7 +255,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '3',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '1'
         ]);
 
         // Bagian Layanan - 2
@@ -262,7 +270,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '5',
             'maks_char' => '0',
             'option_number' => '4',
-            'has_chart' => '1'
+            'has_chart' => '1',
+            'is_locked' => '0'
         ]);
 
         // Bagian Layanan - 2 :  Pilihan 1
@@ -315,7 +324,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '5',
             'maks_char' => '0',
             'option_number' => '11',
-            'has_chart' => '1'
+            'has_chart' => '1',
+            'is_locked' => '0'
         ]);
 
         // Bagian Layanan - 3 :  Pilihan 1
@@ -424,7 +434,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '5',
             'maks_char' => '0',
             'option_number' => '12',
-            'has_chart' => '1'
+            'has_chart' => '1',
+            'is_locked' => '0'
         ]);
 
         // Bagian Layanan - 4 :  Pilihan 1
@@ -551,7 +562,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
         // Bagian Nilai Pelayanan - 1 :  Pilihan 1
@@ -599,7 +611,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
         // Bagian Nilai Pelayanan - 2 :  Pilihan 1
@@ -647,7 +660,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
         // Bagian Nilai Pelayanan - 3 :  Pilihan 1
@@ -695,7 +709,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
         // Bagian Nilai Pelayanan - 4 :  Pilihan 1
@@ -742,7 +757,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
         // Bagian Nilai Pelayanan - 5 :  Pilihan 1
@@ -790,7 +806,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
         // Bagian Nilai Pelayanan - 6 :  Pilihan 1
@@ -838,7 +855,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
         // Bagian Nilai Pelayanan - 7 :  Pilihan 1
@@ -886,7 +904,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
         // Bagian Nilai Pelayanan - 8 :  Pilihan 1
@@ -934,7 +953,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '6',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
         // Bagian Nilai Pelayanan - 9 :  Pilihan 1
@@ -988,7 +1008,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '8',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
         
         
@@ -1012,7 +1033,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '9',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
 
@@ -1036,7 +1058,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '9',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
         // Bagian Lain-lain - 2
@@ -1050,7 +1073,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '7',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
         // Bagian Lain-lain - 3
@@ -1064,7 +1088,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '7',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
         // Bagian Lain-lain - 4
@@ -1078,7 +1103,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '7',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
         // Bagian Lain-lain - 5
@@ -1092,7 +1118,8 @@ class DatabaseSeeder extends Seeder
             'input_type' => '7',
             'maks_char' => '0',
             'option_number' => '0',
-            'has_chart' => '0'
+            'has_chart' => '0',
+            'is_locked' => '0'
         ]);
 
 

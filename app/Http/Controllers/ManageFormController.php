@@ -138,6 +138,10 @@ class ManageFormController extends Controller
 
     public function edit(Question $question) 
     {
+        if ($question->is_locked == '1') {
+            return redirect()->back();
+        }
+
         $count = Question::where('part_id', $question->part_id)->count();
         
         return view('dashboard.manage-forms.edit', [
@@ -161,6 +165,8 @@ class ManageFormController extends Controller
             'option_number' => 'required|numeric|between:0,30',
             'has_chart' => 'required'
         ]);
+
+        $validatedData['is_locked'] = '0';
 
         $validatedData['part_id'] = $question->part_id;
 
@@ -262,7 +268,11 @@ class ManageFormController extends Controller
 
     public function destroy(Question $question) 
     {
-        if($question->input_type == '5' || $question->input_type == '6') {
+        if ($question->is_locked == '1') {
+            return redirect()->back();
+        }
+        
+        if ($question->input_type == '5' || $question->input_type == '6') {
             // Hapus data pada entitas Option jika input_type = 5 atau 6
             Option::where('question_id', '=', $question->id)->delete();
         }

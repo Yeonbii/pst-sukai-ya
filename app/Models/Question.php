@@ -49,7 +49,7 @@ class Question extends Model
     
     public function responden()
     {
-        return $this->belongsToMany(Responden::class, 'answers', 'question_id', 'responden_id');
+        return $this->belongsToMany(Responden::class, 'answers', 'question_id', 'responden_id')->withPivot('value');
     }
 
 }

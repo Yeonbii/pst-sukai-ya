@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="py-2 mx-4 my-4 flex items-center h-[40px] rounded-md transition duration-300 ease-in-out {{ Request::is('dashboard/data-responden*') ? 'selected-menu' : 'unselected-menu' }}">
+                    <a href="/dashboard/data-responden" class="py-2 mx-4 my-4 flex items-center h-[40px] rounded-md transition duration-300 ease-in-out {{ Request::is('dashboard/data-responden*') ? 'selected-menu' : 'unselected-menu' }}">
                         <i class="fa-solid fa-box-archive text-base mx-5"></i>
                         <span class="hidden">Data Responden</span>
                     </a>

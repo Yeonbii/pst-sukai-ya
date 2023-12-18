@@ -142,27 +142,31 @@
                                     @endforeach
 
                                     <div class="action-item hidden mb-4 flex-wrap justify-end">
-                                        <a href="/dashboard/manage-form/{{ $question->id }}/edit" class="group h-9 mr-3 px-1 rounded-md flex items-center text-blue-500 hover:opacity-80">
-                                            <i class="fa-solid fa-pen"></i>
-                                            <span class="ms-2 group-hover:underline">Edit</span>
-                                        </a>
-
-                                        @if ($question->options->count() > 0)
-                                            <a href="/dashboard/manage-form/{{ $question->id }}/edit-options" class="group h-9 mr-3 px-1 rounded-md flex items-center text-primary hover:opacity-80">
+                                        @if ($question->is_locked == '0')
+                                            
+                                            <a href="/dashboard/manage-form/{{ $question->id }}/edit" class="group h-9 mr-3 px-1 rounded-md flex items-center text-blue-500 hover:opacity-80">
                                                 <i class="fa-solid fa-pen"></i>
-                                                <span class="ms-2 group-hover:underline">Edit Options</span>
+                                                <span class="ms-2 group-hover:underline">Edit</span>
                                             </a>
+    
+                                            @if ($question->options->count() > 0)
+                                                <a href="/dashboard/manage-form/{{ $question->id }}/edit-options" class="group h-9 mr-3 px-1 rounded-md flex items-center text-primary hover:opacity-80">
+                                                    <i class="fa-solid fa-pen"></i>
+                                                    <span class="ms-2 group-hover:underline">Edit Options</span>
+                                                </a>
+                                            @endif
+                                            
+                                            <form action="/dashboard/manage-form/{{ $question->id }}" method="post">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="group h-9 mr-3 px-1 rounded-md flex items-center text-red-500 hover:opacity-80" onclick="return confirm('Are you sure?')">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                    <span class="ms-2 group-hover:underline">Delete</span>
+                                                </button>
+                                            </form>   
                                         @endif
-                                        
-                                        <form action="/dashboard/manage-form/{{ $question->id }}" method="post">
-                                            @method('delete')
-                                            @csrf
-                                            <button type="submit" class="group h-9 mr-3 px-1 rounded-md flex items-center text-red-500 hover:opacity-80" onclick="return confirm('Are you sure?')">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                                <span class="ms-2 group-hover:underline">Delete</span>
-                                            </button>
-                                        </form>
-                                    </div>   
+                                    </div>
+                                    
                                 </div>
                             @endforeach
                         @else

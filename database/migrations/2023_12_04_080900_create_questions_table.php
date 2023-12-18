@@ -39,6 +39,8 @@ return new class extends Migration
             $table->integer('option_number');
             
             $table->char('has_chart', 1);
+
+            $table->char('is_locked', 1);
             
             $table->foreign('part_id')->references('id')->on('parts');
             $table->timestamps();

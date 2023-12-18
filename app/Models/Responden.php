@@ -14,16 +14,28 @@ class Responden extends Model
     protected static function boot()
     {
         parent::boot();
-
+    
         static::creating(function ($model) {
-            // Tentukan kata pada atribut name dan gabungkan dengan timestamp
-            $model->name = now()->timestamp . '_RESPONDEN';
+            // Format timestamp sebagai yyyymmdd
+            $timestamp = now()->format('Ymd');
+    
+            // Gabungkan dengan waktu dalam format H:i:s
+            $model->name = $timestamp . now()->format('His') . '_RESPONDEN';
         });
+    }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $isReadFilter = $filters['is_read'] ?? null;
+
+        if ($isReadFilter !== null) {
+            $query->where('is_read', $isReadFilter);
+        }
     }
 
     public function questions()
     {
-        return $this->belongsToMany(Question::class, 'answers', 'responden_id', 'question_id');
+        return $this->belongsToMany(Question::class, 'answers', 'responden_id', 'question_id')->withPivot('value');
     }
     
 }

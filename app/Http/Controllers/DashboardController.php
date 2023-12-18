@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Responden;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,7 +16,10 @@ class DashboardController extends Controller
         session()->forget('form_f');
         session()->forget('form_o');
         session()->forget('form_done');
-        return view('dashboard.index');
+
+        return view('dashboard.index', [
+            'respondens' => Responden::all()
+        ]);
     }
 
     public function chart() {

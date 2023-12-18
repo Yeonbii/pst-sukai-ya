@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('respondens', function (Blueprint $table) {
+        Schema::create('ikms', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->char('is_read', 1);
-            $table->char('month', 2)->nullable();
-            $table->char('year', 4)->nullable();
+            $table->char('year', 4);
+            $table->char('month', 2);
+            $table->string('unsur', 3);
+            $table->decimal('value', 8, 2);
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('respondens');
+        Schema::dropIfExists('ikms');
     }
 };

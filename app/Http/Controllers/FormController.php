@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Ikm;
 use App\Models\Question;
 use App\Models\Responden;
 use Illuminate\Http\Request;
@@ -355,9 +357,23 @@ class FormController extends Controller
             }
         }
 
+        // Mengambil inputan tanggal kemudian diinputkan ke entitas responden
+        $carbonDate = Carbon::parse($form_s['s_1']);
+        $month = $carbonDate->format('m');
+        $year = $carbonDate->format('Y');
+
+        $responden->update([
+            'month' => $month,
+            'year' => $year
+        ]);
+
+        
         // PART NILAI PELAYANAN
         $question_sv = Question::where('part_id', 3)->orderBy('no')->get();
         $total = $question_sv->count();
+        $ikms = Ikm::where('year', $year)->where('month', $month)->get();
+        $responden_sv = Responden::where('year', $year)->where('month', $month)->get();
+        $total_responden = $responden_sv->count();
 
         if ($total > 0) {
             for ($i = 0; $i < $total; $i++) {
@@ -366,8 +382,45 @@ class FormController extends Controller
                 $responden->questions()->attach($question_id, [
                     'value' => $form_sv['sv_' . ($i + 1)]
                 ]);
+
+                $ikm = $ikms->where('unsur', 'U'.($i+1))->first();
+
+                if (!$ikm) {
+
+                    $value = floatval($form_sv['sv_' . ($i + 1)]) / 9;
+
+                    Ikm::create([
+                        'year' => $year,
+                        'month' => $month,
+                        'unsur' => 'U'.($i+1),
+                        'value' => $value
+                    ]);
+
+                } else {
+                    $bil = 0;
+                    for ($j = 0; $j < $total_responden; $j++) {
+                        // Menggunakan relasi questions pada objek Responden untuk mendapatkan objek Question
+                        $question = $responden_sv[$j]->questions->where('id', $question_id)->first();
+
+                        // Mengecek apakah Question ditemukan
+                        if ($question) {
+                            // Mengakses nilai value pada tabel pivot
+                            $bil = $bil + floatval($question->pivot->value);
+                        }
+                    }
+
+                    $value = ($bil + floatval($form_sv['sv_' . ($i + 1)])) / 9;
+
+                    $ikm->update([
+                        'value' => $value
+                    ]);
+
+                }
             }
         }
+
+       
+
 
         // PART RATING PELAYANAN
         $question_sr = Question::where('part_id', 4)->orderBy('no')->get();

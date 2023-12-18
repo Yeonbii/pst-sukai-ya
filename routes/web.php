@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DataRespondenController;
 use App\Http\Controllers\ManageFormController;
 
 /*
@@ -52,6 +53,11 @@ Route::middleware(['auth', 'checkInputType'])->group(function () {
     Route::get('/dashboard/manage-form/{question:id}/edit-options', [ManageFormController::class, 'editOptions']);
     Route::post('/dashboard/manage-form/{question:id}/edit-options', [ManageFormController::class, 'storeOptions']);
 });
+
+Route::get('/dashboard/data-responden', [DataRespondenController::class, 'index'])->middleware('auth');
+Route::post('/dashboard/data-responden', [DataRespondenController::class, 'readAll'])->middleware('auth');
+Route::get('/dashboard/data-responden/{responden:id}/show', [DataRespondenController::class, 'show'])->middleware('auth');
+Route::delete('/dashboard/data-responden/{responden:id}', [DataRespondenController::class, 'destroy'])->middleware('auth');
 
 
 Route::get('/form', [FormController::class, 'index']);
