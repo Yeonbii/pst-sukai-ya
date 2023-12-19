@@ -201,7 +201,6 @@
             var listItem = document.querySelectorAll('.list-item');
             var filterButton = document.querySelector('#filter-button');
             var filterPart = document.querySelector('#filter-part');
-            var filteArea = document.querySelector('#filter-area');
             var closeFilter = document.querySelector('#close-filter');
         
             listItem.forEach(function (element) {

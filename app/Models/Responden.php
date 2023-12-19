@@ -31,6 +31,14 @@ class Responden extends Model
         if ($isReadFilter !== null) {
             $query->where('is_read', $isReadFilter);
         }
+
+        $query->when($filters['year'] ?? false, function($query, $year) {
+            return $query->where('year', $year);
+        });
+
+        $query->when($filters['month'] ?? false, function($query, $month) {
+            return $query->where('month', $month);
+        });
     }
 
     public function questions()

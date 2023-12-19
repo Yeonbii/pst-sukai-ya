@@ -6,24 +6,71 @@ use App\Models\Ikm;
 use App\Models\Question;
 use App\Models\Responden;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class DataRespondenController extends Controller
 {
     
     public function index(Request $request)
     {
-        $respondens = Responden::filter(request(['is_read']))->latest();
+        $respondens = Responden::filter(request(['is_read', 'year', 'month']))->latest();
         $total = $respondens->count();
-        $title = '';
+        $filter_all = '';
+        $filter_month = 'Filter Bulan';
+        $check_read = $request->has('is_read');
+        $check_month = $request->has('month');
 
-        if ($request->has('is_read')) {
-            $title = ' - Semua Data Baru';
+        $oldest_year = Responden::orderBy('year', 'asc')->first()->year;
+        $current_date = Carbon::now();
+        $year = $current_date->format('Y');
+
+        
+        if ($check_read) {
+            $filter_all = ' - Semua Data Baru';
+        }
+
+        if ($check_month){
+            $v_m = request('month');
+            $y = request('year');
+            if ($v_m == '01') {
+                $m = 'Jan';
+            } elseif ($v_m == '02') {
+                $m = 'Feb';
+            } elseif ($v_m == '03') {
+                $m = 'Mar';
+            } elseif ($v_m == '04') {
+                $m = 'Apr';
+            } elseif ($v_m == '05') {
+                $m = 'May';
+            } elseif ($v_m == '06') {
+                $m = 'Jun';
+            } elseif ($v_m == '07') {
+                $m = 'Jul';
+            } elseif ($v_m == '08') {
+                $m = 'Agt';
+            } elseif ($v_m == '09') {
+                $m = 'Sept';
+            } elseif ($v_m == '10') {
+                $m = 'Oct';
+            } elseif ($v_m == '11') {
+                $m = 'Nov';
+            } elseif ($v_m == '12') {
+                $m = 'Dec';
+            } else {
+                $m = $v_m;
+            }
+            $filter_month = 'Filter: ' . $m . ' ' . $y ;
         }
 
         return view('dashboard.data-responden.index', [
             'respondens' => $respondens->simplePaginate(10)->withQueryString(),
             'total' => $total,
-            'title' => $title
+            'filter_all' => $filter_all,
+            'filter_month' => $filter_month,
+            'check_read' => $check_read,
+            'check_month' => $check_month,
+            'oldest_year' => $oldest_year,
+            'year' => $year
         ]);
     }
 
@@ -66,21 +113,24 @@ class DataRespondenController extends Controller
         if ($respondensCount == 1) {
             // Jika ini adalah responden terakhir untuk tahun dan bulan tertentu, hapus juga data Ikm
             Ikm::where('year', $year)->where('month', $month)->delete();
+
         } else {
             
             $questions = Question::where('part_id', 3)->orderBy('no')->get();
             $unsur = 0;
             foreach($questions as $question) {
                 // Jika masih ada responden, hitung ulang nilai Ikm
-                $value = Responden::where('year', $year)->where('month', $month)
+                $sumValue = Responden::where('year', $year)->where('month', $month)
                 ->join('answers', 'respondens.id', '=', 'answers.responden_id')
                 ->where('answers.question_id', '=', $question->id)
                 ->sum('answers.value');
                 
+                $result = $sumValue / ($respondensCount * $questions->count());
+
                 $unsur++;
 
                 // Update nilai Ikm
-                Ikm::where('year', $year)->where('month', $month)->where('unsur', 'U'.$unsur)->update(['value' => $value]);
+                Ikm::where('year', $year)->where('month', $month)->where('unsur', 'U'.$unsur)->update(['value' => $result]);
             }
             
         }

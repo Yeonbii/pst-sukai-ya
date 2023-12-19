@@ -24,7 +24,7 @@
 
     <div class="flex flex-wrap justify-between items-end h-[44px]">
         <div class="w-full md:w-1/2">
-            <h3 class="font-semibold text-xl">Data Responden <span class="text-primary">{{ $title }}</span></h3>
+            <h3 class="font-semibold text-xl">Data Responden <span class="text-primary">{{ $filter_all }}</span></h3>
         </div>
     </div>
 
@@ -35,28 +35,102 @@
 
                 <div class="flex flex-wrap justify-between items-end mb-3">
 
-                    <div class="flex flex-wrap">
+                    <div class="flex flex-wrap w-full md:w-auto">
 
                         <a href="#" target="_blank" class="block w-full md:w-[150px] font-semibold text-sm bg-slate-400 text-white rounded-md py-2 px-8 mb-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Unduh Data</a>
+                        
+                        <div id="filter-button" class="w-full md:w-auto md:min-w-[150px] md:max-w-[250px] truncate font-semibold text-sm bg-primary text-white rounded-md py-2 px-8 mb-3 lg:ms-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
+                            {{ $filter_month }}
+                        </div>
 
-                        <form action="/dashboard/data-responden" method="post">
+
+                        <div id="filter-month" class="fixed z-[99] inset-0 bg-black bg-opacity-50 hidden">
+                            <div id="filter-area" class="bg-white shadow-lg ms-auto p-4 pt-12 flex flex-col w-[300px]">
+                                
+                                <p class="font-semibold text-xl text-primary my-5 text-center italic">Filter Bulan</p>
+
+                                <form id="month_form" action="/dashboard/data-responden">
+                                    @if ($check_read)
+                                        <input type="hidden" name="is_read" value="{{ request('is_read') }}">
+                                    @endif
+                                    <div id="no_div" class="w-full mb-7">
+                                        <label for="year" class="text-sm font-medium mb-2 block">
+                                            Tahun
+                                            <span class="text-red-500">(wajib)</span>
+                                        </label>
+                                        <select id="year" name="year" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" autofocus required>
+                                            <option>Pilih</option>
+                                            @for ($i = $oldest_year; $i <= $year; $i++)
+                                                <option value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+
+                                    <div id="no_div" class="w-full mb-7">
+                                        <label for="month" class="text-sm font-medium mb-2 block">
+                                            Bulan
+                                            <span class="text-red-500">(wajib)</span>
+                                        </label>
+                                        <select id="month" name="month" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" autofocus required>
+                                            <option>Pilih</option>
+                                            <option value="01">Januari</option>
+                                            <option value="02">Februari</option>
+                                            <option value="03">Maret</option>
+                                            <option value="04">April</option>
+                                            <option value="05">Mei</option>
+                                            <option value="06">Juni</option>
+                                            <option value="07">Juli</option>
+                                            <option value="08">Agustus</option>
+                                            <option value="09">September</option>
+                                            <option value="10">Oktober</option>
+                                            <option value="11">November</option>
+                                            <option value="12">Desember</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="text-base font-semibold bg-slate-300 rounded-md w-full p-2 mb-3 flex justify-center items-center hover:bg-opacity-70 duration-300 cursor-pointer">Pilih</button>
+                                </form>
+
+                                <a href="/dashboard/data-responden" class="text-base font-semibold text-white bg-primary rounded-md p-2 mt-auto mb-3 flex justify-center items-center hover:bg-opacity-70 duration-300 cursor-pointer">Tampilkan Semua</a>
+
+                                <div id="close-filter" class="text-base font-semibold text-white bg-dark rounded-md p-2 mb-12 flex justify-center items-center hover:bg-opacity-70 duration-300 cursor-pointer">Tutup</div>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+
+                    <div class="flex flex-wrap w-full md:w-auto">
+
+                        <form action="/dashboard/data-responden" method="post" class="w-full md:w-auto">
                             @csrf
                             <button type="submit" class="w-full md:w-auto truncate font-semibold text-sm bg-green-500 text-white rounded-md py-2 px-8 mb-3 lg:ms-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
                                 Tandai Semua Data Sudah Dibaca
                             </button>
                         </form>
-                        
-                    </div>
 
-                    @if ($title === ' - Semua Data Baru')
-                        <a href="/dashboard/data-responden" class="w-full md:w-auto truncate font-semibold text-sm bg-blue-500 text-white rounded-md py-2 px-8 mb-3 lg:ms-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
-                            Tampilkan Semua Data
-                        </a>
-                    @else
-                        <a href="/dashboard/data-responden?is_read=0" class="w-full md:w-auto truncate font-semibold text-sm bg-blue-500 text-white rounded-md py-2 px-8 mb-3 lg:ms-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
-                            Tampilkan Semua Data Baru
-                        </a>
-                    @endif
+                        @if ($filter_all === ' - Semua Data Baru')
+                            <a
+                            @if ($check_month)
+                                href="/dashboard/data-responden?year={{ request('year') }}&month={{ request('month') }}"    
+                            @else
+                                href="/dashboard/data-responden" 
+                            @endif
+                            class="w-full md:w-auto truncate font-semibold text-sm bg-blue-500 text-white rounded-md py-2 px-8 mb-3 lg:ms-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
+                                Tampilkan Semua Data
+                            </a>
+                        @else
+                            <a 
+                            @if ($check_month)
+                                href="/dashboard/data-responden?year={{ request('year') }}&month={{ request('month') }}&is_read=0"
+                            @else
+                                href="/dashboard/data-responden?is_read=0"  
+                            @endif
+                            class="w-full md:w-auto truncate font-semibold text-sm bg-blue-500 text-white rounded-md py-2 px-8 mb-3 lg:ms-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
+                                Tampilkan Semua Data Baru
+                            </a>
+                        @endif
+
+                    </div>
 
                 </div>
            
@@ -69,12 +143,39 @@
                         @if ($respondens->count())
                             @foreach ($respondens as $responden)
                                 <div class="list-item border-b-2 mb-4 p-2 md:p-7 hover:bg-slate-300 hover:bg-opacity-30">
-                                    <div class="flex flex-wrap">
-                                        <p class="font-semibold me-5 mb-2">{{ $responden->created_at->format('d M Y, g:i A') }}</p>
+                                    <div class="flex flex-wrap w-full">
                                         <p class="me-2 mb-2">{{ $responden->name }}</p>
                                         @if ($responden->is_read == '0')
                                             <p class="me-2 mb-2 text-blue-500">(Baru)</p>
                                         @endif
+                                        @php
+                                            if ($responden->month == '01') {
+                                                $m = 'Jan';
+                                            } elseif ($responden->month == '02') {
+                                                $m = 'Feb';
+                                            } elseif ($responden->month == '03') {
+                                                $m = 'Mar';
+                                            } elseif ($responden->month == '04') {
+                                                $m = 'Apr';
+                                            } elseif ($responden->month == '05') {
+                                                $m = 'May';
+                                            } elseif ($responden->month == '06') {
+                                                $m = 'Jun';
+                                            } elseif ($responden->month == '07') {
+                                                $m = 'Jul';
+                                            } elseif ($responden->month == '08') {
+                                                $m = 'Agt';
+                                            } elseif ($responden->month == '09') {
+                                                $m = 'Sept';
+                                            } elseif ($responden->month == '10') {
+                                                $m = 'Oct';
+                                            } elseif ($responden->month == '11') {
+                                                $m = 'Nov';
+                                            } else {
+                                                $m = 'Dec';
+                                            }
+                                        @endphp
+                                        <p class="mb-2 md:ml-auto italic text-slate-400">Service received on {{ $m }} {{ $responden->year }}</p>
                                     </div>
                                 
                                     <div class="action-item hidden mb-4 flex-wrap justify-end">
@@ -121,6 +222,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var listItem = document.querySelectorAll('.list-item');
+
+            var filterButton = document.querySelector('#filter-button');
+            var filterMonth = document.querySelector('#filter-month');
+            var closeFilter = document.querySelector('#close-filter');
         
             listItem.forEach(function (element) {
                 element.addEventListener('click', function () {
@@ -140,6 +245,18 @@
                         element.classList.add('selected');
                     }
                 });
+            });
+
+            filterButton.addEventListener('click', function() {
+                filterMonth.classList.remove('hidden');
+                filterMonth.classList.add('flex');
+                document.body.classList.add('overflow-hidden');
+            });
+
+            closeFilter.addEventListener('click', function() {
+                filterMonth.classList.add('hidden');
+                filterMonth.classList.remove('flex');
+                document.body.classList.remove('overflow-hidden');
             });
 
         });

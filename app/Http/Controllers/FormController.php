@@ -387,7 +387,7 @@ class FormController extends Controller
 
                 if (!$ikm) {
 
-                    $value = floatval($form_sv['sv_' . ($i + 1)]) / 9;
+                    $value = floatval($form_sv['sv_' . ($i + 1)]) / $total;
 
                     Ikm::create([
                         'year' => $year,
@@ -402,14 +402,14 @@ class FormController extends Controller
                         // Menggunakan relasi questions pada objek Responden untuk mendapatkan objek Question
                         $question = $responden_sv[$j]->questions->where('id', $question_id)->first();
 
-                        // Mengecek apakah Question ditemukan
-                        if ($question) {
+                        // Mengecek apakah Question ditemukan dan bukan responden yang sekarang
+                        if ($question && $responden_sv[$j]->id != $responden->id) {
                             // Mengakses nilai value pada tabel pivot
                             $bil = $bil + floatval($question->pivot->value);
                         }
                     }
 
-                    $value = ($bil + floatval($form_sv['sv_' . ($i + 1)])) / 9;
+                    $value = ($bil + floatval($form_sv['sv_' . ($i + 1)])) / (($total_responden) * $total);
 
                     $ikm->update([
                         'value' => $value
