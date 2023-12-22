@@ -137,8 +137,8 @@ class DatabaseSeeder extends Seeder
         Option::create([
             'question_id' => Question::where('text', 'Pendidikan yang ditamatkan')->value('id'),
             'no' => 1,
-            'text' => '<= SMP/sederajat',
-            'value' => '<= SMP/sederajat'
+            'text' => '≤ SMP/sederajat',
+            'value' => '≤ SMP/sederajat'
         ]);
         
         // Bagian Identitas - 3 :  Pilihan 2

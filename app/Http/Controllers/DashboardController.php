@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chart;
 use Carbon\Carbon;
 use App\Models\Ikm;
 use App\Models\Responden;
@@ -19,7 +20,11 @@ class DashboardController extends Controller
         session()->forget('form_o');
         session()->forget('form_done');
 
-        $oldest_year = Responden::orderBy('year', 'asc')->first()->year;
+        $oldest_year = '';
+        if(Responden::all()->count() > 0) {
+            $oldest_year = Responden::orderBy('year', 'asc')->first()->year;
+        }
+        
         $current_date = Carbon::now();
         $month = $current_date->format('m'); 
         $year = $current_date->format('Y');
@@ -64,11 +69,35 @@ class DashboardController extends Controller
         $ikm = Ikm::where('year', $year)->where('month', $month)->sum('value');
         $ikm_result = $ikm * 25;
 
+        $charts = Chart::where('show', 1)->orderBy('no')->get();
+        $colors = [
+            '#0ea5e9', // Sky
+            '#f43f5e', // Rose
+            '#a855f7', // Purple
+            '#3b82f6', // Blue
+            '#14b8a6', // Teal
+            '#f97316', // Orange
+            '#ec4899', // Pink
+            '#8b5cf6', // Violet
+            '#ef4444', // Red
+            '#10b981', // Emerald
+            '#eab308', // Yellow
+            '#d946ef', // Fuchsia
+            '#6366f1', // Indigo
+            '#84cc16', // Lime
+            '#06b6d4', // Cyan
+            '#22c55e', // Green
+            '#f59e0b' // Amber
+        ];
+
         return view('dashboard.index', [
-            'respondens' => Responden::where('year', $year)->where('month', $month),
+            'respondens' => Responden::where('year', $year)->where('month', $month)->get(),
             'ikm_result' => $ikm_result,
             'oldest_year' => $oldest_year,
             'year' => $year,
+            'month' => $month,
+            'charts' => $charts,
+            'colors' => $colors,
             'filter_month' => $filter_month
         ]);
     }

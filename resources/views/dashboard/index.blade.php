@@ -1,6 +1,13 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
+    {{-- Script cdn Chart.js --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js" integrity="sha512-JPcRR8yFa8mmCsfrw4TNte1ZvF1e3+1SdGMslZvmrzDYxS69J7J49vkFL8u6u8PlPJK+H3voElBtUCzaXj+6ig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        let colors = @json($colors);
+    </script>
+
 
     <div class="flex justify-between items-end h-[44px]">
 
@@ -108,71 +115,139 @@
             Kelola Chart yang akan Ditampilkan
         </a>
 
-        <div class="flex flex-wrap">
+        @if ($respondens->count() > 0)
 
-            {{-- Chart Start --}}
-            <div class="w-full md:w-1/2">
-                <div class="bg-white rounded-md shadow-md p-2 mb-5">
-                    <h6 class="m-2 border-b-2 font-semibold">Grafik 1</h6>
-                    <div class="flex flex-col items-center justify-center">
-                        <div class="w-full max-w-[300px] mb-9">
-                            <canvas id="myChart"></canvas>
-                        </div>
-                        <div class="w-full max-w-[300px]">
-                            <div class="flex items-center text-sm">
-                                <div class="h-2 min-w-[28px] bg-[#ef4444] me-2"></div>
-                                <p class="truncate">
-                                    Red
-                                </p>
-                                <p class="ms-auto">
-                                    300
-                                </p>
+            <div class="flex flex-wrap">
+                @php
+                    $no = 1;
+                @endphp
+            
+                @foreach ($charts as $chart)
+                    {{-- Chart Start --}}
+                    <div class="w-full {{ ($no % 2 == 0) ? 'md:ps-2' : 'md:pe-2' }} md:w-1/2">
+                        <div class="bg-white rounded-md shadow-md p-2 mb-5">
+                            <h6 class="m-2 border-b-2 font-semibold truncate">{{ $chart->question->text }}</h6>
+                            <div class="flex flex-col items-center justify-center">
+                                <div class="w-full max-w-[300px] mb-9">
+                                    <canvas id="myChart-{{ $no }}"></canvas>
+                                </div>
+                                <div class="w-full px-4 md:px-28 mb-5">
+                                    @php
+                                        $no_o = 0;
+                                        $answerCounts = DB::table('answers')
+                                            ->join('respondens', 'answers.responden_id', '=', 'respondens.id')
+                                            ->where('answers.question_id', $chart->question_id)
+                                            ->where('respondens.year', $year)
+                                            ->where('respondens.month', $month)
+                                            ->groupBy('answers.value')
+                                            ->select('answers.value', DB::raw('count(*) as count'))
+                                            ->get();
+            
+                                        // Inisialisasi array $answers dengan nilai 0 untuk setiap opsi
+                                        $answers = [];
+                                        foreach ($chart->question->options as $option) {
+                                            $answers[$option->value] = 0;
+                                        }
+            
+                                        // Mengisi array $answers dengan nilai yang sesuai dari query
+                                        foreach ($answerCounts as $ac) {
+                                            $answers[$ac->value] = $ac->count;
+                                        }
+            
+                                        // Menghitung total jawaban
+                                        $totalAnswers = array_sum($answers);
+            
+                                        $chartData = [];
+                                        foreach ($answers as $value => $count) {
+                                            $chartData[] = ['value' => $value, 'count' => $count];
+                                        }
+                                    @endphp
+            
+                                    @foreach ($chart->question->options as $option)
+                                        <div class="flex items-center text-sm">
+                                            <div class="h-2 min-w-[28px] me-2" style="background-color: {{ $colors[$no_o % count($colors)] }}"></div>
+                                            @php
+                                                $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $option->text);
+                                            @endphp
+                                            <p class="truncate me-4">
+                                                {!! $modifiedText !!}
+                                            </p>
+                                            <p class="ms-auto">
+                                                @php
+                                                    $percentage = number_format(($answers[$option->value] / $totalAnswers) * 100, 1);
+                                                @endphp
+                                                {{ $percentage }}%
+                                            </p>
+                                        </div>
+                                        @php
+                                            $no_o++;
+                                        @endphp
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>            
-            {{-- Chart End --}}
+                    {{-- Chart End --}}
+            
+                    <script>
+                        // Chart
+                        let chartData{{ $no }} = @json($chartData);
+            
+                        let data{{ $no }} = [];
+                        let backgroundColors{{ $no }} = [];
+            
+                        for (let key in chartData{{ $no }}) {
+                            if (chartData{{ $no }}.hasOwnProperty(key)) {
+                                data{{ $no }}.push(chartData{{ $no }}[key].count);
+                                // Memilih warna sesuai urutan
+                                let colorIndex = data{{ $no }}.length - 1;
+                                backgroundColors{{ $no }}.push(colors[colorIndex % colors.length]);
+                            }
+                        }
+            
+                        const dataConfig{{ $no }} = {
+                            datasets: [{
+                                data: data{{ $no }},
+                                backgroundColor: backgroundColors{{ $no }},
+                                hoverOffset: 4
+                            }]
+                        };
+            
+                        const chartConfig{{ $no }} = {
+                            type: 'pie',
+                            data: dataConfig{{ $no }},
+                            options: {
+                                plugins: {
+                                    legend: {
+                                        display: false
+                                    }
+                                },
+                                events: []
+                            }
+                        };
+            
+                        var myChart{{ $no }} = new Chart(
+                            document.querySelector('#myChart-{{ $no }}'),
+                            chartConfig{{ $no }}
+                        );
+                    </script>
+                    @php
+                        $no++;
+                    @endphp
+                @endforeach
+            </div> 
 
-        </div>
+        @else
+
+            <p class="text-center font-semibold text-base">No responden found.</p>   
+
+        @endif
+
     </div>
 
-    {{-- Script cdn Chart.js --}}
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js" integrity="sha512-JPcRR8yFa8mmCsfrw4TNte1ZvF1e3+1SdGMslZvmrzDYxS69J7J49vkFL8u6u8PlPJK+H3voElBtUCzaXj+6ig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
 
     <script>
-        // Chart
-        let color = ['#ef4444', '#3b82f6', '#eab308']
-
-        const data = {
-            labels: [
-                'Red',
-                'Blue',
-                'Yellow'
-            ],
-            datasets: [{
-                label: 'My First Dataset',
-                data: [300, 50, 100],
-                backgroundColor: [
-                color[0],
-                color[1],
-                color[2]
-                ],
-                hoverOffset: 4
-            }]
-        };
-
-        const config = {
-        type: 'pie',
-        data: data,
-        };
-
-        var myChart = new Chart(
-            document.querySelector('#myChart'),
-            config
-        );
-
         // JS umum
         var filterButton = document.querySelector('#filter-button');
         var filterMonth = document.querySelector('#filter-month');

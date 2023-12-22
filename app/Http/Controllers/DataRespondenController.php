@@ -20,7 +20,11 @@ class DataRespondenController extends Controller
         $check_read = $request->has('is_read');
         $check_month = $request->has('month');
 
-        $oldest_year = Responden::orderBy('year', 'asc')->first()->year;
+        $oldest_year = '';
+        if(Responden::all()->count() > 0) {
+            $oldest_year = Responden::orderBy('year', 'asc')->first()->year;
+        }
+        
         $current_date = Carbon::now();
         $year = $current_date->format('Y');
 
