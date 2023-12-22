@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chart;
 use Carbon\Carbon;
 use App\Models\Ikm;
+use App\Models\Chart;
+use App\Models\Question;
 use App\Models\Responden;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
     
-    public function index(Request $request) {
+    public function index(Request $request) 
+    {
         session()->forget('form_i');
         session()->forget('form_s');
         session()->forget('form_sv');
@@ -19,11 +22,6 @@ class DashboardController extends Controller
         session()->forget('form_f');
         session()->forget('form_o');
         session()->forget('form_done');
-
-        $oldest_year = '';
-        if(Responden::all()->count() > 0) {
-            $oldest_year = Responden::orderBy('year', 'asc')->first()->year;
-        }
         
         $current_date = Carbon::now();
         $month = $current_date->format('m'); 
@@ -66,18 +64,23 @@ class DashboardController extends Controller
             $filter_month = $m . ' ' . $year;
         }
 
+        $oldest_year = $year;
+        if(Responden::all()->count() > 0) {
+            $oldest_year = Responden::orderBy('year', 'asc')->first()->year;
+        }
+
         $ikm = Ikm::where('year', $year)->where('month', $month)->sum('value');
         $ikm_result = $ikm * 25;
 
-        $charts = Chart::where('show', 1)->orderBy('no')->get();
+        $charts = Chart::with('question')->where('show', 1)->orderBy('no')->get();
         $colors = [
             '#0ea5e9', // Sky
             '#f43f5e', // Rose
             '#a855f7', // Purple
-            '#3b82f6', // Blue
             '#14b8a6', // Teal
-            '#f97316', // Orange
             '#ec4899', // Pink
+            '#f97316', // Orange
+            '#3b82f6', // Blue
             '#8b5cf6', // Violet
             '#ef4444', // Red
             '#10b981', // Emerald
@@ -102,8 +105,89 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function chart() {
-        return view('dashboard.manage-chart');
+    public function chart(Request $request) 
+    {
+        $charts = Chart::with('question')->orderBy('no')->filter(request(['search']));
+        $total = Chart::all()->count();
+        $search = $request->input('search');
+
+        return view('dashboard.manage-chart.index', [
+            'charts' => $charts->simplePaginate(10)->withQueryString(),
+            'total' => $total,
+            'search' => $search
+        ]);
+    }
+
+    public function changeShow(Chart $chart)
+    {
+        if ($chart->show == '1') {
+            Chart::where('id', $chart->id)->update([
+                'show' => '0'
+            ]);
+        } else {
+            Chart::where('id', $chart->id)->update([
+                'show' => '1'
+            ]);
+        }
+        
+        return redirect()->back();
+    }
+
+    public function edit(Chart $chart)
+    {
+        return view('dashboard.manage-chart.edit', [
+            'chart' => $chart
+        ]);
+    }
+
+    public function update(Request $request, Chart $chart)
+    {
+        $validatedData = $request->validate([
+            'no' => 'required|numeric',
+            'show' => 'required',
+        ]);
+
+        if (($validatedData['no'] == $chart->no) && ($validatedData['show'] == $chart->show)) {
+            return redirect('/dashboard/manage-chart')->with('nothing','None of the charts have been updated!');
+        }
+
+        if ($validatedData['no'] < $chart->no) {
+            // Ketika no berubah menjadi lebih kecil
+            Chart::where('no', '>=', $validatedData['no'])
+                ->where('no', '<', $chart->no)
+                ->update(['no' => DB::raw('no + 1')]);
+        } 
+        elseif ($validatedData['no'] > $chart->no) {
+            // Ketika no berubah menjadi lebih besar
+            Chart::where('no', '<=', $validatedData['no'])
+                ->where('no', '>', $chart->no)
+                ->update(['no' => DB::raw('no - 1')]);
+        }
+
+        Chart::find($chart->id)->update($validatedData);
+
+        return redirect('/dashboard/manage-chart')->with('success','Charts has been updated!');
+    
+    }
+
+    public function destroy(Chart $chart)
+    {
+        DB::transaction(function () use ($chart) {
+            $chartNo = $chart->no;
+
+            if (!is_null($chartNo)) {
+                Chart::where('no', '>', $chartNo)->update(['no' => DB::raw('no - 1')]);
+            }
+            
+        });
+
+        Question::find($chart->question_id)->update([
+            'has_chart' => '0'
+        ]);
+    
+        Chart::find($chart->id)->delete();
+    
+        return redirect('/dashboard/manage-chart')->with('success','Charts has been deleted!');
     }
 
 }

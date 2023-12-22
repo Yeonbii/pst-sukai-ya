@@ -13,6 +13,18 @@ class Chart extends Model
 
     protected $with = ['question'];
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function($query, $search) {
+            return $query->where(function($query) use($search) {
+                $query->where('no', 'like', '%' . $search . '%')
+                      ->orWhereHas('question', function($query) use ($search) {
+                          $query->where('text', 'like', '%' . $search . '%');
+                      });
+            });
+        });
+    }
+
     public function question() 
     {
         return $this->belongsTo(Question::class);

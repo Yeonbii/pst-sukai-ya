@@ -19,14 +19,10 @@ class DataRespondenController extends Controller
         $filter_month = 'Filter Bulan';
         $check_read = $request->has('is_read');
         $check_month = $request->has('month');
-
-        $oldest_year = '';
-        if(Responden::all()->count() > 0) {
-            $oldest_year = Responden::orderBy('year', 'asc')->first()->year;
-        }
         
         $current_date = Carbon::now();
         $year = $current_date->format('Y');
+        $month = $current_date->format('m');
 
         
         if ($check_read) {
@@ -66,6 +62,11 @@ class DataRespondenController extends Controller
             $filter_month = 'Filter: ' . $m . ' ' . $y ;
         }
 
+        $oldest_year = $year;
+        if(Responden::all()->count() > 0) {
+            $oldest_year = Responden::orderBy('year', 'asc')->first()->year;
+        }
+
         return view('dashboard.data-responden.index', [
             'respondens' => $respondens->simplePaginate(10)->withQueryString(),
             'total' => $total,
@@ -74,18 +75,19 @@ class DataRespondenController extends Controller
             'check_read' => $check_read,
             'check_month' => $check_month,
             'oldest_year' => $oldest_year,
-            'year' => $year
+            'year' => $year,
+            'month' => $month
         ]);
     }
 
     public function show(Responden $responden)
     {
-        $questions_i = $responden->questions->where('part_id', 1);
-        $questions_s = $responden->questions->where('part_id', 2);
-        $questions_sv = $responden->questions->where('part_id', 3);
-        $questions_sr = $responden->questions->where('part_id', 4);
-        $questions_f = $responden->questions->where('part_id', 5);
-        $questions_o = $responden->questions->where('part_id', 6);
+        $questions_i = $responden->questions->where('part_id', 1)->orderBy('no');
+        $questions_s = $responden->questions->where('part_id', 2)->orderBy('no');
+        $questions_sv = $responden->questions->where('part_id', 3)->orderBy('no');
+        $questions_sr = $responden->questions->where('part_id', 4)->orderBy('no');
+        $questions_f = $responden->questions->where('part_id', 5)->orderBy('no');
+        $questions_o = $responden->questions->where('part_id', 6)->orderBy('no');
 
         if ($responden->is_read == '0') {
             Responden::where('id', $responden->id)->update(['is_read' => '1']);

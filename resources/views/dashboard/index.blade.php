@@ -22,38 +22,36 @@
                 <p class="font-semibold text-xl text-primary my-5 text-center italic">Pilih Bulan & Tahun</p>
 
                 <form id="month_form" action="/dashboard">
-                    <div id="no_div" class="w-full mb-7">
+                    <div id="year_div" class="w-full mb-7">
                         <label for="year" class="text-sm font-medium mb-2 block">
                             Tahun
                             <span class="text-red-500">(wajib)</span>
                         </label>
                         <select id="year" name="year" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" autofocus required>
-                            <option>Pilih</option>
                             @for ($i = $oldest_year; $i <= $year; $i++)
-                                <option value="{{ $i }}">{{ $i }}</option>
+                                <option value="{{ $i }}" {{ ($i == $year) ? 'selected' : '' }}>{{ $i }}</option>
                             @endfor
                         </select>
                     </div>
 
-                    <div id="no_div" class="w-full mb-7">
+                    <div id="month_div" class="w-full mb-7">
                         <label for="month" class="text-sm font-medium mb-2 block">
                             Bulan
                             <span class="text-red-500">(wajib)</span>
                         </label>
                         <select id="month" name="month" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" autofocus required>
-                            <option>Pilih</option>
-                            <option value="01">Januari</option>
-                            <option value="02">Februari</option>
-                            <option value="03">Maret</option>
-                            <option value="04">April</option>
-                            <option value="05">Mei</option>
-                            <option value="06">Juni</option>
-                            <option value="07">Juli</option>
-                            <option value="08">Agustus</option>
-                            <option value="09">September</option>
-                            <option value="10">Oktober</option>
-                            <option value="11">November</option>
-                            <option value="12">Desember</option>
+                            <option value="01" {{ ($month == '01') ? 'selected' : '' }}>Januari</option>
+                            <option value="02" {{ ($month == '02') ? 'selected' : '' }}>Februari</option>
+                            <option value="03" {{ ($month == '03') ? 'selected' : '' }}>Maret</option>
+                            <option value="04" {{ ($month == '04') ? 'selected' : '' }}>April</option>
+                            <option value="05" {{ ($month == '05') ? 'selected' : '' }}>Mei</option>
+                            <option value="06" {{ ($month == '06') ? 'selected' : '' }}>Juni</option>
+                            <option value="07" {{ ($month == '07') ? 'selected' : '' }}>Juli</option>
+                            <option value="08" {{ ($month == '08') ? 'selected' : '' }}>Agustus</option>
+                            <option value="09" {{ ($month == '09') ? 'selected' : '' }}>September</option>
+                            <option value="10" {{ ($month == '10') ? 'selected' : '' }}>Oktober</option>
+                            <option value="11" {{ ($month == '11') ? 'selected' : '' }}>November</option>
+                            <option value="12" {{ ($month == '12') ? 'selected' : '' }}>Desember</option>
                         </select>
                     </div>
                     <button type="submit" class="text-base font-semibold bg-slate-300 rounded-md w-full p-2 mb-3 flex justify-center items-center hover:bg-opacity-70 duration-300 cursor-pointer">Pilih</button>
@@ -115,7 +113,7 @@
             Kelola Chart yang akan Ditampilkan
         </a>
 
-        @if ($respondens->count() > 0)
+        @if (($respondens->count() > 0) && ($charts->count() > 0))
 
             <div class="flex flex-wrap">
                 @php
@@ -125,10 +123,10 @@
                 @foreach ($charts as $chart)
                     {{-- Chart Start --}}
                     <div class="w-full {{ ($no % 2 == 0) ? 'md:ps-2' : 'md:pe-2' }} md:w-1/2">
-                        <div class="bg-white rounded-md shadow-md p-2 mb-5">
+                        <div class="bg-white rounded-md shadow-md p-2 mb-10">
                             <h6 class="m-2 border-b-2 font-semibold truncate">{{ $chart->question->text }}</h6>
                             <div class="flex flex-col items-center justify-center">
-                                <div class="w-full max-w-[300px] mb-9">
+                                <div class="w-full max-w-[200px] mb-9 mt-7">
                                     <canvas id="myChart-{{ $no }}"></canvas>
                                 </div>
                                 <div class="w-full px-4 md:px-28 mb-5">
@@ -239,7 +237,7 @@
 
         @else
 
-            <p class="text-center font-semibold text-base">No responden found.</p>   
+            <p class="text-center font-semibold text-base mt-10">No chart or responden found.</p>   
 
         @endif
 

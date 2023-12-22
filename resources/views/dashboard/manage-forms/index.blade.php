@@ -150,7 +150,7 @@
                                             </a>
     
                                             @if ($question->options->count() > 0)
-                                                <a href="/dashboard/manage-form/{{ $question->id }}/edit-options" class="group h-9 mr-3 px-1 rounded-md flex items-center text-primary hover:opacity-80">
+                                                <a href="/dashboard/manage-form/{{ $question->id }}/edit-options" class="group h-9 mr-3 px-1 rounded-md flex items-center text-dark hover:opacity-80">
                                                     <i class="fa-solid fa-pen"></i>
                                                     <span class="ms-2 group-hover:underline">Edit Options</span>
                                                 </a>

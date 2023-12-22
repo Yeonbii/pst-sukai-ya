@@ -36,6 +36,10 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 Route::get('/dashboard/manage-chart', [DashboardController::class, 'chart'])->middleware('auth');
+Route::get('/dashboard/manage-chart/{chart:id}/change-show', [DashboardController::class, 'changeShow'])->middleware('auth');
+Route::get('/dashboard/manage-chart/{chart:id}/edit', [DashboardController::class, 'edit'])->middleware('auth');
+Route::post('/dashboard/manage-chart/{chart:id}/edit', [DashboardController::class, 'update'])->middleware('auth');
+Route::delete('/dashboard/manage-chart/{chart:id}', [DashboardController::class, 'destroy'])->middleware('auth');
 
 Route::get('/dashboard/manage-form', [ManageFormController::class, 'index'])->middleware('auth');
 Route::get('/dashboard/manage-form/show', [ManageFormController::class, 'show'])->middleware('auth');

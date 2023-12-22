@@ -50,41 +50,41 @@
                                 <p class="font-semibold text-xl text-primary my-5 text-center italic">Filter Bulan</p>
 
                                 <form id="month_form" action="/dashboard/data-responden">
+                                    
                                     @if ($check_read)
                                         <input type="hidden" name="is_read" value="{{ request('is_read') }}">
                                     @endif
-                                    <div id="no_div" class="w-full mb-7">
+
+                                    <div id="year_div" class="w-full mb-7">
                                         <label for="year" class="text-sm font-medium mb-2 block">
                                             Tahun
                                             <span class="text-red-500">(wajib)</span>
                                         </label>
                                         <select id="year" name="year" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" autofocus required>
-                                            <option>Pilih</option>
                                             @for ($i = $oldest_year; $i <= $year; $i++)
-                                                <option value="{{ $i }}">{{ $i }}</option>
+                                                <option value="{{ $i }}" {{ ($i == $year) ? 'selected' : '' }}>{{ $i }}</option>
                                             @endfor
                                         </select>
                                     </div>
-
-                                    <div id="no_div" class="w-full mb-7">
+                
+                                    <div id="month_div" class="w-full mb-7">
                                         <label for="month" class="text-sm font-medium mb-2 block">
                                             Bulan
                                             <span class="text-red-500">(wajib)</span>
                                         </label>
                                         <select id="month" name="month" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" autofocus required>
-                                            <option>Pilih</option>
-                                            <option value="01">Januari</option>
-                                            <option value="02">Februari</option>
-                                            <option value="03">Maret</option>
-                                            <option value="04">April</option>
-                                            <option value="05">Mei</option>
-                                            <option value="06">Juni</option>
-                                            <option value="07">Juli</option>
-                                            <option value="08">Agustus</option>
-                                            <option value="09">September</option>
-                                            <option value="10">Oktober</option>
-                                            <option value="11">November</option>
-                                            <option value="12">Desember</option>
+                                            <option value="01" {{ ($month == '01') ? 'selected' : '' }}>Januari</option>
+                                            <option value="02" {{ ($month == '02') ? 'selected' : '' }}>Februari</option>
+                                            <option value="03" {{ ($month == '03') ? 'selected' : '' }}>Maret</option>
+                                            <option value="04" {{ ($month == '04') ? 'selected' : '' }}>April</option>
+                                            <option value="05" {{ ($month == '05') ? 'selected' : '' }}>Mei</option>
+                                            <option value="06" {{ ($month == '06') ? 'selected' : '' }}>Juni</option>
+                                            <option value="07" {{ ($month == '07') ? 'selected' : '' }}>Juli</option>
+                                            <option value="08" {{ ($month == '08') ? 'selected' : '' }}>Agustus</option>
+                                            <option value="09" {{ ($month == '09') ? 'selected' : '' }}>September</option>
+                                            <option value="10" {{ ($month == '10') ? 'selected' : '' }}>Oktober</option>
+                                            <option value="11" {{ ($month == '11') ? 'selected' : '' }}>November</option>
+                                            <option value="12" {{ ($month == '12') ? 'selected' : '' }}>Desember</option>
                                         </select>
                                     </div>
                                     <button type="submit" class="text-base font-semibold bg-slate-300 rounded-md w-full p-2 mb-3 flex justify-center items-center hover:bg-opacity-70 duration-300 cursor-pointer">Pilih</button>
