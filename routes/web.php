@@ -89,4 +89,4 @@ Route::post('/form/confirm', [FormController::class, 'storeConfirm']);
 
 Route::get('/form/done', [FormController::class, 'done']);
 
-Route::get('/test123', [ManageFormController::class, 'test123']);
+Route::get('/321test123', [DataRespondenController::class, 'test123'])->middleware('auth');;

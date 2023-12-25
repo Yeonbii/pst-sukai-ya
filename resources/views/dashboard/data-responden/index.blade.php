@@ -35,11 +35,11 @@
 
                 <div class="flex flex-wrap justify-between items-end mb-3">
 
-                    <div class="flex flex-wrap w-full md:w-auto">
+                    <div class="flex flex-wrap w-full lg:w-auto">
 
-                        <a href="#" target="_blank" class="block w-full md:w-[150px] font-semibold text-sm bg-slate-400 text-white rounded-md py-2 px-8 mb-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Unduh Data</a>
+                        <a href="#" target="_blank" class="block w-full lg:w-[150px] font-semibold text-sm bg-slate-400 text-white rounded-md py-2 px-8 mb-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Unduh Data</a>
                         
-                        <div id="filter-button" class="w-full md:w-auto md:min-w-[150px] md:max-w-[250px] truncate font-semibold text-sm bg-primary text-white rounded-md py-2 px-8 mb-3 lg:ms-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
+                        <div id="filter-button" class="w-full lg:w-auto lg:min-w-[150px] lg:max-w-[250px] truncate font-semibold text-sm bg-primary text-white rounded-md py-2 px-8 mb-3 lg:ms-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
                             {{ $filter_month }}
                         </div>
 
@@ -99,11 +99,11 @@
                         
                     </div>
 
-                    <div class="flex flex-wrap w-full md:w-auto">
+                    <div class="flex flex-wrap w-full lg:w-auto">
 
-                        <form action="/dashboard/data-responden" method="post" class="w-full md:w-auto">
+                        <form action="/dashboard/data-responden" method="post" class="w-full lg:w-auto">
                             @csrf
-                            <button type="submit" class="w-full md:w-auto truncate font-semibold text-sm bg-green-500 text-white rounded-md py-2 px-8 mb-3 lg:ms-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
+                            <button type="submit" class="w-full truncate font-semibold text-sm bg-green-500 text-white rounded-md py-2 px-8 mb-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
                                 Tandai Semua Data Sudah Dibaca
                             </button>
                         </form>
@@ -115,7 +115,7 @@
                             @else
                                 href="/dashboard/data-responden" 
                             @endif
-                            class="w-full md:w-auto truncate font-semibold text-sm bg-blue-500 text-white rounded-md py-2 px-8 mb-3 lg:ms-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
+                            class="w-full lg:w-auto truncate font-semibold text-sm bg-blue-500 text-white rounded-md py-2 px-8 mb-3 lg:ms-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
                                 Tampilkan Semua Data
                             </a>
                         @else
@@ -125,7 +125,7 @@
                             @else
                                 href="/dashboard/data-responden?is_read=0"  
                             @endif
-                            class="w-full md:w-auto truncate font-semibold text-sm bg-blue-500 text-white rounded-md py-2 px-8 mb-3 lg:ms-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
+                            class="w-full lg:w-auto truncate font-semibold text-sm bg-blue-500 text-white rounded-md py-2 px-8 mb-3 lg:ms-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
                                 Tampilkan Semua Data Baru
                             </a>
                         @endif

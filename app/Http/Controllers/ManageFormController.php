@@ -366,12 +366,4 @@ class ManageFormController extends Controller
         }
     }
 
-    // Test table
-    public function test123() 
-    {
-        return view('test', [
-            'questions' => Question::with('part', 'options')->orderBy('part_id')->orderBy('no')->get()
-        ]);
-    }
-
 }

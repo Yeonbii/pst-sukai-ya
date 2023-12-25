@@ -478,7 +478,7 @@
                                                 $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $option->text);
                                             @endphp
                                             <label for="sv_{{ $no_question }}_{{ $no_option }}" class="ms-2 text-sm font-medium">
-                                                {!! $modifiedText !!}
+                                                ({{ $no_option }}) {!! $modifiedText !!}
                                             </label>
                                         </div>
                                         @php
