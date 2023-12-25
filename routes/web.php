@@ -90,3 +90,4 @@ Route::post('/form/confirm', [FormController::class, 'storeConfirm']);
 Route::get('/form/done', [FormController::class, 'done']);
 
 Route::get('/321test123', [DataRespondenController::class, 'test123'])->middleware('auth');;
+Route::get('/321test123/download', [DataRespondenController::class, 'export'])->middleware('auth');;

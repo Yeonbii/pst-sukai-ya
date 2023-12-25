@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Ikm;
 use App\Models\Question;
 use App\Models\Responden;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
+use App\Exports\RespondensExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DataRespondenController extends Controller
 {
@@ -192,6 +194,11 @@ class DataRespondenController extends Controller
             'total_o' => $total_o,
             'respondens' => $respondens
         ]);
+    }
+
+    public function export()
+    {
+        return Excel::download(new RespondensExport, 'test.xlsx');
     }
 
 }
