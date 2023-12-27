@@ -1,68 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Document</title>
-</head>
 <body>
     <div>
-        <table>
+        <h3>Tabel Data Responden diurutkan berdasarkan Tahun dan Bulan Penerimaan Layanan</h3>
+        <table border="1">
             <thead>
                 <tr>
-                    <th style="min-width: 50px" rowspan="2">No</th>
-                    <th style="min-width: 200px" rowspan="2">Name</th>
-                    <th style="min-width: 200px" colspan="{{ $total_i }}">Bagian Identitas</th>
-                    <th style="min-width: 200px" colspan="{{ $total_s }}">Bagian Layanan</th>
-                    <th style="min-width: 200px" colspan="{{ $total_sv }}">Bagian Nilai Pelayanan</th>
-                    <th style="min-width: 200px" colspan="{{ $total_sr }}">Bagian Rating Pelayanan</th>
-                    <th style="min-width: 200px" colspan="{{ $total_f }}">Bagian Feedback</th>
-                    <th style="min-width: 200px" colspan="{{ $total_o }}">Bagian Lain-lain</th>
-                </tr>
-                <tr>
+                    {{-- Semua yang di style gak diterapkan saat dieksport ke excel --}}
+                    <th align="center" width="50px" style="width: 50px; min-width: 50px;"><b>No</b></th>
+                    <th align="center" width="200px" style="width: 200px; min-width: 200px;"><b>Name</b></th>
 
                     @foreach ($questions_i as $question)
                         <th
                             @if ($question->input_type == '7')
-                                style="min-width: 50px"
+                                style="width: 50px; min-width: 50px;"
                             @else
-                                style="min-width: 200px"
+                                style="width: 200px; min-width: 200px;"
                             @endif
-                        >I_{{ $question->no }}</th>  
+                            align="center"
+                        ><b>I_{{ $question->no }}</b></th>  
                     @endforeach
 
                     @foreach ($questions_s as $question)
                         <th 
                             @if ($question->input_type == '7')
-                                style="min-width: 50px"
+                                style="width: 50px; min-width: 50px;"
                             @else
-                                style="min-width: 200px"
+                                style="width: 200px; min-width: 200px;"
                             @endif
-                        >S_{{ $question->no }}</th>  
+                            align="center"
+                        ><b>S_{{ $question->no }}</b></th>  
                     @endforeach
 
                     @foreach ($questions_sv as $question)
-                        <th style="min-width: 50px">SV_{{ $question->no }}</th>  
+                        <th align="center" width="50px" style="width: 50px; min-width: 50px;"><b>SV_{{ $question->no }}</b></th>  
                     @endforeach
 
                     @foreach ($questions_sr as $question)
-                        <th style="min-width: 50px">SR_{{ $question->no }}</th>  
+                        <th align="center" width="50px" style="width: 50px; min-width: 50px;"><b>SR_{{ $question->no }}</b></th>  
                     @endforeach
                     
                     @foreach ($questions_f as $question)
-                        <th style="min-width: 500px">F_{{ $question->no }}</th>  
+                        <th align="center" width="500px" style="width: 500px; min-width: 500px;"><b>F_{{ $question->no }}</b></th>  
                     @endforeach
 
                     @foreach ($questions_o as $question)
                         <th 
                             @if ($question->input_type == '7')
-                                style="min-width: 50px"
+                                style="width: 50px; min-width: 50px;"
                             @elseif ($question->input_type == '9')
-                                style="min-width: 500px"
+                                style="width: 500px; min-width: 500px;"
                             @else
-                                style="min-width: 200px"
+                                style="width: 200px; min-width: 200px;"
                             @endif
-                        >O_{{ $question->no }}</th>  
+                            align="center"
+                        ><b>O_{{ $question->no }}</b></th>  
                     @endforeach
-
                 </tr>
             </thead>
             <tbody>
@@ -79,7 +72,6 @@
                             </td>
                         @endforeach
                     </tr>
-
                     @php
                         $no++;
                     @endphp

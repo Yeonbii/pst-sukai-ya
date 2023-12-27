@@ -37,7 +37,7 @@
 
                     <div class="flex flex-wrap w-full lg:w-auto">
 
-                        <a href="#" target="_blank" class="block w-full lg:w-[150px] font-semibold text-sm bg-slate-400 text-white rounded-md py-2 px-8 mb-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Unduh Data</a>
+                        <a href="/download-data-responden" class="block w-full lg:w-[150px] font-semibold text-sm bg-slate-400 text-white rounded-md py-2 px-8 mb-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Unduh Data</a>
                         
                         <div id="filter-button" class="w-full lg:w-auto lg:min-w-[150px] lg:max-w-[250px] truncate font-semibold text-sm bg-primary text-white rounded-md py-2 px-8 mb-3 lg:ms-3 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">
                             {{ $filter_month }}
@@ -164,7 +164,7 @@
                                             } elseif ($responden->month == '07') {
                                                 $m = 'Jul';
                                             } elseif ($responden->month == '08') {
-                                                $m = 'Agt';
+                                                $m = 'Aug';
                                             } elseif ($responden->month == '09') {
                                                 $m = 'Sept';
                                             } elseif ($responden->month == '10') {

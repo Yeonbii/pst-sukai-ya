@@ -48,7 +48,7 @@ class DashboardController extends Controller
             } elseif ($month == '07') {
                 $m = 'Jul';
             } elseif ($month == '08') {
-                $m = 'Agt';
+                $m = 'Aug';
             } elseif ($month == '09') {
                 $m = 'Sept';
             } elseif ($month == '10') {

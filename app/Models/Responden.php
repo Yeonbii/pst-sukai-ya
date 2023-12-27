@@ -16,11 +16,10 @@ class Responden extends Model
         parent::boot();
     
         static::creating(function ($model) {
-            // Format timestamp sebagai yyyymmdd
-            $timestamp = now()->format('Ymd');
-    
-            // Gabungkan dengan waktu dalam format H:i:s
-            $model->name = $timestamp . now()->format('His') . '_RESPONDEN';
+
+            $timestamp = now()->format('YmdHis');
+            
+            $model->name = $timestamp . '_RESPONDEN';
         });
     }
 

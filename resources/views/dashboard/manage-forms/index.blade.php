@@ -195,8 +195,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            alert('P E R I N G A T A N !!!\nJika Anda melakukan perubahan baik itu MENAMBAHKAN PERTANYAAN, MENGHAPUS PERTANYAAN, MENGUBAH PERTANYAAN, atau MENGUBAH OPSI PERTANYAAN\nmaka sistem akan AUTOMATIS MENGHAPUS SELURUH DATA RESPONDEN PADA DATABASE dan Melakukan CONVERT seluruh data responden yang akan disimpan di Riwayat Data Responden');
-
             var tambahPertanyaan = document.querySelector('#tambah-pertanyaan');
             var listItem = document.querySelectorAll('.list-item');
             var filterButton = document.querySelector('#filter-button');

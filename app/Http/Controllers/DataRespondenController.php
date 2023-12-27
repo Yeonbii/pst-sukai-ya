@@ -49,7 +49,7 @@ class DataRespondenController extends Controller
             } elseif ($v_m == '07') {
                 $m = 'Jul';
             } elseif ($v_m == '08') {
-                $m = 'Agt';
+                $m = 'Aug';
             } elseif ($v_m == '09') {
                 $m = 'Sept';
             } elseif ($v_m == '10') {
@@ -84,12 +84,12 @@ class DataRespondenController extends Controller
 
     public function show(Responden $responden)
     {
-        $questions_i = $responden->questions->where('part_id', 1)->orderBy('no');
-        $questions_s = $responden->questions->where('part_id', 2)->orderBy('no');
-        $questions_sv = $responden->questions->where('part_id', 3)->orderBy('no');
-        $questions_sr = $responden->questions->where('part_id', 4)->orderBy('no');
-        $questions_f = $responden->questions->where('part_id', 5)->orderBy('no');
-        $questions_o = $responden->questions->where('part_id', 6)->orderBy('no');
+        $questions_i = $responden->questions->where('part_id', 1)->sortBy('no');
+        $questions_s = $responden->questions->where('part_id', 2)->sortBy('no');
+        $questions_sv = $responden->questions->where('part_id', 3)->sortBy('no');
+        $questions_sr = $responden->questions->where('part_id', 4)->sortBy('no');
+        $questions_f = $responden->questions->where('part_id', 5)->sortBy('no');
+        $questions_o = $responden->questions->where('part_id', 6)->sortBy('no');
 
         if ($responden->is_read == '0') {
             Responden::where('id', $responden->id)->update(['is_read' => '1']);
@@ -197,8 +197,8 @@ class DataRespondenController extends Controller
     }
 
     public function export()
-    {
-        return Excel::download(new RespondensExport, 'test.xlsx');
+    { 
+        return Excel::download(new RespondensExport, Carbon::now()->format('YmdHis') . '_DATA_RESPONDEN.xlsx');
     }
 
 }

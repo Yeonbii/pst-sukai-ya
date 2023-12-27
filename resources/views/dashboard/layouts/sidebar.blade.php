@@ -28,8 +28,14 @@
                 </li>
                 <li>
                     <a href="/dashboard/data-responden" class="py-2 mx-4 my-4 flex items-center h-[40px] rounded-md transition duration-300 ease-in-out {{ Request::is('dashboard/data-responden*') ? 'selected-menu' : 'unselected-menu' }}">
-                        <i class="fa-solid fa-box-archive text-base mx-5"></i>
+                        <i class="fa-solid fa-users text-base mx-5"></i>
                         <span class="hidden">Data Responden</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/dashboard/archive" class="py-2 mx-4 my-4 flex items-center h-[40px] rounded-md transition duration-300 ease-in-out {{ Request::is('dashboard/archive*') ? 'selected-menu' : 'unselected-menu' }}">
+                        <i class="fa-solid fa-box-archive text-base mx-5"></i>
+                        <span class="hidden">Archive</span>
                     </a>
                 </li>
             </ul>

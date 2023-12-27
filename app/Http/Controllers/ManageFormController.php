@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use Log;
+use Carbon\Carbon;
 use App\Models\Part;
 use App\Models\Chart;
 use App\Models\Option;
+use App\Models\Archive;
 use App\Models\Question;
+use App\Models\Responden;
 use Illuminate\Http\Request;
+use App\Exports\RespondensExport;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ManageFormController extends Controller
 {
@@ -83,6 +88,28 @@ class ManageFormController extends Controller
 
         $validatedData['part_id'] = $part->id;
 
+        // EXPORT EXCEL START
+        if (Responden::count() > 0) {
+            
+            // Proses konvert data responden ke excel
+            $excelFileName = Carbon::now()->format('YmdHis') . '_ARCHIVE_DATA.xlsx';
+            Excel::store(new RespondensExport, $excelFileName, 'public');
+    
+            // Simpan informasi file di entitas Archive
+            Archive::create([
+                'name' => $excelFileName
+            ]);
+    
+            // Hapus semua data Responden
+            $deleteRespondens = Responden::all();
+            
+            foreach ($deleteRespondens as $deleteResponden) {
+                $deleteResponden->delete();
+            }
+
+        }
+        // EXPORT EXCEL END
+
         // Proses untuk mengubah no pada question dengan part yang dipilih jika user menginputkan no yang lebih rendah
         $total = $part->questions()->count() + 1;
 
@@ -92,7 +119,7 @@ class ManageFormController extends Controller
                 ->update(['no' => DB::raw('no + 1')]);
         }
         // Proses Selesai
-
+        
         $question = Question::create($validatedData);
 
         // Proses menginputkan data secara automatis ketika user mimilih input_type berikut
@@ -169,6 +196,28 @@ class ManageFormController extends Controller
         $validatedData['is_locked'] = '0';
 
         $validatedData['part_id'] = $question->part_id;
+
+        // EXPORT EXCEL START
+        if (Responden::count() > 0) {
+            
+            // Proses konvert data responden ke excel
+            $excelFileName = Carbon::now()->format('YmdHis') . '_ARCHIVE_DATA.xlsx';
+            Excel::store(new RespondensExport, $excelFileName, 'public');
+    
+            // Simpan informasi file di entitas Archive
+            Archive::create([
+                'name' => $excelFileName
+            ]);
+    
+            // Hapus semua data Responden
+            $deleteRespondens = Responden::all();
+            
+            foreach ($deleteRespondens as $deleteResponden) {
+                $deleteResponden->delete();
+            }
+
+        }
+        // EXPORT EXCEL END
 
         // Proses untuk mengubah no pada question dengan part yang dipilih
         if ($validatedData['no'] != $question->no) {
@@ -271,7 +320,32 @@ class ManageFormController extends Controller
         if ($question->is_locked == '1') {
             return redirect()->back();
         }
+
+        // EXPORT EXCEL START
+
+        // EXPORT EXCEL START
+        if (Responden::count() > 0) {
+            
+            // Proses konvert data responden ke excel
+            $excelFileName = Carbon::now()->format('YmdHis') . '_ARCHIVE_DATA.xlsx';
+            Excel::store(new RespondensExport, $excelFileName, 'public');
+    
+            // Simpan informasi file di entitas Archive
+            Archive::create([
+                'name' => $excelFileName
+            ]);
+    
+            // Hapus semua data Responden
+            $deleteRespondens = Responden::all();
+            
+            foreach ($deleteRespondens as $deleteResponden) {
+                $deleteResponden->delete();
+            }
+
+        }
+        // EXPORT EXCEL END
         
+
         if ($question->input_type == '5' || $question->input_type == '6') {
             // Hapus data pada entitas Option jika input_type = 5 atau 6
             Option::where('question_id', '=', $question->id)->delete();
@@ -322,6 +396,29 @@ class ManageFormController extends Controller
 
     public function storeOptions(Request $request, Question $question) 
     {
+        // EXPORT EXCEL START
+        if (Responden::count() > 0) {
+            
+            // Proses konvert data responden ke excel
+            $excelFileName = Carbon::now()->format('YmdHis') . '_ARCHIVE_DATA.xlsx';
+            Excel::store(new RespondensExport, $excelFileName, 'public');
+    
+            // Simpan informasi file di entitas Archive
+            Archive::create([
+                'name' => $excelFileName
+            ]);
+    
+            // Hapus semua data Responden
+            $deleteRespondens = Responden::all();
+            
+            foreach ($deleteRespondens as $deleteResponden) {
+                $deleteResponden->delete();
+            }
+
+        }
+        // EXPORT EXCEL END
+
+
         $change = 0;
         if ($question->input_type == '5') {
             $number = $question->option_number;

@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DataRespondenController;
 use App\Http\Controllers\ManageFormController;
+use App\Http\Controllers\DataRespondenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,9 @@ Route::post('/dashboard/data-responden', [DataRespondenController::class, 'readA
 Route::get('/dashboard/data-responden/{responden:id}/show', [DataRespondenController::class, 'show'])->middleware('auth');
 Route::delete('/dashboard/data-responden/{responden:id}', [DataRespondenController::class, 'destroy'])->middleware('auth');
 
+Route::get('/dashboard/archive', [ArchiveController::class, 'index'])->middleware('auth');
+Route::post('/dashboard/archive', [ArchiveController::class, 'destroyAll'])->middleware('auth');
+Route::delete('/dashboard/archive/{archive:id}', [ArchiveController::class, 'destroy'])->middleware('auth');
 
 Route::get('/form', [FormController::class, 'index']);
 
@@ -90,4 +94,4 @@ Route::post('/form/confirm', [FormController::class, 'storeConfirm']);
 Route::get('/form/done', [FormController::class, 'done']);
 
 Route::get('/321test123', [DataRespondenController::class, 'test123'])->middleware('auth');;
-Route::get('/321test123/download', [DataRespondenController::class, 'export'])->middleware('auth');;
+Route::get('/download-data-responden', [DataRespondenController::class, 'export'])->middleware('auth');;
