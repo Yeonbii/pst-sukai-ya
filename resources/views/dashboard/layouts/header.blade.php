@@ -22,9 +22,6 @@
                             <a href="/" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Beranda</a>
                         </li>
                         <li class="group">
-                            <a href="#" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Admin Setting</a>
-                        </li>
-                        <li class="group">
                             <form action="/logout" method="post">
                                 @csrf
                                 <button type="submit" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Logout</button>

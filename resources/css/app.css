@@ -15,7 +15,7 @@
 
 /* Perubahan navbar ketika di scroll */
 .navbar-fixed {
-    @apply fixed z-[9999] bg-opacity-90;
+    @apply fixed z-[99] bg-opacity-90;
     backdrop-filter: blur(5px);
     box-shadow: inset 0 -1px 0 0 rgb(0, 0, 0, 0.2);
 }

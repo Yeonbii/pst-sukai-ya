@@ -2,6 +2,19 @@
 
 @section('container')
 
+        {{-- Contact Options Start --}}
+        <div id="warning" class="fixed flex z-[99] inset-0 bg-black bg-opacity-50 p-4">
+            <div class="bg-white w-full max-w-lg m-auto rounded-md p-3">
+                <h3 class="text-3xl font-bold text-primary text-center mb-5">PERINGATAN</h3>
+                <p class="mb-5">
+                    Jika terjadi perubahan pada Pertanyaan Form, maka sistem akan <span class="text-red-500">menghapus seluruh data responden</span> dan mengkonvertnya ke file excel.<br>
+                    File tersebut bisa dilihat pada <span class="text-primary">Menu Archive</span>
+                </p>   
+                <div class="text-base font-semibold text-white bg-red-500 rounded-md py-2 flex justify-center items-center hover:bg-opacity-70 duration-300 cursor-pointer" onclick="closeWarning()">Tutup</div>
+            </div>
+        </div>
+        {{-- Contact Options End --}}
+
     @if (session()->has('success'))
         <div id="alert-card">
             <div class="w-full mb-5 rounded-md shadow-md font-medium border h-9 p-5 bg-opacity-30 flex items-center border-green-500 bg-green-500 text-green-900">
@@ -195,6 +208,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+
+            // Agar tidak bisa di-scroll saat menu halaman dibuka
+            document.body.classList.add('overflow-hidden');
+
             var tambahPertanyaan = document.querySelector('#tambah-pertanyaan');
             var listItem = document.querySelectorAll('.list-item');
             var filterButton = document.querySelector('#filter-button');
@@ -256,6 +273,13 @@
                 form.submit();
             }, 500); // Ubah nilai ini sesuai kebutuhan (dalam milidetik)
         });
+
+        function closeWarning() {
+            var warning = document.querySelector('#warning');
+            warning.classList.remove('flex');
+            warning.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
         
     </script>    
 

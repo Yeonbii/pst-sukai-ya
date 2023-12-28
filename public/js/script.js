@@ -9,17 +9,13 @@ const menu = document.querySelectorAll('#nav-menu a');
 
 // Contact
 const contact = document.querySelector('#contact');
-const contacts = document.querySelector('#contacts');
-const contactText = document.querySelector('#contact span');
-const openContact = document.querySelector('#open-contact');
-const closeContact = document.querySelector('#close-contact');
 const contactArea = document.querySelector('#contact-area');
+const contactOptions = document.querySelector('#contact-options');
+const closeContact = document.querySelector('#close-contact');
 
 // Foooter
 const copyright = document.querySelector('#copyright');
 
-// Teks Telepon / Fax pada footer
-const copyTelepon = document.querySelector('#copy-telepon');
 
 // Variabel yang akan digunakan untuk action pada tombol Contact
 let isContactClicked = false;
@@ -74,55 +70,16 @@ window.onscroll = function() {
 
 // Ketika Contact di-klik
 contact.addEventListener('click', function() {
+    contactOptions.classList.remove('hidden');
+    contactOptions.classList.add('flex');
+    document.body.classList.add('overflow-hidden');
+});
 
-    // Ketika tombol Contact belum di-klik
-    if (!isContactClicked) {
-        hiddenContacts();
-        isContactClicked = true;
-
-        // Telephone
-        setTimeout(() => {
-            contacts.querySelector('li:nth-child(3)').classList.toggle('opacity-0');
-        }, 100); // Tunggu 300ms sebelum menampilkan Telephone
-
-        // WhatsApp
-        setTimeout(() => {
-            contacts.querySelector('li:nth-child(2)').classList.toggle('opacity-0');
-        }, 200); // Tunggu 200ms sebelum menampilkan WhatsApp
-
-        // Email
-        setTimeout(() => {
-            contacts.querySelector('li:nth-child(1)').classList.toggle('opacity-0');
-        }, 300); // Tunggu 100ms sebelum menampilkan Email
-
-    } else {
-        // Ini ketika Tombol Contact sudah di-klik
-
-        // Email
-        setTimeout(() => {
-            contacts.querySelector('li:nth-child(1)').classList.toggle('opacity-0');
-        }, 100); // Tunggu 100ms sebelum menampilkan Email
-
-        // WhatsApp
-        setTimeout(() => {
-            contacts.querySelector('li:nth-child(2)').classList.toggle('opacity-0');
-        }, 200); // Tunggu 200ms sebelum menampilkan WhatsApp
-
-        // Telephone
-        setTimeout(() => {
-            contacts.querySelector('li:nth-child(3)').classList.toggle('opacity-0');
-        }, 300); // Tunggu 300ms sebelum menampilkan Telephone
-        
-        // Contacts
-        setTimeout(() => {
-            hiddenContacts();
-        }, 400); // Tunggu 400ms sebelum menghilangkan element Contacts
-        
-        isContactClicked = false;
-    }
-
-    openContact.classList.toggle('hidden');
-    closeContact.classList.toggle('hidden');
+// Mentutup Contact Area
+closeContact.addEventListener('click', function() {
+    contactOptions.classList.add('hidden');
+    contactOptions.classList.remove('flex');
+    document.body.classList.remove('overflow-hidden');
 });
 
 // Tombol Menu (Hamburger) di-klik
@@ -139,29 +96,4 @@ menu.forEach(function(element) {
             navMenu.classList.add('hidden');
         }
     });
-});
-
-// Ketika Teks Telepon / Fax pada Footer di-klik
-copyTelepon.addEventListener('click', function() {
-    // Mengakses teks di dalam elemen span dengan id 'no-telepon'
-    const teleponText = document.querySelector('#no-telepon').textContent;
-
-    // Buat elemen textarea sementara
-    const textarea = document.createElement('textarea');
-    textarea.value = teleponText;
-
-    // Tambahkan elemen textarea ke dokumen
-    document.body.appendChild(textarea);
-
-    // Pilih teks dalam elemen textarea
-    textarea.select();
-
-    // Salin teks ke clipboard
-    document.execCommand('copy');
-
-    // Hapus elemen textarea sementara
-    document.body.removeChild(textarea);
-
-    // Menginformasikan pengguna bahwa teks telah disalin
-    alert('Nomor telah disalin');
 });

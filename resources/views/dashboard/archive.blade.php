@@ -51,7 +51,7 @@
                             @foreach ($archives as $archive)
                                 <div class="list-item border-b-2 mb-4 p-2 md:p-7 hover:bg-slate-300 hover:bg-opacity-30">
                                     <div class="flex flex-wrap w-full">
-                                        <a href="{{ asset('storage/' . $archive->name) }}" download="{{ $archive->name }}" class="me-2 mb-2">{{ $archive->name }}</a>
+                                        <a href="{{ asset('storage/' . $archive->name) }}" download="{{ $archive->name }}" class="italic text-blue-500 me-2 mb-2">{{ $archive->name }}</a>
                                         <p class="mb-2 md:ml-auto italic text-slate-400">Created at {{ $archive->created_at->format('d M Y, g:i A') }}</p>
                                     </div>
                                 

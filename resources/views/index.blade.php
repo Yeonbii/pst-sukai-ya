@@ -50,33 +50,59 @@
 
     <!-- Contact Start -->
     <div id="contact-area" class="fixed right-4 bottom-10 lg:right-36 z-10">
-        <div id="contacts" class="hidden w-full">
-            <ul>
-                <!-- Email -->
-                <li class="group opacity-0 my-1 bg-white shadow-lg rounded-full transition-opacity duration-300">
-                    <a href="#" class="text-base font-semibold text-dark py-3 px-4 flex justify-between items-center group-hover:text-primary">Email <i class="fa-solid fa-at"></i></a>
-                </li>
-                <!-- WhatsApp -->
-                <li class="group opacity-0 my-1 bg-white shadow-lg rounded-full transition-opacity duration-300">
-                    <a href="#" class="text-base font-semibold text-dark py-3 px-4 flex justify-between items-center group-hover:text-primary">WhatsApp <i class="fa-brands fa-whatsapp"></i></a>
-                </li>
-                <!-- Telephone -->
-                <li class="group opacity-0 my-1 bg-white shadow-lg rounded-full transition-opacity duration-300">
-                    <a href="#" class="text-base font-semibold text-dark py-3 px-4 flex justify-between items-center group-hover:text-primary">Telephone <i class="fa-solid fa-phone-volume"></i></a>
-                </li>                
-            </ul>
-        </div>
-
         <button id="contact" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out text-white bg-primary py-3 px-4 shadow-lg rounded-full flex justify-between items-center">
             <span class="me-2">Hubungi kami?</span> 
             <span class="w-[25px] text-end">
-                <span id="open-contact"><i class="fa-solid fa-phone-flip"></i></span>
-                <span class="hidden" id="close-contact"><i class="fa-solid fa-xmark"></i></span>
+                <i class="fa-solid fa-phone-flip"></i>
             </span>
         </button>
-
     </div>
     <!-- Contact End -->
+
+    {{-- Contact Options Start --}}
+    <div id="contact-options" class="fixed z-[99] inset-0 bg-black bg-opacity-50 hidden p-4">
+        <div class="bg-white w-full max-w-sm m-auto rounded-md p-3">
+            <ul>
+                <!-- Email -->
+                <li class="group my-1 transition-opacity duration-300">
+                    <div class="text-lg font-semibold py-3 px-4 flex justify-between items-center group-hover:text-primary">
+                        <div>
+                            <p class="text-base text-dark group-hover:text-primary">Email</p>
+                            <p class="text-sm font-normal text-slate-400"><a href="mailto:bps6308@bps.go.id" class="hover:underline" target="_blank">bps6308@bps.go.id</a>, <a href="mailto:bps6308@gmail.com" class="hover:underline" target="_blank">bps6308@gmail.com</a></p>
+                        </div> 
+                        <i class="fa-solid fa-at"></i>
+                    </div>
+                </li>
+
+                <!-- WhatsApp -->
+                <li class="group my-1 transition-opacity duration-300">
+                    <div class="text-lg font-semibold py-3 px-4 flex justify-between items-center group-hover:text-primary">
+                        <div>
+                            <p class="text-base text-dark group-hover:text-primary">WhatsApp</p>
+                            <p class="text-sm font-normal text-slate-400"><a href="https://wa.me/6281917075877" class="hover:underline" target="_blank">wa.me/6281917075877</a></p>
+                        </div> 
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                </li>
+
+                <!-- Telephone -->
+                <li class="group my-1 transition-opacity duration-300">
+                    <div class="text-lg font-semibold py-3 px-4 flex justify-between items-center group-hover:text-primary">
+                        <div>
+                            <p class="text-base text-dark group-hover:text-primary">Telephone/Fax</p>
+                            <p class="text-sm font-normal text-slate-400">0527 61049</p>
+                        </div> 
+                        <i class="fa-solid fa-phone-volume"></i>
+                    </div>
+                </li>
+
+            </ul>
+
+            <div id="close-contact" class="text-base font-semibold text-white bg-primary rounded-md py-2 flex justify-center items-center hover:bg-opacity-70 duration-300 cursor-pointer">Tutup</div>
+
+        </div>
+    </div>
+    {{-- Contact Options End --}}
 
     <!-- Home Section Start-->
     <section id="home" class="pt-36 pb-32 h-auto bg-dark lg:pb-52">
@@ -301,8 +327,8 @@
                             <a href="mailto:bps6308@gmail.com" target="_blank" class="inline-block text-base mb-3 hover:text-primary">bps6308@gmail.com</a>
                         </li>
                         <li>
-                            <p class="inline-block text-base mb-3 hover:text-primary cursor-pointer" id="copy-telepon">
-                                <span id="no-telepon">+62 527 61049</span> (Telepon / Fax)
+                            <p class="inline-block text-base mb-3 hover:text-primary cursor-pointer">
+                                +62 527 61049 (Telepon / Fax)
                             </p>
                         </li>                        
                     </ul>
