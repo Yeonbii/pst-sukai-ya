@@ -21,6 +21,26 @@
             }
         </script>
     @endif
+    
+    @if (session()->has('nothing'))
+        <div id="alert-card">
+            <div class="w-full mb-5 rounded-md shadow-md font-medium border h-9 p-5 bg-opacity-30 flex items-center border-slate-500 bg-slate-500 text-slate-900">
+                <div class="ms-4">
+                    {{ session('nothing') }}
+                </div>
+                <button type="button" class="w-8 h-8 flex justify-center items-center ms-auto" onclick="closeAlert()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <script>
+            var alertCard = document.querySelector('#alert-card');
+            function closeAlert() {
+                alertCard.classList.add('hidden');
+            }
+        </script>
+    @endif
 
     <div class="flex flex-wrap justify-between items-end h-[44px]">
         <div class="w-full md:w-1/2">

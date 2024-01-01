@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ikm;
 use Log;
 use Carbon\Carbon;
 use App\Models\Part;
@@ -105,6 +106,13 @@ class ManageFormController extends Controller
             
             foreach ($deleteRespondens as $deleteResponden) {
                 $deleteResponden->delete();
+            }
+
+            // Hapus semua data Ikm
+            $deleteIkms = Ikm::all();
+            
+            foreach ($deleteIkms as $deleteIkm) {
+                $deleteIkm->delete();
             }
 
         }
@@ -216,6 +224,13 @@ class ManageFormController extends Controller
                 $deleteResponden->delete();
             }
 
+            // Hapus semua data Ikm
+            $deleteIkms = Ikm::all();
+            
+            foreach ($deleteIkms as $deleteIkm) {
+                $deleteIkm->delete();
+            }
+
         }
         // EXPORT EXCEL END
 
@@ -322,8 +337,6 @@ class ManageFormController extends Controller
         }
 
         // EXPORT EXCEL START
-
-        // EXPORT EXCEL START
         if (Responden::count() > 0) {
             
             // Proses konvert data responden ke excel
@@ -340,6 +353,13 @@ class ManageFormController extends Controller
             
             foreach ($deleteRespondens as $deleteResponden) {
                 $deleteResponden->delete();
+            }
+
+            // Hapus semua data Ikm
+            $deleteIkms = Ikm::all();
+            
+            foreach ($deleteIkms as $deleteIkm) {
+                $deleteIkm->delete();
             }
 
         }
@@ -413,6 +433,13 @@ class ManageFormController extends Controller
             
             foreach ($deleteRespondens as $deleteResponden) {
                 $deleteResponden->delete();
+            }
+
+            // Hapus semua data Ikm
+            $deleteIkms = Ikm::all();
+            
+            foreach ($deleteIkms as $deleteIkm) {
+                $deleteIkm->delete();
             }
 
         }

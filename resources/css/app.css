@@ -83,16 +83,16 @@
     @apply bg-slate-300 bg-opacity-30;
 }
 
-/* Input Readonly */
-.readonly {
-    @apply bg-[#afcbeb];
-}
 
 
 
 /* FORM PAGE */
 
 
+/* Input Readonly */
+.readonly {
+    @apply bg-[#afcbeb];
+}
 
 /* Form Service-Rate */
 .unselected-selection {

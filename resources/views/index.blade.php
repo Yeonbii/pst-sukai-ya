@@ -17,18 +17,24 @@
     <header class="top-0 left-0 w-full flex items-center z-10 bg-dark absolute">
         <div class="container">
             <div class="flex items-center justify-between relative">
+
                 <div class="px-4">
                     <a href="#home" class="font-bold text-lg block py-6 text-primary">
                         Pst! Sukai ya
                     </a>
                 </div>
+
                 <div class="flex items-center px-4">
+
+                    {{-- Icon Menu Start --}}
                     <button id="hamburger" name="hamburger" type="button" class="block absolute right-4 lg:hidden">
                         <span class="hamburger-line transition duration-300 ease-in-out origin-top-right"></span>
                         <span class="hamburger-line transition duration-300 ease-in-out"></span>
                         <span class="hamburger-line transition duration-300 ease-in-out origin-bottom-right"></span>
                     </button>
+                    {{-- Icon Menu End --}}
                     
+                    {{-- Nav Menu Start --}}
                     <nav id="nav-menu" class="hidden absolute py-5 bg-white shadow-lg rounded-lg w-full right-0 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none">
                         <ul class="block lg:flex">
                             <li class="group">
@@ -42,13 +48,15 @@
                             </li>
                         </ul>
                     </nav>
+                    {{-- Nav Menu End --}}
+
                 </div>
             </div>
         </div>
     </header>
     <!-- Header End -->
 
-    <!-- Contact Start -->
+    <!-- Button Contact Start -->
     <div id="contact-area" class="fixed right-4 bottom-10 lg:right-36 z-10">
         <button id="contact" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out text-white bg-primary py-3 px-4 shadow-lg rounded-full flex justify-between items-center">
             <span class="me-2">Hubungi kami?</span> 
@@ -57,12 +65,14 @@
             </span>
         </button>
     </div>
-    <!-- Contact End -->
+    <!-- Button Contact End -->
 
     {{-- Contact Options Start --}}
     <div id="contact-options" class="fixed z-[99] inset-0 bg-black bg-opacity-50 hidden p-4">
         <div class="bg-white w-full max-w-sm m-auto rounded-md p-3">
+            
             <ul>
+
                 <!-- Email -->
                 <li class="group my-1 transition-opacity duration-300">
                     <div class="text-lg font-semibold py-3 px-4 flex justify-between items-center group-hover:text-primary">
@@ -134,6 +144,7 @@
     <section id="pst" class="pt-36 pb-32 bg-light">
         <div class="container">
 
+            {{-- Kalimat Pembuka Start --}}
             <div class="w-full px-4">
                 <div class="text-center mb-16">
                     <h4 class="font-semibold text-lg text-primary mb-2">PST</h4>
@@ -141,7 +152,9 @@
                     <p class="max-w-xl mx-auto font-medium text-base md:text-lg text-secondary" data-aos="zoom-in" data-aos-delay="300">Pemberian pelayanan data dan kegiatan statistik dari beberapa jenis pelayanan yang dilakukan secara terpadu melalui satu pintu oleh satu unit kerja sebagai penanggung jawab.</p>
                 </div>
             </div>
-
+            {{-- Kalimat Pembuka End --}}
+            
+            {{-- Service Start --}}
             <div class="w-11/12 px-4 mx-auto">
                 <div class="flex flex-wrap items-center">
                     
@@ -210,6 +223,7 @@
                     <!-- Rokemendasi End -->
                 </div>
             </div>
+            {{-- Service End --}}
 
         </div>
     </section>
@@ -219,6 +233,7 @@
     <section id="bps-hsu" class="pt-36 pb-32 bg-secondary">
         <div class="container">
 
+            {{-- Kalimat Pembuka Start --}}
             <div class="w-full px-4">
                 <div class="text-center mb-16">
                     <h4 class="font-semibold text-lg text-primary mb-2">BPS HSU</h4>
@@ -234,6 +249,7 @@
                     </a>
                 </div>
             </div>
+            {{-- Kalimat Pembuka End --}}
 
             <div class="flex flex-wrap pt-32">
 
@@ -244,16 +260,16 @@
                     <p class="font-medium text-base text-light mb-6 lg:text-lg max-w-xl" data-aos="fade-right" data-aos-delay="300">Menyediakan pembaruan data statistik terkini Kabupaten Hulu Sungai Utara, memudahkan akses informasi bagi masyarakat dan pihak yang tertarik.</p>
                     
                     <!-- Icon Start -->
-                    <div class="flex flex-wrap items-center text-light text-opacity-30">
+                    <div class="flex flex-wrap items-center text-light text-opacity-30" data-aos="fade-up" data-aos-delay="600" data-aos-anchor=".rss-feeds">
 
                         <!-- Berita Resmi Statistik -->
-                        <a href="https://hulusungaiutarakab.bps.go.id/site/rssbrs" target="_blank" class="w-full max-w-[250px] h-9 px-4 mr-3 mb-3 rounded-md flex items-center text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white" data-aos="fade-up" data-aos-delay="600" data-aos-anchor=".rss-feeds">
+                        <a href="https://hulusungaiutarakab.bps.go.id/site/rssbrs" target="_blank" class="w-full max-w-[250px] h-9 px-4 mr-3 mb-3 rounded-md flex items-center text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
                             <i class="fa-solid fa-newspaper"></i>
                             <p class="text-base ms-3">Berita Resmi Statistik</p>   
                         </a>
 
                         <!-- Publikasi-->
-                        <a href="https://hulusungaiutarakab.bps.go.id/site/rsspublikasi" target="_blank" class="w-full max-w-[250px] h-9 px-4 mr-3 mb-3 rounded-md flex items-center text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white" data-aos="fade-up" data-aos-delay="900" data-aos-anchor=".rss-feeds">
+                        <a href="https://hulusungaiutarakab.bps.go.id/site/rsspublikasi" target="_blank" class="w-full max-w-[250px] h-9 px-4 mr-3 mb-3 rounded-md flex items-center text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
                             <i class="fa-regular fa-file-lines"></i>
                             <p class="text-base ms-3">Publikasi</p>   
                         </a>
@@ -265,7 +281,7 @@
                 <!-- RSS Feeds End -->
 
                 <!-- Media Sosial Start -->
-                <div class="w-full px-4 lg:w-1/2" data-aos="fade-up" data-aos-delay="1500">
+                <div class="w-full px-4 lg:w-1/2" data-aos="fade-up" data-aos-delay="900">
                     <h3 class="font-semibold text-white text-2xl mb-4 lg:text-3xl lg:pt-10">Media Sosial</h3>
                     <p class="font-medium text-base text-light mb-6 lg:text-lg">Platform interaktif untuk menyampaikan informasi statistik, berkomunikasi dengan masyarakat, dan memperkuat keterlibatan publik.</p>
 

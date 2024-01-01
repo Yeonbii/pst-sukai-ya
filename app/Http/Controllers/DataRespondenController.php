@@ -198,6 +198,12 @@ class DataRespondenController extends Controller
 
     public function export()
     { 
+        $total = Responden::all()->count();
+
+        if ($total == 0) {
+            return redirect()->back()->with('nothing', 'No responden found.');
+        }
+
         return Excel::download(new RespondensExport, Carbon::now()->format('YmdHis') . '_DATA_RESPONDEN.xlsx');
     }
 

@@ -17,9 +17,10 @@
         </div>
     </div>
 
+    {{-- Tombol Start --}}
     <div class="flex">
-        {{-- <button type="button" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-primary text-white py-2 mx-auto rounded-md w-full md:max-w-xl hover:shadow-lg">Mulai</button> --}}
         <a href="/form/i" class="text-base font-semibold hover:bg-opacity-80 transition duration-300 ease-in-out bg-primary text-white text-center py-2 mx-auto rounded-md w-full md:max-w-4xl hover:shadow-lg">Mulai</a>
     </div>
+    {{-- Tombol End --}}
 
 @endsection

@@ -35,18 +35,28 @@
                 <h2 class="font-bold text-2xl md:text-3xl"><span class="text-primary italic">Admin</span>Dashboard</h2>
             </div>
             <div class="px-4 pt-9 md:px-9 text-black">
-                <form action="/login" method="POST">
+
+                <form action="/login" method="post">
                     @csrf
+
+                    {{-- Kolom Username Start --}}
                     <div class="mb-3">
                         <label for="username" class="text-sm font-semibold mb-1 block">Username</label>
                         <input type="text" name="username" id="username" class="text-sm font-medium border-2 border-slate-300 rounded-md w-full p-2 focus:border-secondary focus:outline-none" autofocus required>
                     </div>
+                    {{-- Kolom Username End --}}
+
+                    {{-- Kolom Password Start --}}
                     <div class="mb-3">
                         <label for="password" class="text-sm font-semibold mb-1 block">Password</label>
                         <input type="password" name="password" id="password" class="text-sm font-medium border-2 border-slate-300 rounded-md w-full p-2 focus:border-secondary focus:outline-none" required>
                     </div>
+                    {{-- Kolom Password ENd --}}
+
                     <button type="submit" class="w-full text-base bg-primary text-white font-semibold rounded-md my-5 py-1 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30">Login</button>
+
                 </form>
+
             </div>
         </div>
         <!-- Login Area End -->
