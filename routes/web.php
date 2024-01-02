@@ -26,7 +26,19 @@ Route::get('/', function () {
     session()->forget([
         'form_i', 'form_s', 'form_sv', 'form_sr', 'form_f', 'form_o', 'form_done'
     ]);
-    return view('index');
+
+    // Kontak yang dapat dihubungi
+    $email_1 = 'bps6308@bps.go.id';
+    $email_2 = 'bps6308@gmail.com';
+    $no_wa = '6281917075877';
+    $no_telp = '0527 61049';
+
+    return view('index', [
+        'email_1' => $email_1,
+        'email_2' => $email_2,
+        'no_wa' => $no_wa,
+        'no_telp' => $no_telp
+    ]);
 });
 
 // Autentikasi login dan logout

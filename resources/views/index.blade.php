@@ -78,7 +78,7 @@
                     <div class="text-lg font-semibold py-3 px-4 flex justify-between items-center group-hover:text-primary">
                         <div>
                             <p class="text-base text-dark group-hover:text-primary">Email</p>
-                            <p class="text-sm font-normal text-slate-400"><a href="mailto:bps6308@bps.go.id" class="hover:underline" target="_blank">bps6308@bps.go.id</a>, <a href="mailto:bps6308@gmail.com" class="hover:underline" target="_blank">bps6308@gmail.com</a></p>
+                            <p class="text-sm font-normal text-slate-400"><a href="mailto:{{ $email_1 }}" class="hover:underline" target="_blank">{{ $email_1 }}</a>, <a href="mailto:{{ $email_2 }}" class="hover:underline" target="_blank">{{ $email_2 }}</a></p>
                         </div> 
                         <i class="fa-solid fa-at"></i>
                     </div>
@@ -89,7 +89,7 @@
                     <div class="text-lg font-semibold py-3 px-4 flex justify-between items-center group-hover:text-primary">
                         <div>
                             <p class="text-base text-dark group-hover:text-primary">WhatsApp</p>
-                            <p class="text-sm font-normal text-slate-400"><a href="https://wa.me/6281917075877" class="hover:underline" target="_blank">wa.me/6281917075877</a></p>
+                            <p class="text-sm font-normal text-slate-400"><a href="https://wa.me/{{ $no_wa }}" class="hover:underline" target="_blank">wa.me/{{ $no_wa }}</a></p>
                         </div> 
                         <i class="fa-brands fa-whatsapp"></i>
                     </div>
@@ -100,7 +100,7 @@
                     <div class="text-lg font-semibold py-3 px-4 flex justify-between items-center group-hover:text-primary">
                         <div>
                             <p class="text-base text-dark group-hover:text-primary">Telephone/Fax</p>
-                            <p class="text-sm font-normal text-slate-400">0527 61049</p>
+                            <p class="text-sm font-normal text-slate-400">{{ $no_telp }}</p>
                         </div> 
                         <i class="fa-solid fa-phone-volume"></i>
                     </div>
@@ -337,14 +337,14 @@
                     <h3 class="font-semibold text-xl text-white mb-5">Kontak</h3>
                     <ul class="text-slate-300">
                         <li>
-                            <a href="mailto:bps6308@bps.go.id" target="_blank" class="inline-block text-base mb-3 hover:text-primary">bps6308@bps.go.id</a>
+                            <a href="mailto:{{ $email_1 }}" target="_blank" class="inline-block text-base mb-3 hover:text-primary">{{ $email_1 }}</a>
                         </li>
                         <li>
-                            <a href="mailto:bps6308@gmail.com" target="_blank" class="inline-block text-base mb-3 hover:text-primary">bps6308@gmail.com</a>
+                            <a href="mailto:{{ $email_2 }}" target="_blank" class="inline-block text-base mb-3 hover:text-primary">{{ $email_2 }}</a>
                         </li>
                         <li>
                             <p class="inline-block text-base mb-3 hover:text-primary cursor-pointer">
-                                +62 527 61049 (Telepon / Fax)
+                                {{ $no_telp }} (Telepon / Fax)
                             </p>
                         </li>                        
                     </ul>

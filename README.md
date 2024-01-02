@@ -31,22 +31,16 @@ npm run build
 
 # Dokumentasi
 
-### 1. Admin Username dan Password
-
-Silahkan buka file **DatabaseSeeder.php** pada *database/seeders/* dan pergi ke baris 22.
-
-Jika ada yang diubah, maka setelah selesai mengganti jalankan command ini
-
+### Admin Username dan Password
+- Silahkan buka file **DatabaseSeeder.php** pada *database/seeders/* dan pergi ke baris 22
+- Jika ada yang diubah, maka setelah selesai mengganti jalankan command ini
 ```sh
 php artisan migrate --seed
 ```
-
-### 2. Tema Warna Website
-
-Silahkan buka file **tailwind.config.js** dan pergi ke baris 14.
-
-Jika ada yang ingin diubah, maka ubah bagian nilainya saja dan jangan ubah nama variabelnya.
-
-### 3. Warna pada Pie Chart
-
-Silahkan buka file **DashboardController.php** dan pergi ke baris 84.
+### Tema Warna Website
+- Silahkan buka file **tailwind.config.js** dan pergi ke baris 14
+- Jika ada yang ingin diubah, maka ubah bagian nilainya saja dan jangan ubah nama variabelnya
+### Warna pada Pie Chart
+- Silahkan buka file **DashboardController.php** dan pergi ke baris 84
+### Kontak yang bisa dihubungi oleh User Umum
+- Silahkan buka file **web.php** pada *routes/* dan pergi ke baris 30
