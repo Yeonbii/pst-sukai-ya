@@ -33,7 +33,7 @@ npm run build
 
 ### 1. Admin Username dan Password
 
-Silahkan buka file **DatabaseSeeder.php** pada *database/seeders/*, dan pergi ke baris 22.
+Silahkan buka file **DatabaseSeeder.php** pada *database/seeders/* dan pergi ke baris 22.
 
 Jika ada yang diubah, maka setelah selesai mengganti jalankan command ini
 
