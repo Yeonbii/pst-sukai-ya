@@ -44,3 +44,5 @@ php artisan migrate --seed
 - Silahkan buka file **DashboardController.php** dan pergi ke baris 84
 ### Kontak yang bisa dihubungi oleh User Umum
 - Silahkan buka file **web.php** pada *routes/* dan pergi ke baris 30
+### Medsos yang bisa dikunjungi oleh User Umum
+- Silahkan buka file **web.php** pada *routes/* dan pergi ke baris 36

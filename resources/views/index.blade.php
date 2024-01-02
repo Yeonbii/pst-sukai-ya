@@ -289,22 +289,22 @@
                     <div class="flex items-center">
 
                         <!-- Facebook -->
-                        <a href="https://www.facebook.com/bpshsu" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-light text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
+                        <a href="{{ $facebook }}" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-light text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
                             <i class="fa-brands fa-facebook-f"></i>
                         </a>
 
                         <!-- Instagram -->
-                        <a href="https://www.instagram.com/bps_hsu" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-light text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
+                        <a href="{{ $instagram }}" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-light text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
                             <i class="fa-brands fa-instagram"></i>
                         </a>
 
                         <!-- Twitter -->
-                        <a href="https://twitter.com/bps_statistics" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-light text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
+                        <a href="{{ $twitter }}" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-light text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
                             <i class="fa-brands fa-x-twitter"></i>
                         </a>
 
                         <!-- Youtube -->
-                        <a href="https://www.youtube.com/c/BPSHSU" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-light text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
+                        <a href="{{ $youtube }}" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-light text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
                             <i class="fa-brands fa-youtube"></i>
                         </a>
 
@@ -373,22 +373,22 @@
                 <div class="flex items-center justify-center mb-5">
 
                     <!-- Facebook -->
-                    <a href="https://www.facebook.com/bpshsu" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-light text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
+                    <a href="{{ $facebook }}" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-light text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
 
                     <!-- Instagram -->
-                    <a href="https://www.instagram.com/bps_hsu" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-light text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
+                    <a href="{{ $instagram }}" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-light text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
 
                     <!-- Twitter -->
-                    <a href="https://twitter.com/bps_statistics" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-light text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
+                    <a href="{{ $twitter }}" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-light text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
                         <i class="fa-brands fa-x-twitter"></i>
                     </a>
 
                     <!-- Youtube -->
-                    <a href="https://www.youtube.com/c/BPSHSU" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-light text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
+                    <a href="{{ $youtube }}" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center text-light text-opacity-30 border border-light border-opacity-30 hover:border-primary hover:bg-primary hover:text-white">
                         <i class="fa-brands fa-youtube"></i>
                     </a>
 
@@ -396,7 +396,7 @@
                 <!-- Icon End -->
 
                 <!-- Untuk tulisan COPYRIGT, sementara itu dulu :) -->
-                <p class="font-medium text-[0.75rem] text-slate-500 text-center">Dibuat dengan <span class="font-semibold text-primary">╰(*°▽°*)╯</span> menggunakan <a href="https://tailwindcss.com" target="_blank" class="font-bold text-sky-500">Tailwind CSS</a>.</p>
+                <p class="font-medium text-[0.75rem] text-slate-500 text-center">Dibuat dengan <span class="font-semibold text-primary">╰(*°▽°*)╯</span> menggunakan <a href="https://laravel.com/" target="_blank" class="font-bold text-red-500">Laravel</a>, <a href="https://tailwindcss.com" target="_blank" class="font-bold text-sky-500">Tailwind CSS</a>, dan <a href="https://www.chartjs.org/" target="_blank" class="font-bold text-rose-400">Chart.js</a>.</p>
 
             </div>
         </div>

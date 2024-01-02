@@ -33,11 +33,21 @@ Route::get('/', function () {
     $no_wa = '6281917075877';
     $no_telp = '0527 61049';
 
+    // Medsos
+    $facebook = 'https://www.facebook.com/bpshsu';
+    $instagram = 'https://www.instagram.com/bps_hsu';
+    $twitter = 'https://twitter.com/bps_statistics';
+    $youtube = 'https://www.youtube.com/c/bpshsu'; 
+
     return view('index', [
         'email_1' => $email_1,
         'email_2' => $email_2,
         'no_wa' => $no_wa,
-        'no_telp' => $no_telp
+        'no_telp' => $no_telp,
+        'facebook' => $facebook,
+        'instagram' => $instagram,
+        'twitter' => $twitter,
+        'youtube' => $youtube
     ]);
 });
 
