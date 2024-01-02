@@ -15,22 +15,29 @@ class DataRespondenController extends Controller
     
     public function index(Request $request)
     {
+        // Mengambil semua data responden yang diurutkan berdasarkan waktu terbaru
         $respondens = Responden::filter(request(['is_read', 'year', 'month']))->latest();
         $total = $respondens->count();
-        $filter_all = '';
-        $filter_month = 'Filter Bulan';
-        $check_read = $request->has('is_read');
-        $check_month = $request->has('month');
         
+        // Digunakan untuk tampilam Judul Halaman, '' jika belum terjadi filter
+        $filter_all = '';
+
+        // Digunakan untuk tampilan tombol Filter Month
+        $filter_month = 'Filter Bulan';
+        
+        // Mengambil nilai waktu sekarang
         $current_date = Carbon::now();
         $year = $current_date->format('Y');
         $month = $current_date->format('m');
-
-        
+          
+        // Pengecekan apakah ada request is_read
+        $check_read = $request->has('is_read');
         if ($check_read) {
             $filter_all = ' - Semua Data Baru';
         }
-
+        
+        // Pengecekan apakah ada request month
+        $check_month = $request->has('month');
         if ($check_month){
             $v_m = request('month');
             $y = request('year');
@@ -64,7 +71,10 @@ class DataRespondenController extends Controller
             $filter_month = 'Filter: ' . $m . ' ' . $y ;
         }
 
+        // Variabel yang akan digunakan pada kolom Year pada Filter Month
         $oldest_year = $year;
+
+        // Jika terdapat Responden, maka $oldest_year akan mengambil nilai berdasarkan Tahun Pelayan Diterima Terlama pada Entitas Responden
         if(Responden::all()->count() > 0) {
             $oldest_year = Responden::orderBy('year', 'asc')->first()->year;
         }
@@ -91,6 +101,7 @@ class DataRespondenController extends Controller
         $questions_f = $responden->questions->where('part_id', 5)->sortBy('no');
         $questions_o = $responden->questions->where('part_id', 6)->sortBy('no');
 
+        // Memperbahrui nilai is_read data responden yang dipilih menjadi is_read = 1 (Sudah dibaca)
         if ($responden->is_read == '0') {
             Responden::where('id', $responden->id)->update(['is_read' => '1']);
         }
@@ -149,6 +160,7 @@ class DataRespondenController extends Controller
 
     public function readAll()
     {
+        // Memperbaharui semua nilai is_read Responden yang bernilai '0' (belum dibaca) menjadi '1' (Sudah dibaca)
         Responden::where('is_read', '0')->update([
             'is_read' => '1',
         ]);
@@ -156,50 +168,11 @@ class DataRespondenController extends Controller
         return redirect()->back();
     }
 
-    // Test table
-    public function test123()
-    {
-        $questions_i = Question::where('part_id', 1)->orderBy('no')->get();
-        $questions_s = Question::where('part_id', 2)->orderBy('no')->get();
-        $questions_sv = Question::where('part_id', 3)->orderBy('no')->get();
-        $questions_sr = Question::where('part_id', 4)->orderBy('no')->get();
-        $questions_f = Question::where('part_id', 5)->orderBy('no')->get();
-        $questions_o = Question::where('part_id', 6)->orderBy('no')->get();
-
-        $total_i = $questions_i->count();
-        $total_s = $questions_s->count();
-        $total_sv = $questions_sv->count();
-        $total_sr = $questions_sr->count();
-        $total_f = $questions_f->count();
-        $total_o = $questions_o->count();
-
-        $respondens = Responden::with('questions')->orderBy('year')->orderBy('month')->get();
-
-        if ($respondens->count() < 1) {
-            return redirect('/some-errors');
-        }
-
-        return view('dashboard.data-responden.test', [
-            'questions_i' => $questions_i,
-            'questions_s' => $questions_s,
-            'questions_sv' => $questions_sv,
-            'questions_sr' => $questions_sr,
-            'questions_f' => $questions_f,
-            'questions_o' => $questions_o,
-            'total_i' => $total_i,
-            'total_s' => $total_s,
-            'total_sv' => $total_sv,
-            'total_sr' => $total_sr,
-            'total_f' => $total_f,
-            'total_o' => $total_o,
-            'respondens' => $respondens
-        ]);
-    }
-
     public function export()
     { 
         $total = Responden::all()->count();
 
+        // JIka tidak ada responden
         if ($total == 0) {
             return redirect()->back()->with('nothing', 'No responden found.');
         }

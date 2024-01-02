@@ -12,18 +12,17 @@ class FormController extends Controller
 {
     public function index()
     {
-        session()->forget('form_i');
-        session()->forget('form_s');
-        session()->forget('form_sv');
-        session()->forget('form_sr');
-        session()->forget('form_f');
-        session()->forget('form_o');
-        session()->forget('form_done');
+        // Menhapus sesi
+        session()->forget([
+            'form_i', 'form_s', 'form_sv', 'form_sr', 'form_f', 'form_o', 'form_done'
+        ]);
+        
         return view('forms.index');
     }
 
     public function formIdentity()
     {
+        // Inisialiasi dengan nilai sesi, jika tidak ada maka akan bernilai array kosong []
         $form_i = session('form_i', []);
 
         $questions_i = Question::where('part_id', 1)->orderBy('no')->get();
@@ -34,6 +33,7 @@ class FormController extends Controller
                 'form_i' => $form_i
             ]);
         } else {
+            // JIka tidak ada pertanyaan maka arahkan ke halaman error
             return redirect('/some-error');
         }
     }
@@ -43,8 +43,10 @@ class FormController extends Controller
         $questions_i = Question::where('part_id', 1)->orderBy('no')->get();
         $total_question = $questions_i->count();
 
+        // Inisialiasai sebagai array kosong
         $form_i = [];
 
+        // Melakukan validasi sesuai jumlah pertanyaan yang ada
         for ($i = 1; $i <= $total_question; $i++) {
             // Aturan validasi
             $validationRules = [
@@ -55,8 +57,7 @@ class FormController extends Controller
             $form_i += $request->validate($validationRules);
         }
 
-        // dd($form_i);
-
+        // Simpan nilai ke sesi
         session(['form_i' => $form_i]);
 
         return redirect('/form/s');
@@ -64,9 +65,11 @@ class FormController extends Controller
 
     public function formService()
     {
+        // Inisialiasi dengan nilai sesi, jika tidak ada maka akan bernilai array kosong []
         $form_i = session('form_i', []);
         $form_s = session('form_s', []);
 
+        // Jika $form_i bernilai kosong, maka akan dikembalikan ke /form
         if (empty($form_i)) {
             return redirect('/form');
         }
@@ -79,6 +82,7 @@ class FormController extends Controller
                 'form_s' => $form_s
             ]);
         } else {
+            // JIka tidak ada pertanyaan maka arahkan ke halaman /form
             return redirect('/form');
         }
     }
@@ -88,8 +92,10 @@ class FormController extends Controller
         $questions_s = Question::where('part_id', 2)->orderBy('no')->get();
         $total_question = $questions_s->count();
 
+        // Inisialisasi sebagai array kosong
         $form_s = [];
 
+        // Melakukan validasi sesuai jumlah pertanyaan yang ada
         for ($i = 1; $i <= $total_question; $i++) {
             // Aturan validasi
             $validationRules = [
@@ -100,18 +106,19 @@ class FormController extends Controller
             $form_s += $request->validate($validationRules);
         }
 
+        // Simpan nilai ke sesi
         session(['form_s' => $form_s]);
-
-        // dd($form_s);
 
         return redirect('/form/sv');
     }
 
     public function formServiceValue()
     {
+        // Inisialiasi dengan nilai sesi, jika tidak ada maka akan bernilai array kosong []
         $form_s = session('form_s', []);
         $form_sv = session('form_sv', []);
 
+        // Jika $form_s bernilai kosong, maka akan dikembalikan ke /form
         if (empty($form_s)) {
             return redirect('/form');
         }
@@ -124,6 +131,7 @@ class FormController extends Controller
                 'form_sv' => $form_sv
             ]);
         } else {
+            // JIka tidak ada pertanyaan maka arahkan ke halaman /form
             return redirect('/form');
         }
     }
@@ -133,8 +141,10 @@ class FormController extends Controller
         $questions_sv = Question::where('part_id', 3)->orderBy('no')->get();
         $total_question = $questions_sv->count();
 
+        // Inisialisasi sebagai array kosong
         $form_sv = [];
 
+        // Melakukan validasi sesuai jumlah pertanyaan yang ada
         for ($i = 1; $i <= $total_question; $i++) {
             // Aturan validasi
             $validationRules = [
@@ -145,18 +155,19 @@ class FormController extends Controller
             $form_sv += $request->validate($validationRules);
         }
 
+        // Simpan nilai ke sesi
         session(['form_sv' => $form_sv]);
-
-        // dd($form_sv);
 
         return redirect('/form/sr');
     }
 
     public function formServiceRate()
     {
+        // Inisialiasi dengan nilai sesi, jika tidak ada maka akan bernilai array kosong []
         $form_sv = session('form_sv', []);
         $form_sr = session('form_sr', []);
 
+        // Jika $form_sv bernilai kosong, maka akan dikembalikan ke /form
         if (empty($form_sv)) {
             return redirect('/form');
         }
@@ -169,6 +180,7 @@ class FormController extends Controller
                 'form_sr' => $form_sr
             ]);
         } else {
+            // JIka tidak ada pertanyaan maka arahkan ke halaman /form
             return redirect('/form');
         }
     }
@@ -178,8 +190,10 @@ class FormController extends Controller
         $questions_sr = Question::where('part_id', 4)->orderBy('no')->get();
         $total_question = $questions_sr->count();
 
+        // Inisialisasi sebagai array kosong
         $form_sr = [];
 
+        // Melakukan validasi sesuai jumlah pertanyaan yang ada
         for ($i = 1; $i <= $total_question; $i++) {
             // Aturan validasi
             $validationRules = [
@@ -190,18 +204,19 @@ class FormController extends Controller
             $form_sr += $request->validate($validationRules);
         }
 
+        // Simpan nilai ke sesi
         session(['form_sr' => $form_sr]);
-
-        // dd($form_sr);
 
         return redirect('/form/f');
     }
 
     public function formFeedback()
     {
+        // Inisialiasi dengan nilai sesi, jika tidak ada maka akan bernilai array kosong []
         $form_sr = session('form_sr', []);
         $form_f = session('form_f', []);
         
+        // Jika $form_sr bernilai kosong, maka akan dikembalikan ke /form
         if (empty($form_sr)) {
             return redirect('/form');
         }
@@ -214,6 +229,7 @@ class FormController extends Controller
                 'form_f' => $form_f
             ]);
         } else {
+            // JIka tidak ada pertanyaan maka arahkan ke halaman /form
             return redirect('/form');
         }
     }
@@ -223,8 +239,10 @@ class FormController extends Controller
         $questions_f = Question::where('part_id', 5)->orderBy('no')->get();
         $total_question = $questions_f->count();
 
+        // Inisialisasi sebagai array kosong
         $form_f = [];
 
+        // Melakukan validasi sesuai jumlah pertanyaan yang ada
         for ($i = 1; $i <= $total_question; $i++) {
             // Aturan validasi
             $validationRules = [
@@ -235,6 +253,7 @@ class FormController extends Controller
             $form_f += $request->validate($validationRules);
         }
 
+        // Simpan nilai ke sesi
         session(['form_f' => $form_f]);
 
         return redirect('/form/o');
@@ -242,9 +261,11 @@ class FormController extends Controller
 
     public function formOthers()
     {
+        // Inisialiasi dengan nilai sesi, jika tidak ada maka akan bernilai array kosong []
         $form_f = session('form_f', []);
         $form_o = session('form_o', []);
         
+        // Jika $form_f bernilai kosong, maka akan dikembalikan ke /form
         if (empty($form_f)) {
             return redirect('/form');
         }
@@ -257,6 +278,7 @@ class FormController extends Controller
                 'form_o' => $form_o
             ]);
         } else {
+            // JIka tidak ada pertanyaan maka arahkan ke halaman /form
             return redirect('/form');
         }
     }
@@ -266,8 +288,10 @@ class FormController extends Controller
         $questions_o = Question::where('part_id', 6)->orderBy('no')->get();
         $total_question = $questions_o->count();
 
+        // Inisialisasi sebagai array kosong
         $form_o = [];
 
+        // Melakukan validasi sesuai jumlah pertanyaan yang ada
         for ($i = 1; $i <= $total_question; $i++) {
             // Aturan validasi
             $validationRules = [
@@ -278,6 +302,7 @@ class FormController extends Controller
             $form_o += $request->validate($validationRules);
         }
 
+        // Simpan nilai ke sesi
         session(['form_o' => $form_o]);
 
         return redirect('/form/confirm');
@@ -285,6 +310,7 @@ class FormController extends Controller
 
     public function confirm()
     {
+        // Inisialiasi dengan nilai sesi, jika tidak ada maka akan bernilai array kosong []
         $form_i = session('form_i', []);
         $form_s = session('form_s', []);
         $form_sv = session('form_sv', []);
@@ -292,6 +318,7 @@ class FormController extends Controller
         $form_f = session('form_f', []);
         $form_o = session('form_o', []);
         
+        // Jika $form_o bernilai kosong, maka akan dikembalikan ke /form
         if (empty($form_o)) {
             return redirect('/form');
         }
@@ -309,12 +336,14 @@ class FormController extends Controller
                 'form_o' => $form_o
             ]);
         } else {
+            // JIka tidak ada pertanyaan maka arahkan ke halaman /form
             return redirect('/form');
         }
     }
 
     public function storeConfirm()
     {
+        // Inisialiasi dengan nilai sesi, jika tidak ada maka akan bernilai array kosong []
         $form_i = session('form_i', []);
         $form_s = session('form_s', []);
         $form_sv = session('form_sv', []);
@@ -322,8 +351,7 @@ class FormController extends Controller
         $form_f = session('form_f', []);
         $form_o = session('form_o', []);
 
-        // dd($form_i, $form_s, $form_sv, $form_sr, $form_f, $form_o);
-
+        // Membuat Data Responden baru
         $responden = Responden::create([
             'is_read' => '0'
         ]);
@@ -334,9 +362,9 @@ class FormController extends Controller
 
         if ($total > 0) {
             for ($i = 0; $i < $total; $i++) {
-                // dd($question_i[$i]->id, $form_i['i_' . ($i + 1)]);
                 $question_id = $question_i[$i]->id;
     
+                // Membuat data baru pada tabel Answers
                 $responden->questions()->attach($question_id, [
                     'value' => $form_i['i_' . ($i + 1)]
                 ]);
@@ -351,6 +379,7 @@ class FormController extends Controller
             for ($i = 0; $i < $total; $i++) {
                 $question_id = $question_s[$i]->id;
     
+                // Membuat data baru pada tabel Answers
                 $responden->questions()->attach($question_id, [
                     'value' => $form_s['s_' . ($i + 1)]
                 ]);
@@ -362,6 +391,7 @@ class FormController extends Controller
         $month = $carbonDate->format('m');
         $year = $carbonDate->format('Y');
 
+        // Memperbaharui data responden baru
         $responden->update([
             'month' => $month,
             'year' => $year
@@ -379,13 +409,16 @@ class FormController extends Controller
             for ($i = 0; $i < $total; $i++) {
                 $question_id = $question_sv[$i]->id;
     
+                // Membuat data baru pada tabel Answers
                 $responden->questions()->attach($question_id, [
                     'value' => $form_sv['sv_' . ($i + 1)]
                 ]);
 
+                // Mencari dan mengambil data Ikm untuk Unsur yang sesuai
                 $ikm = $ikms->where('unsur', 'U'.($i+1))->first();
 
                 if (!$ikm) {
+                    // Jika Unsur tidak ada, maka akan dibuatkan yang baru
 
                     $value = floatval($form_sv['sv_' . ($i + 1)]) / $total;
 
@@ -397,7 +430,10 @@ class FormController extends Controller
                     ]);
 
                 } else {
+                    // JIka Unsur ada, maka nilai value akan diperbaharui
+
                     $bil = 0;
+
                     for ($j = 0; $j < $total_responden; $j++) {
                         // Menggunakan relasi questions pada objek Responden untuk mendapatkan objek Question
                         $question = $responden_sv[$j]->questions->where('id', $question_id)->first();
@@ -419,9 +455,6 @@ class FormController extends Controller
             }
         }
 
-       
-
-
         // PART RATING PELAYANAN
         $question_sr = Question::where('part_id', 4)->orderBy('no')->get();
         $total = $question_sr->count();
@@ -430,6 +463,7 @@ class FormController extends Controller
             for ($i = 0; $i < $total; $i++) {
                 $question_id = $question_sr[$i]->id;
     
+                // Membuat data baru pada tabel Answers
                 $responden->questions()->attach($question_id, [
                     'value' => $form_sr['sr_' . ($i + 1)]
                 ]);
@@ -444,6 +478,7 @@ class FormController extends Controller
             for ($i = 0; $i < $total; $i++) {
                 $question_id = $question_f[$i]->id;
     
+                // Membuat data baru pada tabel Answers
                 $responden->questions()->attach($question_id, [
                     'value' => $form_f['f_' . ($i + 1)]
                 ]);
@@ -458,19 +493,19 @@ class FormController extends Controller
             for ($i = 0; $i < $total; $i++) {
                 $question_id = $question_o[$i]->id;
     
+                // Membuat data baru pada tabel Answers
                 $responden->questions()->attach($question_id, [
                     'value' => $form_o['o_' . ($i + 1)]
                 ]);
             }
         }
 
-        session()->forget('form_i');
-        session()->forget('form_s');
-        session()->forget('form_sv');
-        session()->forget('form_sr');
-        session()->forget('form_f');
-        session()->forget('form_o');
+        // Menhapus sesi
+        session()->forget([
+            'form_i', 'form_s', 'form_sv', 'form_sr', 'form_f', 'form_o'
+        ]);
 
+        // Simpan Nilai $responden->name ke sesi, ini digunakan agar halaman selanjutnya hanya bisa diakses jika terdapat sesi ini
         session(['form_done' => $responden->name]);
 
         return redirect('/form/done');
@@ -479,12 +514,16 @@ class FormController extends Controller
 
     public function done()
     {
+        // Inisialiasi dengan nilai sesi, jika tidak ada maka akan bernilai array kosong []
         $form_done = session('form_done', []);
+
+        // Jika $form_done bernilai kosong, maka akan dikembalikan ke /form
         if (empty($form_done)) {
             return redirect('/form');
         }
 
         return view('forms.done');
+        
     }
 
 }

@@ -35,7 +35,9 @@ class ArchiveController extends Controller
 
     public function destroy(Archive $archive)
     {
+        // Menghapus data pada database
         Archive::destroy($archive->id);
+        // Menghapus data pada storage
         Storage::delete('public/' . $archive->name);
         
         return redirect('/dashboard/archive')->with('success', 'Archive has been deleted!');

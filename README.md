@@ -1,28 +1,44 @@
 # PST! Sukai ya
 
-**An information survey website built with Laravel framework and Tailwind CSS.**
+**Sebuah Website Sistem Informasi yang dibuat dengan menggunakan Laravel sebagai Framework PHP, Tailwind CSS sebagai Framework CSS, dan Chart.js untuk pembuatan Pie Chart**
 
-# Initialize
-- First, Run this command
+### Initialize
+- Pertama, jalankan command ini
 ```sh
 cp .env.example .env
 ```
 - Edit .env
-- Run this command
+- Jalankan command ini
 ```sh
 php artisan key:generate
 composer install
 npm install
 php artisan migrate --seed
 ```
-# Running
-- keep this running
+### Running
+- Jalankan dan biarkan command ini berjalan
 ```sh
 npm run dev
 php artisan serve
 ```
-# If the Project is completed and you want to host it
-- Run this command before hosting
+### Jika proyek sudah selesai dan ingin diposting
+- Jalankan command ini sebelum diposting
 ```sh
 npm run build
 ```
+
+# Dokumentasi
+
+### Admin Username dan Password
+Silahkan buka file **DatabaseSeeder.php** pada *database/seeders/*, dan pergi ke baris 22.
+Jika ada yang diubah, maka setelah selesai mengganti jalankan command ini
+```sh
+php artisan migrate --seed
+```
+
+### Tema Warna Website
+Silahkan buka file **tailwind.config.js** dan pergi ke baris 14.
+Jika ada yang ingin diubah, maka ubah bagian nilainya saja dan jangan ubah nama variabelnya.
+
+### Warna pada Pie Chart
+Silahkan buka file **DashboardController.php** dan pergi ke baris 84.

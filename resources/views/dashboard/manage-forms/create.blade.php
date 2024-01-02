@@ -2,12 +2,15 @@
 
 @section('container')
 
+    {{-- Alert Errors Start --}}
     @if ($errors->any())
         <div id="alert-card">
             <div class="w-full mb-5 rounded-md shadow-md font-medium border h-9 p-5 bg-opacity-30 flex items-center border-red-500 bg-red-500 text-red-900">
+                {{-- Isi Alert --}}
                 <div class="ms-4">
                     Terdapat beberapa kesalahan, silahkan ulangi!
                 </div>
+                {{-- Tombol Close --}}
                 <button type="button" class="w-8 h-8 flex justify-center items-center ms-auto" onclick="closeAlert()">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
@@ -15,17 +18,24 @@
         </div>
 
         <script>
+            // Code Tutup Alert
             var alertCard = document.querySelector('#alert-card');
             function closeAlert() {
                 alertCard.classList.add('hidden');
             }
         </script>
     @endif
+    {{-- Alert Errors End --}}
 
+    {{-- Area dibawah Nav Start --}}
     <div class="flex h-[44px] items-end">
         <h3 class="font-semibold text-xl">Manage Form - Tambah Pertanyaan <span class="text-primary">{{ $part->name }}</span></h3>
+        
+        {{-- Disimpan untuk digunakan pada js --}}
         <p id="part_id" class="hidden">{{ $part->id }}</p>
+
     </div>
+    {{-- Area dibawah Nav End --}}
 
     <div class="py-12">
 
@@ -33,9 +43,10 @@
             @csrf
             <div class="w-full">
 
-                {{-- No Start --}}
+                {{-- No Card Start --}}
                 <div id="no_card" class="bg-white rounded-md shadow-md mb-9 p-7">
 
+                    {{-- Kolom No Start --}}
                     <div id="no_div" class="w-full mb-7">
                         <label for="no" class="text-sm font-medium mb-2 block">
                             No
@@ -65,13 +76,15 @@
                             
                         </select>
                     </div>
+                    {{-- Kolom No End --}}
 
                 </div>
-                {{-- No End --}}
+                {{-- No Card End --}}
 
-                {{-- Body Question Start --}}
+                {{-- Body Question Card Start --}}
                 <div id="body_card" class="bg-white rounded-md shadow-md mb-9 p-7">
 
+                    {{-- Kolom Text Start --}}
                     <div id="text_div" class="w-full mb-7">
                         <label for="text" class="text-sm font-medium mb-2 block">
                             Isi Pertanyaan
@@ -79,7 +92,9 @@
                         </label>
                         <input type="text" name="text" id="text" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" required value="{{ old('text') }}">
                     </div>
+                    {{-- Kolom Text End --}}
 
+                    {{-- Kolom is_required Start --}}
                     <div id="is_required_div" class="w-full mb-7">
                         <p class="text-sm font-medium mb-2">
                             Apakah wajib dijawab?
@@ -103,7 +118,9 @@
                         </div>
 
                     </div>
+                    {{-- Kolom is_required End --}}
 
+                    {{-- Kolom need_note Start --}}
                     <div id="need_note_div" class="w-full mb-7">
                         <p class="text-sm font-medium mb-2">
                             Apakah perlu Keterangan?
@@ -127,7 +144,9 @@
                         </div>
 
                     </div>
+                    {{-- Kolom need_note End --}}
 
+                    {{-- Kolom Catatan Start --}}
                     <div id="note_div" class="w-full mb-7 {{ (old('need_note') === '1') ? '' : 'hidden' }}">
                         <label for="note" class="text-sm font-medium mb-2 block">
                             Keterangan
@@ -136,14 +155,16 @@
                         <textarea id="note" name="note" rows="4" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" required>{{ old('note') }}</textarea>
                         <p class="text-sm text-slate-500 mb-2 italic opacity-50">Jika terdapat sebuah link, maka tolong apitkan dengan link*...*link,<br>contoh <span class="font-semibold text-blue-500">link*google.com*link</span></p>
                     </div>
+                    {{-- Kolom Catatan End --}}
 
                 </div>
-                {{-- Body Question End --}}
+                {{-- Body Question Card End --}}
 
 
-                {{-- Input Type Start --}}
+                {{-- Input Type Card Start --}}
                 <div id="input_type_card" class="bg-white rounded-md shadow-md mb-9 p-7 {{ ($part->id == 3 || $part->id == 4 || $part->id == 5) ? 'hidden' : '' }}">
 
+                    {{-- Kolom input_type Start --}}
                     <div id="input_type_div" class="w-full mb-7">
                         <p class="text-sm font-medium mb-2">
                             Tipe Input
@@ -218,17 +239,20 @@
                         </div>
 
                     </div>
+                    {{-- Kolom input_type End --}}
 
                 </div>
-                {{-- Input Type End --}}
+                {{-- Input Type Card End --}}
 
                 {{-- Input Type Area Start --}}
                 <div id="input_type_area">
 
-                    {{-- Input Start --}}
+                    {{-- Input Card Start --}}
                     <div id="input_card" class="bg-white rounded-md shadow-md mb-9 p-7 {{ (old('input_type') === '1') ? '' : 'hidden' }}">
 
                         <p class="text-base font-semibold mb-7 border-b-2 pb-3">Khusus untuk Tipe Input : Input</p>
+                        
+                        {{-- Kolom maks_char Start --}}
                         <div id="maks_char_div" class="w-full mb-7">
                             <label for="maks_char" class="text-sm font-medium mb-2 block">
                                 Batas maksimal karakter yang bisa diinputkan (huruf, termasuk spasi)
@@ -249,15 +273,17 @@
                             @enderror
 
                         </div>
+                        {{-- Kolom maks_char End --}}
 
                     </div>
-                    {{-- Input End --}}
+                    {{-- Input Card End --}}
 
-                    {{-- Select Start --}}
+                    {{-- Select Card Start --}}
                     <div id="select_card" class="bg-white rounded-md shadow-md mb-9 p-7 {{ (old('input_type') === '5') ? '' : 'hidden'  }}">
                         
                         <p class="text-base font-semibold mb-7 border-b-2 pb-3">Khusus untuk Tipe Input : Select dan Rating</p>
 
+                        {{-- Kolom Jumlah Pilihan Start --}}
                         <div id="option_number_div" class="w-full mb-7">
                             <label for="option_number" class="text-sm font-medium mb-2 block">
                                 Jumlah Pilihan
@@ -278,18 +304,20 @@
                             @enderror
 
                         </div>
+                        {{-- Kolom Jumlah Pilihan End --}}
 
                     </div>
-                    {{-- Select End --}}
+                    {{-- Select Card End --}}
 
                 </div>
                 {{-- Input Type Area End --}}
 
-                {{-- Chart Start --}}
+                {{-- Chart Card Start --}}
                 <div id="chart_card" class="bg-white rounded-md shadow-md mb-9 p-7 {{ (old('input_type') === '5' && ($part->id == 1 || $part->id == 2)) ? '' : 'hidden'  }}">
 
                     <p class="text-base font-semibold mb-7 border-b-2 pb-3">Grafik Pie Chart</p>
 
+                    {{-- Kolom has_chart Start --}}
                     <div id="has_chart_div" class="w-full mb-7">
                         <p class="text-sm font-medium mb-2">
                             Apakah ditampilkan sebagai Grafik Pie Chart di Dashboard?
@@ -313,15 +341,22 @@
                         </div>
                         
                     </div>
+                    {{-- Kolom has_chart End --}}
         
                 </div>
-                {{-- Chart End --}}
+                {{-- Chart Card End --}}
 
-
+                {{-- Tombol Start --}}
                 <div class="flex">
+
+                    {{-- Tombol Simpan --}}
                     <button type="submit" class="font-semibold text-sm bg-primary text-white rounded-md mt-2 me-3 py-2 px-8 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center" onclick="return confirm('Are you sure?')">Simpan</button>
+
+                    {{-- Tombol Batal --}}
                     <a href="/dashboard/manage-form" class="font-semibold text-sm bg-slate-400 text-white rounded-md mt-2 py-2 px-8 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Batal</a>
+                    
                 </div>
+                {{-- Tombol End --}}
                 
             </div>
              

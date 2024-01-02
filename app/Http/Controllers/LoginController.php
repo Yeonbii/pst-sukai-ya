@@ -10,13 +10,11 @@ class LoginController extends Controller
     
     public function index() 
     {
-        session()->forget('form_i');
-        session()->forget('form_s');
-        session()->forget('form_sv');
-        session()->forget('form_sr');
-        session()->forget('form_f');
-        session()->forget('form_o');
-        session()->forget('form_done');
+        // Menghapus sesi
+        session()->forget([
+            'form_i', 'form_s', 'form_sv', 'form_sr', 'form_f', 'form_o', 'form_done'
+        ]);
+        
         return view('login');
     }
 

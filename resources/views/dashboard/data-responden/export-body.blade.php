@@ -6,9 +6,9 @@
         <table border="1">
             <thead>
                 <tr>
-                    {{-- Semua yang di style gak diterapkan saat dieksport ke excel --}}
-                    <th align="center" width="50px" style="width: 50px; min-width: 50px;"><b>No</b></th>
-                    <th align="center" width="200px" style="width: 200px; min-width: 200px;"><b>Name</b></th>
+
+                    <th align="center" style="width: 50px; min-width: 50px;"><b>No</b></th>
+                    <th align="center" style="width: 200px; min-width: 200px;"><b>Name</b></th>
 
                     @foreach ($questions_i as $question)
                         <th
@@ -33,11 +33,11 @@
                     @endforeach
 
                     @foreach ($questions_sv as $question)
-                        <th align="center" width="50px" style="width: 50px; min-width: 50px;"><b>SV_{{ $question->no }}</b></th>  
+                        <th align="center" style="width: 50px; min-width: 50px;"><b>SV_{{ $question->no }}</b></th>  
                     @endforeach
 
                     @foreach ($questions_sr as $question)
-                        <th align="center" width="50px" style="width: 50px; min-width: 50px;"><b>SR_{{ $question->no }}</b></th>  
+                        <th align="center" style="width: 50px; min-width: 50px;"><b>SR_{{ $question->no }}</b></th>  
                     @endforeach
                     
                     @foreach ($questions_f as $question)
@@ -64,13 +64,21 @@
                 @endphp
                 @foreach ($respondens as $responden)
                     <tr>
-                        <td align="center" valign="top">{{ $no }}</td>
-                        <td valign="top">{{ $responden->name }}</td>
+
+                        <td align="center" valign="top">
+                            <p>{{ $no }}</p>
+                        </td>
+
+                        <td valign="top">
+                            <p>{{ $responden->name }}</p>
+                        </td>
+
                         @foreach ($responden->questions as $question)
                             <td valign="top" style="{{ ($question->input_type == '6' || $question->input_type == '8') ? 'text-align: center;' : '' }}">
-                                {{ $question->pivot->value }}
+                                <p>{{ $question->pivot->value }}</p>
                             </td>
                         @endforeach
+                        
                     </tr>
                     @php
                         $no++;

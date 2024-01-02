@@ -27,6 +27,7 @@
 
                         {{-- Catatan Pertanyaan Start --}}
                         @if ($question->need_note == 1)
+                            {{-- Proses mengubah Teks Catatan jika terdapat link*...*link --}}
                             @php
                                 $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $question->note);
                             @endphp

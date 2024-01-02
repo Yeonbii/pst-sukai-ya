@@ -4,24 +4,32 @@
     {{-- Script cdn Chart.js --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js" integrity="sha512-JPcRR8yFa8mmCsfrw4TNte1ZvF1e3+1SdGMslZvmrzDYxS69J7J49vkFL8u6u8PlPJK+H3voElBtUCzaXj+6ig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
     <script>
+        // Mengambil nilai colors dari DashboardController
         let colors = @json($colors);
     </script>
 
 
+    {{-- Area dibawah Nav Start --}}
     <div class="flex justify-between items-end h-[44px]">
 
         <h3 class="font-semibold text-xl">Dashboard</h3>
 
-        {{-- Month Picker --}}
+        {{-- Tombol Filter Month --}}
         <div id="filter-button" class="font-semibold w-auto min-w-[150px] max-w-[250px] truncate text-sm bg-primary text-white rounded-md mt-2 py-2 px-8 hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center cursor-pointer">{{ $filter_month }}</div>
 
+        {{-- Filter Month Start  --}}
         <div id="filter-month" class="fixed z-[99] inset-0 bg-black bg-opacity-50 hidden">
+
+            {{-- Area Filter Start --}}
             <div id="filter-area" class="bg-white shadow-lg ms-auto p-4 pt-12 flex flex-col w-[300px]">
                 
                 <p class="font-semibold text-xl text-primary my-5 text-center italic">Pilih Bulan & Tahun</p>
 
                 <form id="month_form" action="/dashboard">
+
+                    {{-- Kolom Tahun Start --}}
                     <div id="year_div" class="w-full mb-7">
                         <label for="year" class="text-sm font-medium mb-2 block">
                             Tahun
@@ -33,7 +41,9 @@
                             @endfor
                         </select>
                     </div>
+                    {{-- Kolom Tahun End --}}
 
+                    {{-- Kolom Bulan Start --}}
                     <div id="month_div" class="w-full mb-7">
                         <label for="month" class="text-sm font-medium mb-2 block">
                             Bulan
@@ -54,20 +64,31 @@
                             <option value="12" {{ ($month == '12') ? 'selected' : '' }}>Desember</option>
                         </select>
                     </div>
+                    {{-- Kolom BUlan End --}}
+
                     <button type="submit" class="text-base font-semibold bg-slate-300 rounded-md w-full p-2 mb-3 flex justify-center items-center hover:bg-opacity-70 duration-300 cursor-pointer">Pilih</button>
+
                 </form>
 
+                {{-- Tombol Untuk Reset ke Bulan Sekarang --}}
                 <a href="/dashboard" class="text-base font-semibold text-white bg-primary rounded-md p-2 mt-auto mb-3 flex justify-center items-center hover:bg-opacity-70 duration-300 cursor-pointer">Bulan Ini</a>
 
                 <div id="close-filter" class="text-base font-semibold text-white bg-dark rounded-md p-2 mb-12 flex justify-center items-center hover:bg-opacity-70 duration-300 cursor-pointer">Tutup</div>
+
             </div>
+            {{-- Area Filter End --}}
             
         </div>
+        {{-- Filter Month End  --}}
 
     </div>
+    {{-- Area dibawah Nav Start --}}
 
+    {{-- Area Index Start --}}
     <div class="index pt-12 pb-9">
+
         <h3 class="font-semibold text-base md:text-xl mb-5">Hasil Hitung Cepat BPS Kabupaten Hulu Sungai Utara</h3>
+        
         <div class="flex flex-wrap">
 
             <!-- Jumlah Responden Start -->
@@ -105,17 +126,23 @@
             <!-- IKM End -->
 
         </div>
-    </div>
 
+    </div>
+    {{-- Area Index End --}}
+
+    {{-- Area Chart Start --}}
     <div class="chart pb-12">
 
+        {{-- Tombol Manage Chart Start --}}
         <a href="/dashboard/manage-chart" class="font-semibold text-base bg-white text-dark flex justify-center items-center w-full rounded-md mb-5 py-2 hover:bg-opacity-70 duration-300 shadow-md">
             Kelola Chart yang akan Ditampilkan
         </a>
 
+        {{-- Proses Pembuatan Chart Start --}}
         @if (($respondens->count() > 0) && ($charts->count() > 0))
 
             <div class="flex flex-wrap">
+
                 @php
                     $no = 1;
                 @endphp
@@ -132,6 +159,8 @@
                                 <div class="w-full px-4 md:px-28 mb-5">
                                     @php
                                         $no_o = 0;
+
+                                        // Membuat array yang bernilai Value dan Count berdasarkan Table Answer
                                         $answerCounts = DB::table('answers')
                                             ->join('respondens', 'answers.responden_id', '=', 'respondens.id')
                                             ->where('answers.question_id', $chart->question_id)
@@ -162,24 +191,36 @@
                                     @endphp
             
                                     @foreach ($chart->question->options as $option)
+                                        
                                         <div class="flex items-center text-sm">
+                                            
+                                            {{-- Menampilkan warna untu option --}}
                                             <div class="h-2 min-w-[28px] me-2" style="background-color: {{ $colors[$no_o % count($colors)] }}"></div>
+
+                                            {{-- Proses Mengubah text option jika terdapat link*...*link --}}
                                             @php
                                                 $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $option->text);
                                             @endphp
+
+                                            {{-- Menampilkan text option --}}
                                             <p class="truncate me-4">
                                                 {!! $modifiedText !!}
                                             </p>
+
+                                            {{-- Menampilkan nilai berupa persentase --}}
                                             <p class="ms-auto">
                                                 @php
                                                     $percentage = number_format(($answers[$option->value] / $totalAnswers) * 100, 1);
                                                 @endphp
                                                 {{ $percentage }}%
                                             </p>
+
                                         </div>
+
                                         @php
                                             $no_o++;
                                         @endphp
+
                                     @endforeach
                                 </div>
                             </div>
@@ -188,21 +229,27 @@
                     {{-- Chart End --}}
             
                     <script>
-                        // Chart
+                        // Mengambil nilai $chartData dari DashboardController
                         let chartData{{ $no }} = @json($chartData);
             
+                        // Inisialisasi array data dan background dengan nilai 0
                         let data{{ $no }} = [];
                         let backgroundColors{{ $no }} = [];
             
                         for (let key in chartData{{ $no }}) {
                             if (chartData{{ $no }}.hasOwnProperty(key)) {
+
+                                // Proses memasukkan nilai chartData.count ke data untuk setiap option
                                 data{{ $no }}.push(chartData{{ $no }}[key].count);
-                                // Memilih warna sesuai urutan
+
+                                // Proses memasukkan nilai colors ke backgroundColors untuk setiap option
                                 let colorIndex = data{{ $no }}.length - 1;
                                 backgroundColors{{ $no }}.push(colors[colorIndex % colors.length]);
+
                             }
                         }
             
+                        // Code chart.js Start
                         const dataConfig{{ $no }} = {
                             datasets: [{
                                 data: data{{ $no }},
@@ -228,25 +275,31 @@
                             document.querySelector('#myChart-{{ $no }}'),
                             chartConfig{{ $no }}
                         );
+                        // Code chart.js End
+
                     </script>
+                    
                     @php
                         $no++;
                     @endphp
+
                 @endforeach
+
             </div> 
 
         @else
-
+            {{-- JIka tidak ada Chart atau tidak ada responden --}}
             <p class="text-center font-semibold text-base mt-10">No chart or responden found.</p>   
-
         @endif
+        {{-- Proses Pembuatan Chart End --}}
 
     </div>
+    {{-- Area Chart End --}}
 
     
 
     <script>
-        // JS umum
+        // Code untuk Filter Month
         var filterButton = document.querySelector('#filter-button');
         var filterMonth = document.querySelector('#filter-month');
         var closeFilter = document.querySelector('#close-filter');

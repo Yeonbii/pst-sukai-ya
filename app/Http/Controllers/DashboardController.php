@@ -15,19 +15,20 @@ class DashboardController extends Controller
     
     public function index(Request $request) 
     {
-        session()->forget('form_i');
-        session()->forget('form_s');
-        session()->forget('form_sv');
-        session()->forget('form_sr');
-        session()->forget('form_f');
-        session()->forget('form_o');
-        session()->forget('form_done');
+        // Membersihkan sesi
+        session()->forget([
+            'form_i', 'form_s', 'form_sv', 'form_sr', 'form_f', 'form_o', 'form_done'
+        ]);
         
+        // Mengambil waktu sekarang
         $current_date = Carbon::now();
         $month = $current_date->format('m'); 
         $year = $current_date->format('Y');
+
+        // Untuk ditampilkan pada tombol Filter Month
         $filter_month = 'Bulan Ini';
 
+        // Pengechekan apakah terdapat request Filter Month
         $check_month = $request->has('month');
         if ($check_month) {
             $month = request('month');
@@ -64,15 +65,22 @@ class DashboardController extends Controller
             $filter_month = $m . ' ' . $year;
         }
 
+        // Variabel yang akan digunakan pada kolom Year pada Filter Month
         $oldest_year = $year;
+
+        // Jika terdapat Responden, maka $oldest_year akan mengambil nilai berdasarkan Tahun Pelayan Diterima Terlama pada Entitas Responden
         if(Responden::all()->count() > 0) {
             $oldest_year = Responden::orderBy('year', 'asc')->first()->year;
         }
 
+        // Menjumlahkan semua value untuk Tahun dan Bulan yang sama kemudian dikali 25 sesuai dengan rumus IKM yang diberikan
         $ikm = Ikm::where('year', $year)->where('month', $month)->sum('value');
         $ikm_result = $ikm * 25;
 
+        // Mengambil data Chart yang mempunya show = 1 (Yes, ditampilkan)
         $charts = Chart::with('question')->where('show', 1)->orderBy('no')->get();
+        
+        // Variabel Array yang akan digunakan untuk warna Pie Chart
         $colors = [
             '#0ea5e9', // Sky
             '#f43f5e', // Rose
@@ -147,6 +155,7 @@ class DashboardController extends Controller
             'show' => 'required',
         ]);
 
+        // Jika ternyata tidak ada yang berganti
         if (($validatedData['no'] == $chart->no) && ($validatedData['show'] == $chart->show)) {
             return redirect('/dashboard/manage-chart')->with('nothing','None of the charts have been updated!');
         }
@@ -172,6 +181,7 @@ class DashboardController extends Controller
 
     public function destroy(Chart $chart)
     {
+        // Memperbaharui nilai no pada semua data chart
         DB::transaction(function () use ($chart) {
             $chartNo = $chart->no;
 
@@ -181,8 +191,9 @@ class DashboardController extends Controller
             
         });
 
+        // Memperbaharui Pertanyaan yang berhubungan pada chart ingin dihapus
         Question::find($chart->question_id)->update([
-            'has_chart' => '0'
+            'has_chart' => '0' // Tidak
         ]);
     
         Chart::find($chart->id)->delete();

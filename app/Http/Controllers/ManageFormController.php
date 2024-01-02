@@ -21,9 +21,13 @@ class ManageFormController extends Controller
     
     public function index(Request $request)
     {
-
+        // Untuk ditampilkan pada tombol Filter Part
         $filter_part = 'Filter Bagian';
+
+        // Mendapatkan nilai search pada request
         $search = $request->input('search');
+
+        // Jika terdapat request part
         if (request('part')) {
             $part = Part::firstWhere('code', request('part'));
             $filter_part = 'Filter Bagian : ' . $part->name;
@@ -62,7 +66,7 @@ class ManageFormController extends Controller
 
     public function create(Part $part) 
     {
-        
+        // + 1 karena akan bertambah 1 pertanyaan baru
         $count = $part->questions()->count() + 1;
         
         return view('dashboard.manage-forms.create', [
@@ -73,8 +77,7 @@ class ManageFormController extends Controller
 
     public function storeQuestion(Request $request, Part $part) 
     {
-        // dd($request, $part);
-   
+
         $validatedData = $request->validate([
             'no' => 'required|numeric',
             'text' => 'required',
@@ -88,6 +91,7 @@ class ManageFormController extends Controller
         ]);
 
         $validatedData['part_id'] = $part->id;
+        $validatedData['is_locked'] = '0';
 
         // EXPORT EXCEL START
         if (Responden::count() > 0) {
@@ -157,6 +161,7 @@ class ManageFormController extends Controller
             }
         }
 
+        // Jika Pertanyaan akan mempunya chart (has_chart = 1), maka akan dibuatkan data baru pada entitas Chart
         DB::transaction(function () use ($validatedData, $question) {
             if ($validatedData['has_chart'] == '1') {
                 Chart::create([
@@ -173,6 +178,7 @@ class ManageFormController extends Controller
 
     public function edit(Question $question) 
     {
+        // Jika Pertanyaan terkunci (tidak bisa diedit), maka arahkan kembali ke halaman sebelumnya
         if ($question->is_locked == '1') {
             return redirect()->back();
         }
@@ -187,7 +193,6 @@ class ManageFormController extends Controller
 
     public function updateQuestion(Request $request, Question $question) 
     {
-        // dd($request, $question);
 
         $validatedData = $request->validate([
             'no' => 'required|numeric',
@@ -332,6 +337,7 @@ class ManageFormController extends Controller
 
     public function destroy(Question $question) 
     {
+        // Jika Pertanyaan terkunci (tidak bisa diedit), maka arahkan kembali ke halaman sebelumnya
         if ($question->is_locked == '1') {
             return redirect()->back();
         }
@@ -399,6 +405,11 @@ class ManageFormController extends Controller
 
     public function editOptions(Question $question) 
     {
+        // Jika Pertanyaan terkunci (tidak bisa diedit), maka arahkan kembali ke halaman sebelumnya
+        if ($question->is_locked == '1') {
+            return redirect()->back();
+        }
+
         if($question->input_type == '5') {
             $input_type = 'Select : (Pilih salah satu)';
         }
@@ -484,6 +495,7 @@ class ManageFormController extends Controller
         }
 
         if ($change == 0) {
+            // Jika tidak ada yang diubah
             return redirect('/dashboard/manage-form')->with('nothing','None of the options have been updated!');
         } else {
             return redirect('/dashboard/manage-form')->with('success','Options has been updated!');

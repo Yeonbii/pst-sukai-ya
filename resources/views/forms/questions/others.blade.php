@@ -30,6 +30,7 @@
 
                             {{-- Catatan Pertanyaan Start --}}
                             @if ($question->need_note == 1)
+                                {{-- Proses mengubah Teks Catatan jika terdapat link*...*link --}}
                                 @php
                                     $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $question->note);
                                 @endphp
@@ -64,6 +65,7 @@
 
                             {{-- Catatan Pertanyaan Start --}}
                             @if ($question->need_note == 1)
+                                {{-- Proses mengubah Teks Catatan jika terdapat link*...*link --}}
                                 @php
                                     $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $question->note);
                                 @endphp
@@ -97,6 +99,7 @@
 
                             {{-- Catatan Pertanyaan Start --}}
                             @if ($question->need_note == 1)
+                                {{-- Proses mengubah Teks Catatan jika terdapat link*...*link --}}
                                 @php
                                     $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $question->note);
                                 @endphp
@@ -130,6 +133,7 @@
 
                             {{-- Catatan Pertanyaan Start --}}
                             @if ($question->need_note == 1)
+                                {{-- Proses mengubah Teks Catatan jika terdapat link*...*link --}}
                                 @php
                                     $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $question->note);
                                 @endphp
@@ -162,6 +166,7 @@
 
                             {{-- Catatan Pertanyaan Start --}}
                             @if ($question->need_note == 1)
+                                {{-- Proses mengubah Teks Catatan jika terdapat link*...*link --}}
                                 @php
                                     $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $question->note);
                                 @endphp
@@ -171,27 +176,36 @@
     
                             {{-- Input Answer Start --}}
                             <div id="o_{{ $no_question }}" class="mt-3">
+                                
                                 @php
                                     $no_option = 1;
                                 @endphp
+
                                 @foreach ($question->options as $option)    
                                     <div class="flex items-center mb-4">
+                                        
                                         <input type="radio" name="o_{{ $no_question }}" id="o_{{ $no_question }}_{{ $no_option }}" value="{{ $option->value }}" class="w-4 h-4 flex-shrink-0"
                                             {{ ($question->is_required == '1') ? 'required' : '' }} 
                                             @if (session()->has('form_o'))
                                                 {{ ($form_o['o_'.$no_question]  == $option->value) ? 'checked' : '' }}
                                             @endif  
                                         >
+
+                                        {{-- Proses mengubah Teks Option jika terdapat link*...*link --}}
                                         @php
                                             $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $option->text);
                                         @endphp
+
                                         <label for="o_{{ $no_question }}_{{ $no_option }}" class="ms-2 text-sm font-medium">
                                             {!! $modifiedText !!}
                                         </label>
+
                                     </div>
+
                                     @php
                                         $no_option++
                                     @endphp
+
                                 @endforeach
     
                             </div>
@@ -212,6 +226,7 @@
 
                             {{-- Catatan Pertanyaan Start --}}
                             @if ($question->need_note == 1)
+                                {{-- Proses mengubah Teks Catatan jika terdapat link*...*link --}}
                                 @php
                                     $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $question->note);
                                 @endphp
@@ -265,6 +280,7 @@
 
                             {{-- Catatan Pertanyaan Start --}}
                             @if ($question->need_note == 1)
+                                {{-- Proses mengubah Teks Catatan jika terdapat link*...*link --}}
                                 @php
                                     $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $question->note);
                                 @endphp

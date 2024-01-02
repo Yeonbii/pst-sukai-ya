@@ -27,6 +27,7 @@
 
                         {{-- Catatan Pertanyaan Start --}}
                         @if ($question->need_note == 1)
+                            {{-- Proses mengubah Teks Catatan jika terdapat link*...*link --}}
                             @php
                                 $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $question->note);
                             @endphp
@@ -41,18 +42,23 @@
                             @endphp
                             @foreach ($question->options as $option)    
                                 <div class="flex items-center mb-4">
+                                    
                                     <input type="radio" name="sv_{{ $no_question }}" id="sv_{{ $no_question }}_{{ $no_option }}" value="{{ $option->value }}" class="w-4 h-4 flex-shrink-0"
                                         {{ ($question->is_required == '1') ? 'required' : '' }} 
                                         @if (session()->has('form_sv'))
                                             {{ ($form_sv['sv_'.$no_question]  == $option->value) ? 'checked' : '' }}
                                         @endif   
                                     >
+
+                                    {{-- Proses mengubah Teks Option jika terdapat link*...*link --}}
                                     @php
                                         $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $option->text);
                                     @endphp
+
                                     <label for="sv_{{ $no_question }}_{{ $no_option }}" class="ms-2 text-sm font-medium">
                                         ({{ $no_option }}) {!! $modifiedText !!}
                                     </label>
+
                                 </div>
                                 @php
                                     $no_option++
