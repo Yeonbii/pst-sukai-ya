@@ -21,8 +21,8 @@ php artisan migrate --seed
 npm run dev
 php artisan serve
 ```
-### Jika proyek sudah selesai dan ingin diposting
-- Jalankan command ini sebelum diposting
+### Jika proyek sudah selesai dan ingin di-hosting
+- Jalankan command ini sebelum di-hosting
 ```sh
 npm run build
 ```
@@ -30,15 +30,21 @@ npm run build
 # Dokumentasi
 
 ### Admin Username dan Password
+
 Silahkan buka file **DatabaseSeeder.php** pada *database/seeders/*, dan pergi ke baris 22.
+
 Jika ada yang diubah, maka setelah selesai mengganti jalankan command ini
+
 ```sh
 php artisan migrate --seed
 ```
 
 ### Tema Warna Website
+
 Silahkan buka file **tailwind.config.js** dan pergi ke baris 14.
+
 Jika ada yang ingin diubah, maka ubah bagian nilainya saja dan jangan ubah nama variabelnya.
 
 ### Warna pada Pie Chart
+
 Silahkan buka file **DashboardController.php** dan pergi ke baris 84.
