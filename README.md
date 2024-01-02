@@ -27,10 +27,9 @@ php artisan serve
 npm run build
 ```
 
-
+---
 
 # Dokumentasi
-
 
 ### Admin Username dan Password
 
@@ -42,13 +41,11 @@ Jika ada yang diubah, maka setelah selesai mengganti jalankan command ini
 php artisan migrate --seed
 ```
 
-
 ### Tema Warna Website
 
 Silahkan buka file **tailwind.config.js** dan pergi ke baris 14.
 
 Jika ada yang ingin diubah, maka ubah bagian nilainya saja dan jangan ubah nama variabelnya.
-
 
 ### Warna pada Pie Chart
 
