@@ -240,7 +240,7 @@
                                     <div class="action-item hidden mb-4 flex-wrap justify-end">
                                         
                                         {{-- Tombol Open --}}
-                                        <a href="/dashboard/data-responden/{{ $responden->id }}/show" class="group h-9 mr-3 px-1 rounded-md flex items-center text-blue-500 hover:opacity-80">
+                                        <a href="/dashboard/data-responden/{{ $responden->id }}/show" target="_blank" class="group h-9 mr-3 px-1 rounded-md flex items-center text-blue-500 hover:opacity-80">
                                             <i class="fa-solid fa-folder-open"></i>
                                             <span class="ms-2 group-hover:underline">Open</span>
                                         </a>
