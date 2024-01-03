@@ -8,14 +8,21 @@ use Illuminate\Support\Facades\Storage;
 
 class ArchiveController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $archives = Archive::latest();
+        $archives = Archive::simplePaginate(10)->withQueryString();
+
+        // Kode untuk mengurutkan data dari yang terbaru
+        $latest = request('latest');
+        if ($latest == 'yes') {
+            $archives = Archive::latest()->simplePaginate(10)->withQueryString();
+        }
         $total = $archives->count();
 
         return view('dashboard.archive', [
-            'archives' => $archives->simplePaginate(10)->withQueryString(),
-            'total' => $total
+            'archives' => $archives,
+            'total' => $total,
+            'latest' => $latest
         ]);
     }
 

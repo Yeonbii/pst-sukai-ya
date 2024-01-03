@@ -49,12 +49,15 @@
                 {{-- Area Atas Card Start --}}
                 <div class="flex items-end mb-3">
 
-                    {{-- Tombol Hapus Semua Data Archive Start --}}
-                    <form action="/dashboard/archive" method="post" class="w-full">
-                        @csrf
-                        <button type="submit" class="block w-full lg:w-auto font-semibold text-sm bg-red-500 text-white rounded-md py-2 px-8 mb-3 ms-auto hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center" {{ ($total > 0) ? '' : 'disabled' }} onclick="return confirm('Are you sure?')">Hapus Semua Data Archive</button>
-                    </form>
-                    {{-- Tombol Hapus Semua Data Archive End --}}
+                    {{-- Tombol Urutkan Data Start --}}
+                    @if ($latest == 'yes')
+                        {{-- Jika diurutkan berdasarkan data terbaru --}}
+                        <a href="/dashboard/archive" class="block w-full lg:w-auto font-semibold text-sm bg-blue-500 text-white rounded-md py-2 px-8 mb-3 ms-auto hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Diurutkan berdasarkan data terbaru</a>
+                    @else
+                        {{-- Jika diurutkan berdasarkan data terlama --}}
+                        <a href="/dashboard/archive?latest=yes" class="block w-full lg:w-auto font-semibold text-sm bg-blue-500 text-white rounded-md py-2 px-8 mb-3 ms-auto hover:bg-opacity-80 focus:border-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-30 text-center">Diurutkan berdasarkan data terlama</a>
+                    @endif
+                    {{-- Tombol Urutkan Data End --}}
 
                 </div>
                 {{-- Area Atas Card End --}}
