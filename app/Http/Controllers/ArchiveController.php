@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ArchiveController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $archives = Archive::simplePaginate(10)->withQueryString();
 
@@ -24,20 +24,6 @@ class ArchiveController extends Controller
             'total' => $total,
             'latest' => $latest
         ]);
-    }
-
-    public function destroyAll()
-    {
-         // Ambil semua data archive
-         $archives = Archive::all();
-
-         // Hapus file dan entitas Archive satu per satu
-         foreach ($archives as $archive) {
-             Storage::delete('public/' . $archive->name);
-             $archive->delete();
-         }
-
-        return redirect('/dashboard/archive')->with('success', 'All data archive has been deleted!');
     }
 
     public function destroy(Archive $archive)

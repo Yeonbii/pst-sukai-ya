@@ -8,7 +8,19 @@
         </div>
     </div>
    
-    <p class="text-sm text-slate-400 italic">Created at {{ $responden->created_at->format('d M Y, g:i A') }}</p>
+    <div class="flex flex-wrap items-center justify-between">
+        <p class="text-sm text-slate-400 italic me-5">Created at {{ $responden->created_at->format('d M Y, g:i A') }}</p>
+        {{-- Tombol Hapus --}}
+        <form action="/dashboard/data-responden/{{ $responden->id }}" method="post">
+            @method('delete')
+            @csrf
+            <button type="submit" class="group text-sm h-9 mr-3 px-1 rounded-md flex items-center text-red-500 hover:opacity-80" onclick="return confirm('Are you sure?')">
+                <i class="fa-solid fa-trash-can"></i>
+                <span class="ms-2 group-hover:underline">Delete</span>
+            </button>
+        </form>
+    </div>
+    
 
     <div class="pt-12 pb-12 px-4 mx-auto md:max-w-2xl">
 

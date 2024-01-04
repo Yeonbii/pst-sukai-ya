@@ -75,6 +75,7 @@ class DashboardController extends Controller
 
         // Menjumlahkan semua value untuk Tahun dan Bulan yang sama kemudian dikali 25 sesuai dengan rumus IKM yang diberikan
         $ikm = Ikm::where('year', $year)->where('month', $month)->sum('value');
+        dd($ikm);
         $ikm_result = $ikm * 25;
 
         // Mengambil data Chart yang mempunya show = 1 (Yes, ditampilkan)
