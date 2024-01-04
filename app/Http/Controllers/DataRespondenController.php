@@ -123,14 +123,15 @@ class DataRespondenController extends Controller
         $year = $responden->year;
         $month = $responden->month;
 
+        // Menghapus responden
+        Responden::destroy($responden->id);
+        
         // Menghitung jumlah responden untuk tahun dan bulan tertentu
         $respondensCount = Responden::where('year', $year)->where('month', $month)->count();
 
-        // Menghapus responden
-        Responden::destroy($responden->id);
 
-        if ($respondensCount == 1) {
-            // Jika ini adalah responden terakhir untuk tahun dan bulan tertentu, hapus juga data Ikm
+        if ($respondensCount == 0) {
+            // Jika sudah tidak ada data responden, hapus juga data Ikm
             Ikm::where('year', $year)->where('month', $month)->delete();
 
         } else {
