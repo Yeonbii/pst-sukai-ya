@@ -6,7 +6,7 @@
     <title>Beranda</title>
 
     <!-- AOS CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    {{-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> --}}
 
     {{-- Tailwind CSS --}}
     @vite('resources/css/app.css')
@@ -406,10 +406,10 @@
     <!-- Fontawesome Icon -->
     <script src="https://kit.fontawesome.com/fffa6787c5.js" crossorigin="anonymous"></script>
     <!-- AOS Script -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    {{-- <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
-    </script>
+    </script> --}}
     <!-- My JS -->
     <script src="js/script.js"></script>
 </body>

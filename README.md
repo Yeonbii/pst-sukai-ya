@@ -14,6 +14,7 @@ php artisan key:generate
 composer install
 npm install
 php artisan migrate --seed
+php artisan storage:link
 ```
 ### Running
 - Jalankan dan biarkan command ini berjalan
