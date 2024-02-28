@@ -4,6 +4,21 @@
 
     <form action="/form/s" method="post">
         @csrf
+
+        {{-- Alert Start --}}
+        @if ($errors->any())
+            <div id="alert-card">
+                <div class="w-full mb-5 rounded-md shadow-md font-medium border h-9 p-5 bg-opacity-30 flex items-center border-red-600 bg-red-600 text-red-600">
+                    <div class="ms-4">
+                        Terdapat Pertanyaan Wajib yang belum dijawab!
+                    </div>
+                    <button type="button" class="w-8 h-8 flex justify-center items-center ms-auto" onclick="document.querySelector('#alert-card').classList.toggle('hidden');">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+        @endif
+        {{-- Alert End --}}
         
         <div class="bg-white rounded-md shadow-md mb-9 p-7">
             
@@ -40,13 +55,22 @@
 
                         {{-- Input Answer Start --}}
                         <input type="text" name="s_{{ $no_question }}" id="s_{{ $no_question }}" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none"
-                            {{ ($question->is_required == '1') ? 'required' : '' }} 
                             @if (session()->has('form_s'))
                                 value="{{ $form_s['s_'.$no_question] }}"
+                            @else
+                                value="{{ old('s_' . $no_question) }}"
                             @endif
                             {{ ($question->maks_char != 0) ? 'maxlength='.$question->maks_char : '' }} 
                         >
                         {{-- Input Answer End --}}
+
+                        {{-- jika pertanyaan wajib tetapi belum dijawab Start --}}
+                        @if ($question->is_required == '1')
+                            @error('s_' . $no_question)
+                                <p class="text-xs font-semibold text-red-500 mt-1">Pertanyaan belum dijawab!</p>
+                            @enderror
+                        @endif
+                        {{-- jika pertanyaan wajib tetapi belum dijawab End --}}
 
                     </div>
 
@@ -75,12 +99,21 @@
 
                         {{-- Input Answer Start --}}
                         <input type="number" name="s_{{ $no_question }}" id="s_{{ $no_question }}" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none"
-                            {{ ($question->is_required == '1') ? 'required' : '' }} 
                             @if (session()->has('form_s'))
                                 value="{{ $form_s['s_'.$no_question] }}"
+                            @else
+                                value="{{ old('s_' . $no_question) }}"
                             @endif
                         >
                         {{-- Input Answer End --}}
+
+                        {{-- jika pertanyaan wajib tetapi belum dijawab Start --}}
+                        @if ($question->is_required == '1')
+                            @error('s_' . $no_question)
+                                <p class="text-xs font-semibold text-red-500 mt-1">Pertanyaan belum dijawab!</p>
+                            @enderror
+                        @endif
+                        {{-- jika pertanyaan wajib tetapi belum dijawab End --}}
 
                     </div>
 
@@ -109,12 +142,21 @@
 
                         {{-- Input Answer Start --}}
                         <input type="date" name="s_{{ $no_question }}" id="s_{{ $no_question }}" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none"
-                            {{ ($question->is_required == '1') ? 'required' : '' }} 
                             @if (session()->has('form_s'))
                                 value="{{ $form_s['s_'.$no_question] }}"
+                            @else
+                                value="{{ old('s_' . $no_question) }}"
                             @endif
                         >
                         {{-- Input Answer End --}}
+
+                        {{-- jika pertanyaan wajib tetapi belum dijawab Start --}}
+                        @if ($question->is_required == '1')
+                            @error('s_' . $no_question)
+                                <p class="text-xs font-semibold text-red-500 mt-1">Pertanyaan belum dijawab!</p>
+                            @enderror
+                        @endif
+                        {{-- jika pertanyaan wajib tetapi belum dijawab End --}}
 
                     </div>
                 
@@ -129,7 +171,7 @@
                                 <span class="text-red-500">(wajib)</span>
                             @endif
                         </label>
-                        {{-- Teks Pertanyaan End --}}
+                        {{-- Teks Peranyaan End --}}
 
                         {{-- Catatan Pertanyaan Start --}}
                         @if ($question->need_note == 1)
@@ -143,20 +185,29 @@
 
                         {{-- Input Answer Start --}}
                         <input type="text" name="s_{{ $no_question }}" id="s_{{ $no_question }}" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none"
-                            {{ ($question->is_required == '1') ? 'required' : '' }}     
                             @if (session()->has('form_s'))
                                 value="{{ $form_s['s_'.$no_question] }}"
+                            @else
+                                value="{{ old('s_' . $no_question) }}"
                             @endif
                             maxlength="13"
                         >
                         {{-- Input Answer End --}}
+
+                        {{-- jika pertanyaan wajib tetapi belum dijawab Start --}}
+                        @if ($question->is_required == '1')
+                            @error('s_' . $no_question)
+                                <p class="text-xs font-semibold text-red-500 mt-1">Pertanyaan belum dijawab!</p>
+                            @enderror
+                        @endif
+                        {{-- jika pertanyaan wajib tetapi belum dijawab End --}}
 
                     </div>
 
                 @elseif($question->input_type == '5')
                     {{-- 5 -> Select : (Pilih salah satu) --}}
                     <div id="s_{{ $no_question }}_div" class="w-full pb-7 pt-5 {{ ($question->no == 1) ? '' : 'border-t-2' }}">
-                        
+
                         {{-- Teks Pertanyaan Start --}}
                         <p class="text-sm font-medium mb-2">
                             {{ $question->text }}
@@ -183,9 +234,10 @@
                                 <div class="flex items-center mb-4">
                                     
                                     <input type="radio" name="s_{{ $no_question }}" id="s_{{ $no_question }}_{{ $no_option }}" value="{{ $option->value }}" class="w-4 h-4 flex-shrink-0"
-                                        {{ ($question->is_required == '1') ? 'required' : '' }} 
                                         @if (session()->has('form_s'))
                                             {{ ($form_s['s_'.$no_question]  == $option->value) ? 'checked' : '' }}
+                                        @else
+                                            {{ (old('s_' . $no_question) == $option->value) ? 'checked' : '' }}
                                         @endif           
                                     >
 
@@ -193,7 +245,7 @@
                                     @php
                                         $modifiedText = preg_replace('/link\*(.*?)\*link/', '<a href="$1" target="_blank" class="text-blue-500 italic underline">$1</a>', $option->text);
                                     @endphp
-                                    
+
                                     <label for="s_{{ $no_question }}_{{ $no_option }}" class="ms-2 text-sm font-medium">
                                         {!! $modifiedText !!}
                                     </label>
@@ -207,12 +259,20 @@
                         </div>
                         {{-- Input Answer End --}}
 
+                        {{-- jika pertanyaan wajib tetapi belum dijawab Start --}}
+                        @if ($question->is_required == '1')
+                            @error('s_' . $no_question)
+                                <p class="text-xs font-semibold text-red-500 mt-1">Pertanyaan belum dijawab!</p>
+                            @enderror
+                        @endif
+                        {{-- jika pertanyaan wajib tetapi belum dijawab End --}}
+
                     </div>
 
                 @elseif($question->input_type == '7')
                     {{-- 7 -> Select : Yes or No --}}
                     <div id="s_{{ $no_question }}_div" class="w-full pb-7 pt-5 {{ ($question->no == 1) ? '' : 'border-t-2' }}">
-                        
+
                         {{-- Teks Pertanyaan Start --}}
                         <p class="text-sm font-medium mb-2">
                             {{ $question->text }}
@@ -234,9 +294,10 @@
                         <div id="s_{{ $no_question }}" class="mt-3">
                             <div class="flex items-center mb-4">
                                 <input type="radio" name="s_{{ $no_question }}" id="s_{{ $no_question }}_1" value="Yes" class="w-4 h-4 flex-shrink-0"
-                                    {{ ($question->is_required == '1') ? 'required' : '' }} 
                                     @if (session()->has('form_s'))
                                         {{ ($form_s['s_'.$no_question]  == 'Yes') ? 'checked' : '' }}
+                                    @else
+                                        {{ (old('s_' . $no_question) == 'Yes') ? 'checked' : '' }}
                                     @endif  
                                 >
                                 <label for="s_{{ $no_question }}_1" class="ms-2 text-sm font-medium">
@@ -246,9 +307,10 @@
 
                             <div class="flex items-center mb-4">
                                 <input type="radio" name="s_{{ $no_question }}" id="s_{{ $no_question }}_2" value="No" class="w-4 h-4 flex-shrink-0"
-                                    {{ ($question->is_required == '1') ? 'required' : '' }} 
                                     @if (session()->has('form_s'))
                                         {{ ($form_s['s_'.$no_question]  == 'No') ? 'checked' : '' }}
+                                    @else
+                                        {{ (old('s_' . $no_question) == 'No') ? 'checked' : '' }}
                                     @endif  
                                 >
                                 <label for="s_{{ $no_question }}_2" class="ms-2 text-sm font-medium">
@@ -258,6 +320,14 @@
 
                         </div>
                         {{-- Input Answer End --}}
+
+                        {{-- jika pertanyaan wajib tetapi belum dijawab Start --}}
+                        @if ($question->is_required == '1')
+                            @error('s_' . $no_question)
+                                <p class="text-xs font-semibold text-red-500 mt-1">Pertanyaan belum dijawab!</p>
+                            @enderror
+                        @endif
+                        {{-- jika pertanyaan wajib tetapi belum dijawab End --}}
 
                     </div>
                     

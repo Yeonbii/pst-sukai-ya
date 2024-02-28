@@ -4,6 +4,21 @@
 
     <form action="/form/sr" method="post">
         @csrf
+
+        {{-- Alert Start --}}
+        @if ($errors->any())
+            <div id="alert-card">
+                <div class="w-full mb-5 rounded-md shadow-md font-medium border h-9 p-5 bg-opacity-30 flex items-center border-red-600 bg-red-600 text-red-600">
+                    <div class="ms-4">
+                        Terdapat Pertanyaan Wajib yang belum dijawab!
+                    </div>
+                    <button type="button" class="w-8 h-8 flex justify-center items-center ms-auto" onclick="document.querySelector('#alert-card').classList.toggle('hidden');">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+        @endif
+        {{-- Alert End --}}
         
         <div class="bg-white rounded-md shadow-md mb-9 p-7">
             
@@ -48,15 +63,18 @@
                                     
                                     <div>
                                         <input type="radio" name="sr_{{ $no_question }}" id="{{ $i }}" class="hidden" value="{{ $i }}"
-                                            {{ ($question->is_required == '1') ? 'required' : '' }} 
                                             @if (session()->has('form_sr'))
                                                 {{ ($form_sr['sr_'.$no_question]  == $i) ? 'checked' : '' }}
+                                            @else
+                                                {{ (old('sr_' . $no_question)  == $i) ? 'checked' : '' }}
                                             @endif  
                                         >
                                         <label for="{{ $i }}">
                                             <div class="cursor-pointer w-9 h-9 mx-1 mb-3 rounded-md flex justify-center items-center border-2 border-dark border-opacity-30 hover:bg-dark hover:text-white 
                                                 @if (session()->has('form_sr'))
                                                     {{ ($form_sr['sr_'.$no_question]  == $i) ? 'selected-selection' : 'unselected-selection' }}
+                                                @elseif($errors->any())
+                                                    {{ (old('sr_' . $no_question)  == $i) ? 'selected-selection' : 'unselected-selection' }}
                                                 @else
                                                     unselected-selection
                                                 @endif"
@@ -72,6 +90,14 @@
 
                         </div>
                         {{-- Input Answer End --}}
+
+                        {{-- jika pertanyaan wajib tetapi belum dijawab Start --}}
+                        @if ($question->is_required == '1')
+                            @error('sr_' . $no_question)
+                                <p class="text-xs font-semibold text-red-500 mt-1">Pertanyaan belum dijawab!</p>
+                            @enderror
+                        @endif
+                        {{-- jika pertanyaan wajib tetapi belum dijawab End --}}
 
                     </div>    
 

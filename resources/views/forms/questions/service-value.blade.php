@@ -5,6 +5,21 @@
     <form action="/form/sv" method="post">
         @csrf
 
+        {{-- Alert Start --}}
+        @if ($errors->any())
+            <div id="alert-card">
+                <div class="w-full mb-5 rounded-md shadow-md font-medium border h-9 p-5 bg-opacity-30 flex items-center border-red-600 bg-red-600 text-red-600">
+                    <div class="ms-4">
+                        Terdapat Pertanyaan Wajib yang belum dijawab!
+                    </div>
+                    <button type="button" class="w-8 h-8 flex justify-center items-center ms-auto" onclick="document.querySelector('#alert-card').classList.toggle('hidden');">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+        @endif
+        {{-- Alert End --}}
+
         <div class="bg-white rounded-md shadow-md mb-9 p-7">
             
             <p class="text-base font-semibold border-b-2 pb-3 md:text-2xl">Bagian Nilai Pelayanan</p>
@@ -44,9 +59,10 @@
                                 <div class="flex items-center mb-4">
                                     
                                     <input type="radio" name="sv_{{ $no_question }}" id="sv_{{ $no_question }}_{{ $no_option }}" value="{{ $option->value }}" class="w-4 h-4 flex-shrink-0"
-                                        {{ ($question->is_required == '1') ? 'required' : '' }} 
                                         @if (session()->has('form_sv'))
                                             {{ ($form_sv['sv_'.$no_question]  == $option->value) ? 'checked' : '' }}
+                                        @else
+                                            {{ (old('sv_' . $no_question)  == $option->value) ? 'checked' : '' }}
                                         @endif   
                                     >
 
@@ -67,6 +83,14 @@
 
                         </div>
                         {{-- Input Answer End --}}
+
+                        {{-- jika pertanyaan wajib tetapi belum dijawab Start --}}
+                        @if ($question->is_required == '1')
+                            @error('sv_' . $no_question)
+                                <p class="text-xs font-semibold text-red-500 mt-1">Pertanyaan belum dijawab!</p>
+                            @enderror
+                        @endif
+                        {{-- jika pertanyaan wajib tetapi belum dijawab End --}}
 
                     </div>    
 

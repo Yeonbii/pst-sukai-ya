@@ -5,6 +5,21 @@
     <form action="/form/f" method="post">
         @csrf
 
+        {{-- Alert Start --}}
+        @if ($errors->any())
+            <div id="alert-card">
+                <div class="w-full mb-5 rounded-md shadow-md font-medium border h-9 p-5 bg-opacity-30 flex items-center border-red-600 bg-red-600 text-red-600">
+                    <div class="ms-4">
+                        Terdapat Pertanyaan Wajib yang belum dijawab!
+                    </div>
+                    <button type="button" class="w-8 h-8 flex justify-center items-center ms-auto" onclick="document.querySelector('#alert-card').classList.toggle('hidden');">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+        @endif
+        {{-- Alert End --}}
+
         <div class="bg-white rounded-md shadow-md mb-9 p-7">
             
             <p class="text-base font-semibold border-b-2 pb-3 md:text-2xl">Bagian Feedback</p>
@@ -38,8 +53,16 @@
                         {{-- Catatan Pertanyaan End --}}
 
                         {{-- Input Answer Start --}}
-                        <textarea name="f_{{ $no_question }}" id="f_{{ $no_question }}" rows="3" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none" {{ ($question->is_required == '1') ? 'required' : '' }} >@if (session()->has('form_f')){{ $form_f['f_'.$no_question] }}@endif</textarea>
+                        <textarea name="f_{{ $no_question }}" id="f_{{ $no_question }}" rows="3" class="text-sm border-2 border-slate-300 rounded-md w-full p-2.5 focus:border-secondary focus:outline-none">@if (session()->has('form_f')){{ $form_f['f_'.$no_question] }}@else{{ old('f_' . $no_question) }}@endif</textarea>
                         {{-- Input Answer End --}}
+
+                        {{-- jika pertanyaan wajib tetapi belum dijawab Start --}}
+                        @if ($question->is_required == '1')
+                            @error('f_' . $no_question)
+                                <p class="text-xs font-semibold text-red-500 mt-1">Pertanyaan belum dijawab!</p>
+                            @enderror
+                        @endif
+                        {{-- jika pertanyaan wajib tetapi belum dijawab End --}}
 
                     </div>    
 
